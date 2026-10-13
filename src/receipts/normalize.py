@@ -142,16 +142,15 @@ def date_candidates(value) -> list[date]:
 
 
 def parse_date(value, submitted_on=None) -> date | None:
-    """Parse a date. For DD/MM vs MM/DD ambiguity, take the reading closest to and
-    not after submitted_on; with no usable reference, read it day-first."""
+    """Parse a date, reading DD/MM by default. MM/DD is used only when DD/MM is not a
+    real date, or when DD/MM lands after submitted_on and MM/DD does not."""
     cands = date_candidates(value)
     if not cands:
         return None
     if len(cands) > 1:
         ref = parse_date(submitted_on)
-        on_or_before = [c for c in cands if ref is not None and c <= ref]
-        if on_or_before:
-            return max(on_or_before)
+        if ref is not None and cands[0] > ref >= cands[1]:
+            return cands[1]
     return cands[0]
 
 

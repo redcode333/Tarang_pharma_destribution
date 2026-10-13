@@ -77,19 +77,28 @@ def test_ambiguous_date_defaults_to_day_first():
     assert parse_date("04/03/2026") == date(2026, 3, 4)
 
 
-def test_ambiguous_date_takes_closest_not_after_submission():
-    # Only the day-first reading is on or before the submission date.
+def test_ambiguous_date_is_day_first_unless_that_is_after_submission():
+    # Day-first is on or before the submission date: keep it.
     assert parse_date("04/03/2026", "2026-03-10") == date(2026, 3, 4)
-    # Only the month-first reading is on or before the submission date.
     assert parse_date("05/02/2026", "2026-02-10") == date(2026, 2, 5)
     assert parse_date("12/01/2026", "2026-01-20") == date(2026, 1, 12)
+    # Both readings are on or before: still day-first, even though month-first is closer.
+    assert parse_date("04/03/2026", "2026-06-01") == date(2026, 3, 4)
+    # Day-first is on the submission date itself: keep it.
+    assert parse_date("04/03/2026", "2026-03-04") == date(2026, 3, 4)
+    # Day-first lands after submission and month-first does not: month-first.
     assert parse_date("01/12/2026", "2026-01-20") == date(2026, 1, 12)
-    # Both readings are on or before: the later (closer) one wins.
-    assert parse_date("04/03/2026", "2026-06-01") == date(2026, 4, 3)
-    # Neither reading is on or before: fall back to day-first.
+    assert parse_date("07/06/26", "2026-06-08") == date(2026, 6, 7)
+    # Both readings land after submission: stay day-first.
     assert parse_date("04/03/2026", "2026-01-01") == date(2026, 3, 4)
-    # Unparseable reference: fall back to day-first.
+    # Unparseable or missing reference: day-first.
     assert parse_date("04/03/2026", "soon") == date(2026, 3, 4)
+    assert parse_date("04/03/2026", None) == date(2026, 3, 4)
+
+
+def test_month_first_when_day_first_is_not_a_real_date():
+    assert parse_date("03/14/2026") == date(2026, 3, 14)
+    assert parse_date("03/14/2026", "2026-01-01") == date(2026, 3, 14)
 
 
 def test_same_day_and_month_is_not_ambiguous():

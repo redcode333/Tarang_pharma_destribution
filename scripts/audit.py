@@ -56,23 +56,19 @@ NEAR_AMOUNT_RS = 10
 PHASH_MAX_DISTANCE = 6
 PARKING_NAMES = ["Rohan", "Pooja", "Harshal"]
 
-# First-pass note themes; a note can match several. Unmatched notes are listed in the report.
+LATE_DAYS = 20          # expense-to-submission gap treated as a late submission
+VENDOR_SIMILAR = 0.8    # similarity at or above which two vendor spellings are one vendor
+
+# Written from the 13 distinct clerk notes in the June-July 2026 export. First match wins;
+# a note that matches nothing is reported as "(unthemed)".
 NOTE_THEMES = {
-    "amount mismatch": r"mismatch|does ?n[o']?t match|not match|differ|claimed (more|less|extra)|"
-                       r"amount.*(more|less|higher|lower|wrong)|bill (is for|shows|amount)|inflat|overstat",
-    "duplicate": r"duplicate|dupl\b|already (claimed|paid|submitted)|same bill|repeat|twice|resubmi",
-    "no vehicle no": r"vehicle|veh\.? ?no|reg(istration)?\.? ?no|number plate",
-    "not in employee name": r"\bname\b|someone else|other person|not (his|her|the employee)",
-    "unreadable photo": r"unreadable|not readable|illegible|blur|unclear|not clear|can'?t read|cannot read|"
-                        r"too dark|cropped|cut off|faded|torn|not visible",
-    "over limit": r"limit|\bcap\b|exceed|above (the )?(limit|cap|rs)|max(imum)?\b|per day|ceiling",
-    "wrong category": r"categor|wrong head|should be (under|claimed)|misclass|not (a )?(fuel|food|travel|parking|hotel)",
-    "date problem": r"\bdate|old bill|\blate\b|stale|expired|future|days? (old|after)",
-    "no proper bill": r"no bill|no receipt|missing bill|bill missing|handwritten|hand written|kaccha|"
-                      r"not a bill|estimate|quotation",
-    "gst / vendor": r"\bgst|gstin|vendor|\bshop\b",
-    "not reimbursable": r"personal|alcohol|liquor|not allowed|not permitted|not reimbursable|cigarette",
-    "approval": r"approval|approved by|pre-?approv|manager",
+    "duplicate bill": r"same bill",
+    "altered bill": r"overwritten|altered|tamper",
+    "amount corrected to bill": r"(amt|amount) corrected",
+    "no bill photo": r"not attached",
+    "unreadable photo": r"not clear|reupload",
+    "GST invoice confirmed": r"\bgst\b",
+    "routine ok": r"^(ok|verified)\b",
 }
 
 
@@ -142,6 +138,24 @@ def joined(values) -> str:
 
 def alnum(v) -> str:
     return re.sub(r"[^a-z0-9]", "", str(v).lower())
+
+
+def vendor_tokens(v) -> list[str]:
+    return sorted(re.findall(r"[a-z0-9]+", str(v).lower()))
+
+
+def vendor_similarity(a, b) -> float:
+    """0-1 likeness of two vendor spellings, ignoring case, punctuation and word order."""
+    ta, tb = vendor_tokens(a), vendor_tokens(b)
+    if not ta or not tb:
+        return 0.0
+    if ta == tb:
+        return 1.0
+    shorter, longer = sorted((set(ta), set(tb)), key=len)
+    if len(shorter) >= 2 and shorter <= longer:  # "Krishna Comforts" vs "Hotel Krishna Comforts"
+        return 0.95
+    return max(SequenceMatcher(None, " ".join(ta), " ".join(tb)).ratio(),
+               SequenceMatcher(None, alnum(a), alnum(b)).ratio())
 
 
 def shape(v) -> str:
@@ -286,6 +300,15 @@ def sec_images(ctx, rep: Report) -> None:
             f"{n} x {e or '(none)'}" for e, n in
             df.loc[~blank, C_IMG].map(lambda v: Path(str(v).strip()).suffix).value_counts().items()) or "none"),
     ])
+    if found.mean() < 0.9:
+        rep.p(f"**Only {int(found.sum())} of {len(df)} claims have their photo on disk. Sections 1 and 7 "
+              "describe an incomplete image set and must be re-run once the photos are imported.**")
+    photo_day = pd.to_datetime(df[C_IMG].str.extract(r"IMG[-_](\d{8})")[0], format="%Y%m%d", errors="coerce").dt.date
+    lag = pd.Series([(s - p).days if p == p and p is not None and s is not None else np.nan
+                     for p, s in zip(photo_day, df["_sub"])], index=df.index).dropna()
+    if len(lag):
+        rep.p(f"The date inside the photo name is {joined(f'{d:g} day(s) before submission on {n} claims' for d, n in lag.value_counts().sort_index().items())}"
+              ". It records when the photo was uploaded, not when the bill was issued.")
     missing = df[~blank & ~found]
     if len(missing):
         rep.p("Named but not on disk:")
@@ -340,9 +363,10 @@ def sec_parsers(ctx, rep: Report) -> None:
             day_first = amb[C_EXP].map(lambda v: date_candidates(v)[0])
             amb["reading"] = np.where(amb["_exp"] == day_first, "day-first", "month-first")
             amb["basis"] = [
-                "no submitted_on" if s is None
-                else "closest on or before submitted_on" if any(c <= s for c in date_candidates(v))
-                else "both after submitted_on, defaulted to day-first"
+                "no submitted_on, default" if s is None
+                else "day-first is on or before submitted_on" if date_candidates(v)[0] <= s
+                else "day-first is after submitted_on, month-first is not" if date_candidates(v)[1] <= s
+                else "both readings after submitted_on, default"
                 for v, s in zip(amb[C_EXP], amb["_sub"])]
             summary = amb.groupby(["reading", "basis"]).size().reset_index(name="rows")
             rep.table(summary)
@@ -357,8 +381,9 @@ def sec_parsers(ctx, rep: Report) -> None:
                 rep.table(cols(late, C_ID, "split", C_EMP, C_EXP, C_SUB), 10)
 
 
-def note_themes(note) -> list[str]:
-    return [t for t, pattern in NOTE_THEMES.items() if re.search(pattern, str(note), re.I)]
+def note_theme(note) -> str:
+    return next((t for t, pattern in NOTE_THEMES.items() if re.search(pattern, str(note).strip(), re.I)),
+                "(unthemed)")
 
 
 def sec_labels(ctx, rep: Report) -> None:
@@ -400,24 +425,30 @@ def sec_labels(ctx, rep: Report) -> None:
               .rename_axis("note").reset_index())
     all_notes = noted.groupby(C_NOTE).agg(rows=(C_NOTE, "size"), statuses=(C_STATUS, joined)).reset_index()
     all_notes = all_notes.sort_values(["rows", C_NOTE], ascending=[False, True])
-    all_notes["themes"] = all_notes[C_NOTE].map(lambda n: ", ".join(note_themes(n)) or "(unthemed)")
-    rep.p("All raw notes:")
+    all_notes["theme"] = all_notes[C_NOTE].map(note_theme)
+    rep.p("Every distinct note:")
     rep.table(all_notes, None)
 
     rep.h(3, "Note themes")
-    noted["_themes"] = noted[C_NOTE].map(note_themes)
-    theme_rows = []
-    for theme in NOTE_THEMES:
-        g = noted[noted["_themes"].map(lambda t: theme in t)]
-        if len(g):
-            theme_rows.append({
-                "theme": theme, "rows": len(g), "distinct notes": g[C_NOTE].nunique(),
-                "statuses": joined(f"{n} {s}" for s, n in g[C_STATUS].value_counts().items()),
-                "median Rs": g["_amt"].median(), "example": g[C_NOTE].value_counts().index[0]})
+    noted["_theme"] = noted[C_NOTE].map(note_theme)
+    theme_rows = [{
+        "theme": theme, "rows": len(g), "distinct notes": g[C_NOTE].nunique(),
+        "statuses": joined(f"{n} {s}" for s, n in g[C_STATUS].value_counts().items()),
+        "median Rs": g["_amt"].median(), "total Rs": g["_amt"].sum(),
+        "notes": joined(g[C_NOTE].value_counts().index)} for theme, g in noted.groupby("_theme")]
     rep.table(pd.DataFrame(theme_rows).sort_values("rows", ascending=False) if theme_rows else pd.DataFrame(), None)
-    unthemed = noted[noted["_themes"].map(len) == 0]
-    rep.p(f"Notes matching no theme: {len(unthemed)} rows, {unthemed[C_NOTE].nunique()} distinct. "
-          "A note can match more than one theme; themes are keyword rules, not a model.")
+    rep.p(f"Notes matching no theme: {int((noted['_theme'] == '(unthemed)').sum())} rows. "
+          "Themes are keyword rules written from the notes above; the first matching rule wins.")
+
+    not_approved = tr[tr[C_STATUS] != "approved"]
+    rep.h(3, "Every claim that was not approved")
+    rep.table(cols(not_approved, C_ID, "employee", C_CAT, C_AMT, C_CAMT, C_CBILL, C_STATUS, C_NOTE), None)
+    clerk_cols = [c for c in (C_CVENDOR, C_CDATE, C_CBILL, C_CAMT) if c in tr.columns]
+    if clerk_cols:
+        untyped = tr[(tr[clerk_cols] == "").all(axis=1)]
+        rep.p(f"Rows where the clerk typed nothing from the photo: **{len(untyped)}** "
+              f"({joined(f'{n} {s}' for s, n in untyped[C_STATUS].value_counts().items())}). "
+              "These have no field labels to score extraction against.")
 
 
 def sec_agreement(ctx, rep: Report) -> None:
@@ -455,18 +486,25 @@ def sec_agreement(ctx, rep: Report) -> None:
             return "rep blank"
         if str(a) == str(b):
             return "identical"
-        na, nb = alnum(a), alnum(b)
-        if na == nb:
+        if alnum(a) == alnum(b):
             return "same ignoring case/punctuation"
-        if na in nb or nb in na or SequenceMatcher(None, na, nb).ratio() >= 0.8:
-            return "similar"
+        if vendor_tokens(a) == vendor_tokens(b):
+            return "same words, different order"
+        if vendor_similarity(a, b) >= VENDOR_SIMILAR:
+            return "similar (typo, abbreviation or extra word)"
         return "different"
 
     tr["vendor_match"] = [vendor_match(a, b) for a, b in zip(tr[C_VENDOR], tr[C_CVENDOR])]
     rep.table(tr["vendor_match"].value_counts().rename_axis("vendor agreement").reset_index(name="rows"))
-    different = tr[tr["vendor_match"] == "different"]
-    if len(different):
-        rep.table(cols(different, C_ID, C_EMP, C_VENDOR, C_CVENDOR, C_STATUS, C_NOTE), 10)
+    for bucket in ("similar (typo, abbreviation or extra word)", "different"):
+        rows = tr[tr["vendor_match"] == bucket]
+        if len(rows):
+            rep.p(f"Examples, {bucket}:")
+            rep.table(cols(rows, C_ID, C_EMP, C_VENDOR, C_CVENDOR, C_STATUS), 12)
+    typed = tr.loc[tr[C_CVENDOR] != "", C_CVENDOR]
+    rep.p(f"The clerk's own spellings vary too: {typed.nunique()} distinct `{C_CVENDOR}` strings, "
+          f"{typed.str.lower().nunique()} ignoring case, {typed.map(lambda v: ' '.join(vendor_tokens(v))).nunique()} "
+          "ignoring case and word order. Exact string match against the clerk under-counts correct reads.")
 
     rep.h(3, f"`{C_EXP}` vs `{C_CDATE}`")
     need(tr, C_EXP, C_CDATE)
@@ -484,9 +522,15 @@ def sec_agreement(ctx, rep: Report) -> None:
 
     tr["date_match"] = [date_match(e, c) for e, c in zip(tr["_exp"], tr["_cdate"])]
     rep.table(tr["date_match"].value_counts().rename_axis("date agreement").reset_index(name="rows"))
-    off = tr[tr["date_match"].isin(["different", "day and month swapped", "within 1 day"])]
+    off = tr[tr["date_match"].isin(["different", "day and month swapped", "within 1 day"])].copy()
     if len(off):
-        rep.table(cols(off, C_ID, C_EMP, C_EXP, C_CDATE, "date_match", C_STATUS, C_NOTE), 10)
+        later = set()
+        if ctx.repeats is not None:
+            later = set(ctx.repeats.loc[ctx.repeats["_same_vendor"] & ctx.repeats["_repeat"], C_ID])
+        off["later claim of a repeated bill"] = np.where(off[C_ID].isin(later), "yes", "no")
+        rep.p(f"Of the {len(off)} claims where the rep's date is not the bill date, "
+              f"**{int(off[C_ID].isin(later).sum())}** are a later claim of a bill number already claimed (section 5).")
+        rep.table(cols(off, C_ID, C_EMP, C_EXP, C_CDATE, "date_match", C_STATUS, "later claim of a repeated bill"), None)
 
 
 def _group_rows(g: pd.DataFrame) -> dict:
@@ -495,60 +539,145 @@ def _group_rows(g: pd.DataFrame) -> dict:
             "statuses": joined(g.get(C_STATUS, []))}
 
 
+def find_repeated_bills(claims: pd.DataFrame) -> pd.DataFrame | None:
+    """Claims whose clerk bill number also appears on another claim.
+
+    Adds _bill (normalised number), _same_vendor (the claims sharing it name one vendor,
+    so it is one bill rather than two shops reusing a number) and _repeat (True for every
+    claim after the first one submitted). None if the clerk columns are absent.
+    """
+    if not {C_CBILL, C_CVENDOR, C_ID}.issubset(claims.columns):
+        return None
+    has = claims[claims[C_CBILL] != ""].copy()
+    has["_bill"] = has[C_CBILL].map(alnum)
+    has = has[has["_bill"].duplicated(keep=False)].sort_values(["_bill", "_sub", C_ID])
+    has["_same_vendor"] = has.groupby("_bill")[C_CVENDOR].transform(
+        lambda v: min(vendor_similarity(a, b) for a, b in combinations(v, 2)) >= VENDOR_SIMILAR)
+    has["_repeat"] = has.groupby("_bill").cumcount() > 0
+    return has
+
+
+def _near(a: dict, b: dict) -> bool:
+    """Any claimed or bill amount of a is within Rs 10 or 2% of one of b's."""
+    xs = [v for v in (a["_amt"], a["_camt"]) if v == v]
+    ys = [v for v in (b["_amt"], b["_camt"]) if v == v]
+    return any(abs(x - y) <= max(NEAR_AMOUNT_RS, 0.02 * max(x, y)) for x in xs for y in ys)
+
+
 def sec_duplicates(ctx, rep: Report) -> None:
     rep.h(2, "5. Duplicate scan (train + test)")
     df = ctx.claims.copy()
-    df["_vendor"] = [alnum(c if not is_blank(c) else v) for c, v in zip(raw(df, C_CVENDOR), raw(df, C_VENDOR))]
+    gap = pd.Series([(s - e).days if e is not None and s is not None else np.nan
+                     for e, s in zip(df["_exp"], df["_sub"])], index=df.index)
 
-    rep.h(3, f"Same `{C_CBILL}` + vendor")
-    if C_CBILL in df.columns:
-        df["_bill"] = df[C_CBILL].map(lambda v: "" if is_blank(v) else alnum(v))
-        has = df[df["_bill"] != ""]
-        rep.p(f"Rows with a bill number: {len(has)} ({joined(f'{n} {s}' for s, n in has['split'].value_counts().items())}).")
-        groups = [{"bill_no": g[C_CBILL].iloc[0], "vendor": g[C_VENDOR].iloc[0] if C_VENDOR in g else "", **_group_rows(g)}
-                  for _, g in has.groupby(["_bill", "_vendor"]) if len(g) > 1]
-        rep.p(f"Repeated bill number + vendor groups: **{len(groups)}**.")
-        rep.table(pd.DataFrame(groups).sort_values("n", ascending=False) if groups else pd.DataFrame(), 25)
+    rep.h(3, f"Same `{C_CBILL}` on more than one claim (train only; test has no clerk columns)")
+    rb = ctx.repeats
+    later_ids: set[str] = set()
+    if rb is None:
+        rep.p(f"Skipped: no `{C_CBILL}` / `{C_CVENDOR}` columns.")
     else:
-        rep.p(f"Skipped: no `{C_CBILL}` column.")
+        real = rb[rb["_same_vendor"]]
+        later = real[real["_repeat"]]
+        later_ids = set(later[C_ID])
+        paid_again = later[later[C_STATUS] == "approved"]
+        exact = sum(1 for _, g in real.groupby("_bill") if g[C_CVENDOR].map(alnum).nunique() == 1)
+        same_emp = sum(1 for _, g in real.groupby("_bill") if g[C_EMP].nunique() == 1)
+        n_groups = real["_bill"].nunique()
+        first = real[~real["_repeat"]].set_index("_bill")
+        changed_amt = int((later["_amt"] - later["_bill"].map(first["_amt"])).abs().gt(0.005).sum())
+        rep.bullets([
+            f"Claims with a bill number: {int((raw(df, C_CBILL) != '').sum())}",
+            f"Bill numbers typed on more than one claim: {rb['_bill'].nunique()}; same vendor on every claim "
+            f"(one bill claimed again): **{n_groups}**; different vendors (coincidence): "
+            f"{rb['_bill'].nunique() - n_groups}",
+            f"Later claims of an already-claimed bill: **{len(later)}**; approved: **{len(paid_again)}** "
+            f"(Rs {paid_again['_amt'].sum():,.2f}); stopped by the clerk: {len(later) - len(paid_again)}",
+            f"Claimed again by the same employee: {same_emp} bills; by a different employee: {n_groups - same_emp} bills",
+            f"On the later claim the rep typed a date different from the bill date: "
+            f"{int((later['_exp'] != later['_cdate']).sum())} of {len(later)}; "
+            f"a different amount from the first claim: {changed_amt} of {len(later)}",
+            f"Days from bill date to submission, later claims: median "
+            f"{pd.Series([(s - c).days for c, s in zip(later['_cdate'], later['_sub'])]).median():.0f} "
+            f"(all claims, from the rep's expense date: {gap.median():.0f})",
+            f"Grouping on the clerk's exact vendor spelling would find only {exact} of the {n_groups}",
+        ])
+        rows = [{"bill_no": g[C_CBILL].iloc[0], "clerk vendor": g[C_CVENDOR].iloc[0],
+                 "claims, first submitted first": ", ".join(g[C_ID]), "employees": joined(g["employee"]),
+                 "bill date": joined(g["_cdate"]), "rep dates": joined(g["_exp"]),
+                 "bill Rs": joined(g["_camt"]), "claimed Rs": ", ".join(f"{v:g}" for v in g["_amt"]),
+                 "statuses": ", ".join(g[C_STATUS]),
+                 "one vendor": "yes" if g["_same_vendor"].iloc[0] else "NO"}
+                for _, g in rb.groupby("_bill")]
+        rep.table(pd.DataFrame(rows), None)
 
     rep.h(3, "Same image file referenced by more than one claim")
     has_img = df[df["_img_key"] != ""]
     groups = [{"image": key, **_group_rows(g)} for key, g in has_img.groupby("_img_key") if len(g) > 1]
-    rep.p(f"Image files referenced more than once: **{len(groups)}**.")
+    rep.p(f"Image files referenced more than once: **{len(groups)}** "
+          f"({has_img['_img_key'].nunique()} distinct names across {len(has_img)} claims).")
     rep.table(pd.DataFrame(groups).sort_values("n", ascending=False) if groups else pd.DataFrame(), 25)
 
-    rep.h(3, "Same vendor + date with near amounts")
-    dated = df[(df["_vendor"] != "") & df["_exp"].notna() & df["_amt"].notna()]
+    rep.h(3, "Same vendor + same date + near amount")
+    rep.p("Vendor and date are the clerk's where typed, otherwise the rep's. Vendors match on similarity "
+          f">= {VENDOR_SIMILAR}; amounts within Rs {NEAR_AMOUNT_RS} or 2%. A test claim only has the rep's date, "
+          "so a repeat whose rep typed a different date is not caught here; that needs the date read off the photo.")
+    df["_bvendor"] = [c if not is_blank(c) else v for c, v in zip(raw(df, C_CVENDOR), raw(df, C_VENDOR))]
+    df["_bdate"] = [c if c is not None else e for c, e in zip(df["_cdate"], df["_exp"])]
+    df["_billkey"] = raw(df, C_CBILL).map(lambda v: "" if is_blank(v) else alnum(v))
     pairs = []
-    for _, g in dated.groupby(["_vendor", "_exp"]):
+    for _, g in df[df["_bdate"].notna() & df["_amt"].notna()].groupby("_bdate"):
         for a, b in combinations(g.to_dict("records"), 2):
-            if abs(a["_amt"] - b["_amt"]) <= max(NEAR_AMOUNT_RS, 0.02 * max(a["_amt"], b["_amt"])):
-                pairs.append({"vendor": a.get(C_VENDOR, ""), "date": a["_exp"],
-                              "claim_a": a.get(C_ID), "claim_b": b.get(C_ID),
-                              "amount_a": a["_amt"], "amount_b": b["_amt"],
-                              "who_a": a["employee"], "who_b": b["employee"],
-                              "same_employee": a.get(C_EMP) == b.get(C_EMP),
-                              "splits": f"{a['split']}/{b['split']}",
-                              "statuses": joined([a.get(C_STATUS), b.get(C_STATUS)])})
+            if vendor_similarity(a["_bvendor"], b["_bvendor"]) < VENDOR_SIMILAR or not _near(a, b):
+                continue
+            if a["_billkey"] and b["_billkey"]:
+                bills = "same bill no" if a["_billkey"] == b["_billkey"] else "different bill nos"
+            else:
+                bills = "bill no not known"
+            pairs.append({"vendor": a["_bvendor"], "date": a["_bdate"], "claim_a": a.get(C_ID), "claim_b": b.get(C_ID),
+                          "claimed_a": a["_amt"], "claimed_b": b["_amt"], "who_a": a["employee"], "who_b": b["employee"],
+                          "bill nos": bills, "same employee": "yes" if a.get(C_EMP) == b.get(C_EMP) else "no",
+                          "splits": f"{a['split']}/{b['split']}", "category": a.get(C_CAT, ""),
+                          "statuses": ", ".join(str(x.get(C_STATUS, "") or "-") for x in (a, b))})
     pairs = pd.DataFrame(pairs)
-    rep.p(f"Pairs within Rs {NEAR_AMOUNT_RS} or 2%: **{len(pairs)}**"
-          + (f" ({int(pairs['same_employee'].sum())} by the same employee)." if len(pairs) else "."))
-    rep.table(pairs, 25)
+    rep.p(f"Pairs found: **{len(pairs)}**.")
+    if len(pairs):
+        rep.table(pairs.groupby(["bill nos", "same employee"]).size().reset_index(name="pairs"))
+        unknown = pairs[pairs["bill nos"] == "bill no not known"]
+        rep.p("Pairs where a bill number cannot settle it (a test claim, or a claim the clerk queried):")
+        rep.table(unknown.drop(columns=["bill nos"]), None)
+        distinct = pairs[pairs["bill nos"] == "different bill nos"]
+        rep.p(f"Pairs the bill numbers show to be two separate bills: {len(distinct)}, by category: "
+              f"{joined(f'{n} {c}' for c, n in distinct['category'].value_counts().items()) or 'none'}. "
+              "Vendor + date + amount alone would wrongly flag these.")
+
+    rep.h(3, f"Late submissions (more than {LATE_DAYS} days after the expense date)")
+    late = df[gap > LATE_DAYS].copy()
+    late["days late"] = gap[late.index].astype(int)
+    late["repeat of an earlier bill"] = [
+        "not known (test)" if s == "test" else "yes" if c in later_ids else "no"
+        for s, c in zip(late["split"], late.get(C_ID, late.index))]
+    n_train = int((late["split"] == "train").sum())
+    rep.p(f"Late claims: {n_train} of {int((df['split'] == 'train').sum())} in train, "
+          f"{len(late) - n_train} of {int((df['split'] == 'test').sum())} in test. "
+          f"In train, **{int((late['repeat of an earlier bill'] == 'yes').sum())} of {n_train}** are a later claim "
+          "of a bill number already claimed.")
+    rep.table(cols(late, C_ID, "split", "employee", C_CAT, C_VENDOR, C_EXP, C_SUB, "days late", C_AMT,
+                   C_STATUS, "repeat of an earlier bill"), None)
 
     rep.h(3, "Hotel Shubham")
     mask = raw(df, C_VENDOR).str.contains("shubham", case=False, regex=False) | \
         raw(df, C_CVENDOR).str.contains("shubham", case=False, regex=False)
-    shubham = df[mask]
-    rep.p(f"Claims naming a vendor containing \"Shubham\": **{len(shubham)}** "
-          f"from {shubham[C_EMP].nunique() if C_EMP in shubham else '?'} employees.")
+    typo = pd.Series([max(vendor_similarity(v, "Hotel Shubham Residency"),
+                          vendor_similarity(c, "Hotel Shubham Residency")) >= VENDOR_SIMILAR
+                      for v, c in zip(raw(df, C_VENDOR), raw(df, C_CVENDOR))], index=df.index)
+    shubham = df[mask | typo]
+    rep.p(f"Claims for a vendor named like \"Hotel Shubham Residency\": **{len(shubham)}** "
+          f"from {shubham[C_EMP].nunique() if C_EMP in shubham else '?'} employees "
+          f"({int((~mask & typo).sum())} found only through a misspelt name).")
     if len(shubham):
-        rep.table(shubham.groupby("employee").agg(
-            claims=("_amt", "size"), rupees=("_amt", "sum"), dates=("_exp", joined),
-            statuses=(C_STATUS, joined) if C_STATUS in shubham else ("split", joined)).reset_index(), None)
         rep.table(cols(shubham.sort_values("_exp", key=lambda s: s.astype(str)),
-                       C_ID, "split", "employee", C_VENDOR, C_CVENDOR, C_EXP, C_AMT, C_CAMT, C_CBILL,
-                       C_IMG, C_STATUS, C_NOTE), None)
+                       C_ID, "split", "employee", C_VENDOR, C_EXP, C_SUB, C_AMT, C_CAMT, C_CBILL,
+                       C_STATUS, C_NOTE), None)
 
 
 def sec_parking(ctx, rep: Report) -> None:
@@ -669,18 +798,39 @@ def sec_gstin(ctx, rep: Report) -> None:
           f"{has[C_CGSTIN].map(normalize_gstin).nunique()} distinct values). "
           f"Invalid: **{pct(len(invalid), len(has))}** rows, {invalid[C_CGSTIN].map(normalize_gstin).nunique()} distinct values. "
           f"Needed case/space clean-up before checking: {len(untidy)}.")
-    if invalid.empty:
-        return
-    reasons = invalid["problems"].str.split(", ").explode().value_counts()
-    rep.table(reasons.rename_axis("failed check").reset_index(name="rows"))
-    invalid["expected check char"] = [
-        gstin_check_char(s[:14]) if len(s) == 15 and re.fullmatch(r"[0-9A-Z]{15}", s) else ""
-        for s in invalid[C_CGSTIN].map(normalize_gstin)]
-    rep.table(cols(invalid, C_ID, "split", C_VENDOR, C_CVENDOR, C_CGSTIN, "problems", "expected check char", C_STATUS), 20)
-    if C_STATUS in has.columns:
-        rep.p("Status by GSTIN validity:")
-        rep.table(pd.crosstab(np.where(has["problems"] == "", "valid", "invalid"), has[C_STATUS])
-                  .rename_axis("gstin").reset_index())
+    if len(invalid):
+        reasons = invalid["problems"].str.split(", ").explode().value_counts()
+        rep.table(reasons.rename_axis("failed check").reset_index(name="rows"))
+        # Is each invalid value a typing slip of a valid GSTIN seen elsewhere in the data?
+        valid = has.loc[has["problems"] == "", C_CGSTIN].map(normalize_gstin).value_counts()
+
+        def nearest(value: str) -> tuple[str, int]:
+            s = normalize_gstin(value)
+            same_len = [(sum(a != b for a, b in zip(s, v)), v) for v in valid.index if len(v) == len(s)]
+            return min(same_len)[::-1] if same_len else ("", -1)
+
+        near = invalid[C_CGSTIN].map(nearest)
+        invalid["nearest valid GSTIN in the data"] = near.map(lambda t: t[0])
+        invalid["characters different"] = near.map(lambda t: t[1])
+        invalid["times the valid one appears"] = invalid["nearest valid GSTIN in the data"].map(valid).fillna(0).astype(int)
+        invalid["expected check char"] = [
+            gstin_check_char(s[:14]) if re.fullmatch(r"[0-9A-Z]{15}", s) else ""
+            for s in invalid[C_CGSTIN].map(normalize_gstin)]
+        slips = int(invalid["characters different"].between(1, 2).sum())
+        rep.p(f"**{slips} of {len(invalid)}** invalid values are one or two characters away from a valid GSTIN "
+              "typed on other claims, which looks like typing slips rather than bad bills. "
+              "Confirm against the photos once they are imported.")
+        rep.table(cols(invalid, C_ID, C_CVENDOR, C_CGSTIN, "problems", "nearest valid GSTIN in the data",
+                       "characters different", "times the valid one appears", C_STATUS), 20)
+    if C_CAT in has.columns:
+        tr = df[df["split"] == "train"]
+        rep.p("Clerk typed a GSTIN, by category (train):")
+        rep.table(pd.crosstab(tr[C_CAT], np.where(tr[C_CGSTIN].map(is_blank), "no GSTIN", "GSTIN typed"))
+                  .reset_index(), None)
+        lodging = tr[tr[C_CAT].str.contains("lodg", case=False) & tr[C_CGSTIN].map(is_blank)]
+        if len(lodging):
+            rep.p("Lodging claims with no GSTIN typed (policy: hotel bills must be GST tax invoices):")
+            rep.table(cols(lodging, C_ID, "employee", C_VENDOR, C_AMT, C_STATUS, C_NOTE), None)
 
 
 SECTIONS = [sec_schema, sec_images, sec_parsers, sec_labels, sec_agreement,
@@ -697,7 +847,8 @@ def build_context(data_dir: Path, cache_path: Path) -> Context:
     ctx.train = read_csv(data_dir / "claims_train.csv")
     ctx.test = read_csv(data_dir / "claims_test.csv")
     ctx.employees = read_csv(data_dir / "employees.csv")
-    claims = pd.concat([ctx.train.assign(split="train"), ctx.test.assign(split="test")], ignore_index=True)
+    # Test has no clerk columns; blank them rather than leave NaN so "" always means "nothing typed".
+    claims = pd.concat([ctx.train.assign(split="train"), ctx.test.assign(split="test")], ignore_index=True).fillna("")
     image_index.cache_clear()
     ctx.claims = prepare(claims, ctx.employees, ctx.images_dir)
     ctx.files = list_images(ctx.images_dir)
@@ -714,6 +865,7 @@ def build_context(data_dir: Path, cache_path: Path) -> Context:
     pairs["same_employee"] = np.where((pairs["who_a"] == "") | (pairs["who_b"] == ""), "unclaimed",
                                       np.where(pairs["who_a"] == pairs["who_b"], "yes", "no"))
     ctx.pairs = pairs
+    ctx.repeats = find_repeated_bills(ctx.claims[ctx.claims["split"] == "train"])
     return ctx
 
 
