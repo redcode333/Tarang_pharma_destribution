@@ -1,0 +1,191 @@
+claim_id,vendor,receipt_date,receipt_number,gstin,total_amount,decision,reason
+CLM-31086,New Highway Service Station,2026-07-18,002229,,300,approve,
+CLM-31087,Green Leaf Restaurant,2026-07-16,A/6383,27YUFFZ9311K2ZV,304,approve,
+CLM-31088,Highway King Dhaba,2026-07-11,1341,,260,approve,
+CLM-31090,Hotel Rajdhani Dhaba,2026-07-14,3509,,220,approve,
+CLM-31091,Sai Ram Tea & Snacks,2026-07-13,6928,,405,approve,
+CLM-31094,Maa Durga Cab Service,2026-07-10,8305,,250,approve,
+CLM-31095,Vidarbha Express Courier,2026-07-15,VX81712845,27OUUFX7743H2ZR,330.40,approve,
+CLM-31096,New Highway Service Station,2026-07-12,001846,,668.11,approve,
+CLM-31097,Laxmi Auto Fuels,2026-07-12,004478,27DPAFU4120X1ZM,400,approve,
+CLM-31098,Hotel Pradeep Pure Veg,2026-07-12,1405,27ODUFJ1789K3ZU,730,approve,
+CLM-31102,Shivam Family Restaurant,2026-07-20,3006,27XMECH9812R2ZH,452,approve,
+CLM-31105,Annapurna Dining Hall,2026-07-16,A/1608,27GIZFL1093Q2ZK,567,approve,
+CLM-31106,Green Leaf Restaurant,2026-07-19,A/6446,27YUFFZ9311K2ZV,494,approve,
+CLM-31107,Prompt Parcel Services,2026-07-12,PP77951745,27IRWFN4293M2Z1,330.40,approve,
+CLM-31110,Prompt Parcel Services,2026-07-12,PP52882767,27IRWFN4293M2Z1,141.60,approve,
+CLM-31111,Sitabuldi Multilevel Parking,2026-07-16,115811,,30,approve,
+CLM-31112,Sitabuldi Multilevel Parking,2026-07-14,115488,,30,approve,
+CLM-31115,Jai Ambe Fuels,2026-07-21,001486,,511.67,approve,
+CLM-31118,Om Sai Fuel Point,2026-07-14,003418,,283.44,approve,
+CLM-31120,Om Sai Fuel Point,2026-06-24,002691,,300,review,Possible duplicate of CLM-30687 (TPD-0418); Bill dated 24 Jun but expense dated 17 Jun; Fuel bill vehicle MH31FA2290 is not the claimant's
+CLM-31122,Laxmi Auto Fuels,2026-06-22,003752,27DPAFU4120X1ZM,200,review,Possible duplicate of CLM-30762 (TPD-0447); Bill dated 22 Jun but expense dated 15 Jun
+CLM-31123,Cafe Coffee Corner,2026-07-14,A/1453,27TABPX3765R2Z6,252,approve,
+CLM-31126,Shivam Family Restaurant,2026-07-14,2971,27XMECH9812R2ZH,210,approve,
+CLM-31130,Hotel Pradeep Pure Veg,2026-07-12,1379,27ODUFJ1789K3ZU,982,approve,
+CLM-31132,Om Sai Fuel Point,2026-07-20,003651,,150,approve,
+CLM-31133,Shree Sai Petroleum,2026-07-17,007436,,300,approve,
+CLM-31137,Spice Route Kitchen,2026-07-15,6221,27NCRPN1784A3Z1,399,approve,
+CLM-31140,Ashirwad Veg Restaurant,2026-07-21,6423,27OILFO1994Z2ZV,294,approve,
+CLM-31142,Hotel Rajdhani Dhaba,2026-07-15,3532,,350,approve,
+CLM-31146,Shree Ganesh Tours & Travels,2026-07-17,3916,,470,approve,
+CLM-31148,Hotel Shubham Residency,2026-07-15,HSR/26-27/4921,27UVQFW9408Y1ZS,2352,review,"Rs 2,352 is Rs 2,000 or more — clerk review"
+CLM-31152,Medical Square Pay & Park,2026-07-13,105339,,20,approve,
+CLM-31156,New Highway Service Station,2026-07-14,001991,,313.73,approve,
+CLM-31158,Ashirwad Veg Restaurant,2026-07-14,6318,27OILFO1994Z2ZV,430,approve,
+CLM-31160,Speedlink Couriers,2026-07-15,SL13276215,27HJXCW9975D1ZJ,339.84,approve,
+CLM-31161,Hotel Shubham Residency,2026-07-14,HSR/26-27/4915,27UVQFW9408Y1ZS,2352,review,"Rs 2,352 is Rs 2,000 or more — clerk review"
+CLM-31164,Shree Sai Petroleum,2026-07-21,887635,,300,approve,
+CLM-31168,Gajanan Petroleum,2026-07-23,009209,,500,approve,
+CLM-31170,Spice Route Kitchen,2026-07-15,6284,27NCRPN1784A3Z1,178,approve,
+CLM-31171,Hotel Rajdhani Dhaba,2026-07-18,3543,,190,approve,
+CLM-31173,Sai Ram Tea & Snacks,2026-07-19,6940,,330,approve,
+CLM-31176,Sai Ram Tea & Snacks,2026-06-20,6896,,190,review,Possible duplicate of CLM-30572 (TPD-0471); Receipt contains instructions to the approval system; Bill dated 20 Jun but expense dated 02 Jul
+CLM-31178,Shree Ganesh Tours & Travels,2026-07-20,3928,,540,approve,
+CLM-31182,Royal Travels,2026-07-20,8485,,360,approve,
+CLM-31185,Prompt Parcel Services,2026-07-23,PP20468432,27IRWFN4293M2Z1,141.60,approve,
+CLM-31188,Hotel Krishna Comforts,2026-07-15,HKC/26-27/5295,27HPFCA5856Y3ZE,4032,review,"Rs 4,032 is Rs 2,000 or more — clerk review"
+CLM-31190,,,,,,review,Photo not received — query to rep
+CLM-31191,Shree Sai Petroleum,2026-07-20,007482,,308.69,approve,
+CLM-31192,Spice Route Kitchen,2026-07-22,6423,27NCRPN1784A3Z1,1200,review,Amount appears altered
+CLM-31195,Prompt Parcel Services,2026-07-16,PP67136855,27IRWFN4293M2Z1,330.40,approve,
+CLM-31197,Om Sai Fuel Point,2026-07-18,003508,,291.81,approve,
+CLM-31201,Ashirwad Veg Restaurant,2026-07-19,6380,27OILFO1994Z2ZV,536,approve,
+CLM-31203,Hotel Rajdhani Dhaba,2026-07-22,3547,,1180,review,Amount appears altered
+CLM-31204,Speedlink Couriers,2026-06-24,SL26816175,27HJXCW9975D1ZJ,330.40,review,Possible duplicate of CLM-30703 (TPD-0490); Bill dated 24 Jun but expense dated 28 Jun
+CLM-31206,New Highway Service Station,2026-07-22,002362,,100,approve,
+CLM-31207,Annapurna Dining Hall,2026-07-27,A/1729,27GIZFL1093Q2ZK,2194,review,"Rs 2,194 is Rs 2,000 or more — clerk review"
+CLM-31209,Highway King Dhaba,2026-07-24,1394,,480,approve,
+CLM-31211,Highway King Dhaba,2026-07-19,1359,,185,approve,
+CLM-31214,Sai Ram Tea & Snacks,2026-07-21,6946,,100,approve,
+CLM-31217,Shree Ganesh Tours & Travels,2026-07-25,3998,,660,approve,
+CLM-31221,Prompt Parcel Services,2026-07-24,PP16214660,27IRWFN4293M2Z1,330.40,approve,
+CLM-31222,Sitabuldi Multilevel Parking,2026-07-23,116051,,30,approve,
+CLM-31225,Om Sai Fuel Point,2026-07-21,003760,,606.62,approve,
+CLM-31228,Om Sai Fuel Point,2026-07-28,004382,,300,approve,
+CLM-31230,Om Sai Fuel Point,2026-07-27,004185,,150,approve,
+CLM-31233,Annapurna Dining Hall,2026-07-20,A/1651,27GIZFL1093Q2ZK,462,approve,
+CLM-31236,Annapurna Dining Hall,2026-07-27,A/1689,27GIZFL1093Q2ZK,483,approve,
+CLM-31240,Cafe Coffee Corner,2026-07-25,A/1508,27TABPX3765R2Z6,425,approve,
+CLM-31243,Shree Ganesh Tours & Travels,2026-07-27,4043,,790,approve,
+CLM-31244,Shree Ganesh Tours & Travels,2026-07-23,3974,,1100,approve,
+CLM-31247,Vidarbha Express Courier,2026-07-24,VX23263164,27OUUFX7743H2ZR,330.40,approve,
+CLM-31249,Vidarbha Express Courier,2026-07-19,VX21608808,27OUUFX7743H2ZR,141.60,approve,
+CLM-31251,Speedlink Couriers,2026-07-28,SL59393970,27HJXCW9975D1ZJ,141.60,approve,
+CLM-31255,Sitabuldi Multilevel Parking,2026-07-24,116964,,30,approve,
+CLM-31256,Sitabuldi Multilevel Parking,2026-07-24,116520,,30,approve,
+CLM-31258,Jai Ambe Fuels,2026-07-23,001556,,500,approve,
+CLM-31261,Shree Sai Petroleum,2026-07-29,007878,,606.91,approve,
+CLM-31263,Om Sai Fuel Point,2026-07-21,003689,,200,approve,
+CLM-31265,Gajanan Petroleum,2026-07-22,009169,,300,approve,
+CLM-31266,Om Sai Fuel Point,2026-06-13,002123,,300,review,Possible duplicate of CLM-30451 (TPD-0431); Bill dated 13 Jun but expense dated 20 Jun
+CLM-31270,Jai Ambe Fuels,2026-07-26,001600,,200,approve,
+CLM-31272,Spice Route Kitchen,2026-07-22,6333,27NCRPN1784A3Z1,331,approve,
+CLM-31274,Hotel Pradeep Pure Veg,2026-07-27,1581,27ODUFJ1789K3ZU,693,approve,
+CLM-31275,Shivam Family Restaurant,2026-07-20,3006,27XMECH9812R2ZH,452,review,Possible duplicate of CLM-31102 (TPD-0423); Bill dated 20 Jul but expense dated 25 Jul
+CLM-31279,Shivam Family Restaurant,2026-07-26,3036,27XMECH9812R2ZH,357,approve,
+CLM-31280,,,,,,review,Photo not received — query to rep
+CLM-31284,Hotel Krishna Comforts,2026-07-23,HKC/26-27/5301,27HPFCA5856Y3ZE,2016,review,"Rs 2,016 is Rs 2,000 or more — clerk review"
+CLM-31288,Hotel Gulmohar Executive,2026-07-28,HGE/26-27/7519,27PMLCE5129S3ZO,2352,review,"Claimed Rs 2,852 vs bill Rs 2,352; Rs 2,852 is Rs 2,000 or more — clerk review"
+CLM-31292,Jai Ambe Fuels,2026-07-29,001654,,250,review,Claimed Rs 450 vs bill Rs 250
+CLM-31294,Om Sai Fuel Point,2026-07-22,003881,,542.82,approve,
+CLM-31296,Shree Sai Petroleum,2026-07-21,007682,,200,approve,
+CLM-31298,Spice Route Kitchen,2026-07-24,6440,27NCRPN1784A3Z1,430,approve,
+CLM-31299,Ashirwad Veg Restaurant,2026-07-23,6440,27OILFO1994Z2ZV,1472,review,Amount appears altered
+CLM-31301,Hotel Pradeep Pure Veg,2026-07-24,1524,27ODUFJ1789K3ZU,735,approve,
+CLM-31305,Royal Travels,2026-07-30,8506,,380,approve,
+CLM-31308,Royal Travels,2026-07-25,8501,,480,approve,
+CLM-31310,Shree Ganesh Tours & Travels,2026-07-23,3950,,1170,approve,
+CLM-31311,Hotel Gulmohar Executive,2026-07-23,HGE/26-27/7514,27PMLCE5129S3ZO,2352,review,"Rs 2,352 is Rs 2,000 or more — clerk review"
+CLM-31314,Sitabuldi Multilevel Parking,2026-07-29,118129,,30,approve,
+CLM-31315,Laxmi Auto Fuels,2026-07-31,004980,27DPAFU4120X1ZM,200,review,Claimed Rs 20 vs bill Rs 200
+CLM-31317,Ashirwad Veg Restaurant,2026-07-24,6481,27OILFO1994Z2ZV,2268,review,"Rs 2,268 is Rs 2,000 or more — clerk review"
+CLM-31321,Hotel Pradeep Pure Veg,2026-07-27,1630,27ODUFJ1789K3ZU,808,approve,
+CLM-31324,Hotel Saibaba Bhojnalaya,2026-07-29,6627,27MTSPF4455T1ZB,998,approve,
+CLM-31328,Highway King Dhaba,2026-07-23,1377,,235,approve,
+CLM-31329,Shree Ganesh Tours & Travels,2026-07-25,4011,,740,approve,
+CLM-31331,Maa Durga Cab Service,2026-06-14,8219,,1230,review,Possible duplicate of CLM-30506 (TPD-0463)
+CLM-31333,Om Sai Fuel Point,,004744,,,review,No usable photo — query to rep
+CLM-31335,Om Sai Fuel Point,2026-08-01,004585,,1313.77,review,Amount appears altered
+CLM-31336,Om Sai Fuel Point,2026-07-26,004104,,2607.43,review,"Rs 2,607.43 is Rs 2,000 or more — clerk review"
+CLM-31339,Laxmi Auto Fuels,2026-07-29,004802,27DPAFU4120X1ZM,200,approve,
+CLM-31340,Green Leaf Restaurant,2026-07-24,A/6499,27YUFFZ9311K2ZV,420,approve,
+CLM-31341,Ashirwad Veg Restaurant,2026-07-26,6535,27OILFO1994Z2ZV,840,approve,
+CLM-31344,Highway King Dhaba,2026-07-28,1399,,315,approve,
+CLM-31347,Hotel Rajdhani Dhaba,2026-08-01,3554,,270,approve,
+CLM-31351,Shree Ganesh Tours & Travels,2026-07-29,4067,,930,approve,
+CLM-31352,Prompt Parcel Services,2026-07-23,PP31929414,27IRWFN4293M2Z1,141.60,approve,
+CLM-31356,Sitabuldi Multilevel Parking,2026-07-30,118340,,30,approve,
+CLM-31359,Medical Square Pay & Park,2026-08-01,105547,,20,approve,
+CLM-31361,Shree Sai Petroleum,2026-07-24,007720,,250,approve,
+CLM-31362,Laxmi Auto Fuels,2026-07-27,004694,27DPAFU4120X1ZM,200,approve,
+CLM-31363,,,,,,review,Photo not received — query to rep
+CLM-31366,Highway King Dhaba,2026-06-09,1250,,270,review,Possible duplicate of CLM-30489 (TPD-0503)
+CLM-31367,Vidarbha Express Courier,2026-07-30,VX79894828,27OUUFX7743H2ZR,141.60,approve,
+CLM-31368,Sai Palace Lodge,2026-08-01,SPL/26-27/2364,27GFZCR8659B2Z4,3136,review,"Rs 3,136 is Rs 2,000 or more — clerk review"
+CLM-31369,Om Sai Fuel Point,2026-08-03,004810,,200,approve,
+CLM-31373,Om Sai Fuel Point,2026-07-29,004426,,150,approve,
+CLM-31374,Hotel Saibaba Bhojnalaya,2026-08-03,6663,27MTSPF4455T1ZB,1092,approve,
+CLM-31378,Sai Ram Tea & Snacks,2026-07-25,6972,,60,approve,
+CLM-31382,Speedlink Couriers,2026-07-29,SL67387447,27HJXCW9975D1ZJ,141.60,approve,
+CLM-31386,Jai Ambe Fuels,2026-08-03,001723,,250,review,Claimed Rs 750 vs bill Rs 250
+CLM-31387,Gajanan Petroleum,2026-07-28,009346,,150,approve,
+CLM-31388,New Highway Service Station,2026-07-27,002436,,500,approve,
+CLM-31391,,,,,,review,No usable photo — query to rep
+CLM-31392,Spice Route Kitchen,2026-07-31,6520,27NCRPN1784A3Z1,1124,approve,
+CLM-31393,Cafe Coffee Corner,2026-07-31,A/1574,27TABPX3765R2Z6,546,approve,
+CLM-31397,Punjabi Tadka Dhaba,2026-07-26,8332,,270,approve,
+CLM-31401,Shree Ganesh Tours & Travels,2026-07-26,4032,,1390,review,Receipt contains instructions to the approval system; Amount appears altered
+CLM-31402,Speedlink Couriers,2026-06-23,SL36715972,27HJXCW9975D1ZJ,330.40,review,Possible duplicate of CLM-30625 (TPD-0431)
+CLM-31405,Hotel Shubham Residency,2026-08-03,HSR/26-27/4944,27UVQFW9408Y1ZS,4704,review,"Rs 4,700 is Rs 2,000 or more — clerk review"
+CLM-31407,Sitabuldi Multilevel Parking,2026-07-31,118663,,30,approve,
+CLM-31411,Medical Square Pay & Park,2026-08-02,106049,,20,approve,
+CLM-31412,New Highway Service Station,2026-07-27,002589,,300,approve,
+CLM-31414,Gajanan Petroleum,2026-07-28,009395,,300,approve,
+CLM-31415,Laxmi Auto Fuels,2026-07-30,004852,27DPAFU4120X1ZM,500,approve,
+CLM-31417,Ashirwad Veg Restaurant,2026-08-04,6581,27OILFO1994Z2ZV,567,approve,
+CLM-31418,Annapurna Dining Hall,2026-06-12,A/1202,27GIZFL1093Q2ZK,536,review,Possible duplicate of CLM-30428 (TPD-0452); Bill dated 12 Jun but expense dated 08 Jun
+CLM-31421,Sai Ram Tea & Snacks,2026-07-28,6997,,385,approve,
+CLM-31422,Hotel Krishna Comforts,2026-07-30,HKC/26-27/5329,27HPFCA5856Y3ZE,4032,review,"Rs 4,032 is Rs 2,000 or more — clerk review"
+CLM-31423,Sitabuldi Multilevel Parking,2026-07-28,117592,,30,approve,
+CLM-31424,Sitabuldi Multilevel Parking,2026-08-05,119915,,30,approve,
+CLM-31428,Sitabuldi Multilevel Parking,2026-08-03,119554,,30,approve,
+CLM-31429,Shree Sai Petroleum,2026-08-04,008014,,100,approve,
+CLM-31430,Hotel Pradeep Pure Veg,2026-07-29,1696,27ODUFJ1789K3ZU,220,approve,
+CLM-31432,Cafe Coffee Corner,2026-08-04,A/1681,27TABPX3765R2Z6,588,approve,
+CLM-31433,Annapurna Dining Hall,2026-07-28,A/1796,27GIZFL1093Q2ZK,273,approve,
+CLM-31436,Shivam Family Restaurant,2026-07-31,3124,27XMECH9812R2ZH,756,approve,
+CLM-31438,Annapurna Dining Hall,2026-07-28,A/1882,27GIZFL1093Q2ZK,651,approve,
+CLM-31439,Sai Ram Tea & Snacks,2026-08-05,7012,,240,approve,
+CLM-31440,Highway King Dhaba,2026-08-02,1414,,245,approve,
+CLM-31444,Shree Sai Petroleum,2026-07-30,007965,,250,review,Claimed Rs 520 vs bill Rs 250
+CLM-31447,Om Sai Fuel Point,2026-07-30,004471,,300,approve,
+CLM-31451,Jai Ambe Fuels,2026-08-04,001882,,200,approve,
+CLM-31453,Gajanan Petroleum,2026-08-02,009440,,250,approve,
+CLM-31454,New Highway Service Station,2026-08-05,002766,,400,approve,
+CLM-31457,Om Sai Fuel Point,2026-08-05,004864,,400,approve,
+CLM-31460,Laxmi Auto Fuels,2026-08-05,005049,27DPAFU4120X1ZM,500,approve,
+CLM-31461,New Highway Service Station,2026-07-31,002706,,300,approve,
+CLM-31465,Gajanan Petroleum,2026-08-04,009478,,400,approve,
+CLM-31469,Shree Sai Petroleum,2026-08-04,007993,,100,approve,
+CLM-31473,Spice Route Kitchen,2026-08-03,6567,27NCRPN1784A3Z1,756,approve,
+CLM-31474,Cafe Coffee Corner,2026-08-05,A/1751,27TABPX3765R2Z6,746,approve,
+CLM-31475,Cafe Coffee Corner,2026-06-21,A/1406,27TABPX3765R2Z6,987,review,Possible duplicate of CLM-30664 (TPD-0471); Bill dated 21 Jun but expense dated 02 Jul
+CLM-31478,Cafe Coffee Corner,2026-08-05,A/1774,27TABPK3765R1Z6,1082,review,GSTIN unreadable
+CLM-31479,Cafe Coffee Corner,2026-08-03,A/1594,27TABPX3765R2Z6,567,approve,
+CLM-31480,Hotel Pradeep Pure Veg,2026-07-24,1524,27ODUFJ1789K3ZU,735,review,Possible duplicate of CLM-31301 (TPD-0497)
+CLM-31483,Annapurna Dining Hall,2026-08-03,A/1958,27GIZFL1093Q2ZK,798,approve,
+CLM-31485,Punjabi Tadka Dhaba,2026-08-04,8379,,410,approve,
+CLM-31486,Punjabi Tadka Dhaba,2026-08-03,8354,,500,approve,
+CLM-31490,Hotel Rajdhani Dhaba,2026-07-30,3551,,370,approve,
+CLM-31494,Highway King Dhaba,2026-08-05,1433,,165,approve,
+CLM-31495,Maa Durga Cab Service,2026-08-03,8323,,910,approve,
+CLM-31497,Shree Ganesh Tours & Travels,2026-07-23,3950,,1170,review,Possible duplicate of CLM-31310 (TPD-0478); Bill dated 23 Jul but expense dated 07 Aug
+CLM-31501,Vidarbha Express Courier,2026-08-01,VX53559174,27OUUFX7743H2ZR,141.60,approve,
+CLM-31503,Vidarbha Express Courier,2026-08-04,VX62429997,27OUUFX7743H2ZR,1226.56,review,Amount appears altered
+CLM-31506,Speedlink Couriers,2026-08-02,SL73161147,27HJXCW9975D1ZJ,141.60,approve,
+CLM-31509,Sai Palace Lodge,2026-08-01,SPL/26-27/2384,27GFZCR8659B2Z4,3136,review,"Rs 3,136 is Rs 2,000 or more — clerk review"
+CLM-31512,Hotel Krishna Comforts,2026-08-05,HKC/26-27/5346,27HPFCA5856Y3ZE,2016,review,"Rs 2,016 is Rs 2,000 or more — clerk review"
+CLM-31516,Sitabuldi Multilevel Parking,2026-08-01,119019,,30,approve,
+CLM-31519,Sitabuldi Multilevel Parking,2026-08-05,121071,,30,approve,
+CLM-31523,Sitabuldi Multilevel Parking,2026-08-05,120477,,30,approve,

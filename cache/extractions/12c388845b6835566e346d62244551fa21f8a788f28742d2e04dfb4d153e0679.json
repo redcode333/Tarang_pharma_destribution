@@ -26,6 +26,8 @@
     "receipt_number": "1581",
     "gstin": "27ODUFJ1789K3ZU",
     "gstin_valid": true,
+    "gstin_status": "valid",
+    "gstin_read": "270DUFJ1789K3ZU",
     "total_amount": 693.0,
     "amount_in_words": "",
     "amount_in_words_value": null,

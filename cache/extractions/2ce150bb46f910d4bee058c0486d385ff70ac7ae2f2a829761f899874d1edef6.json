@@ -26,6 +26,8 @@
     "receipt_number": "003350",
     "gstin": "27DPAFU4120X1ZM",
     "gstin_valid": true,
+    "gstin_status": "valid",
+    "gstin_read": "27DPAFU4120X1ZM",
     "total_amount": 300.0,
     "amount_in_words": "",
     "amount_in_words_value": null,

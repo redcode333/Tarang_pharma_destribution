@@ -26,6 +26,8 @@
     "receipt_number": "4067",
     "gstin": "",
     "gstin_valid": false,
+    "gstin_status": "",
+    "gstin_read": "",
     "total_amount": 930.0,
     "amount_in_words": "Nine Hundred Thirty only",
     "amount_in_words_value": 930.0,
@@ -44,10 +46,8 @@
       "Nine Hundred Thirty only",
       "up"
     ],
-    "possible_alteration": true,
-    "alteration_reasons": [
-      "There is a handwritten scribble correction over the word 'Hundred' in amount in words."
-    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
     "instructions_on_bill": [],
     "is_receipt": true,
     "readable": true,
@@ -60,8 +60,6 @@
       "gstin": 1.0,
       "total_amount": 1.0
     },
-    "flags": [
-      "possible_alteration"
-    ]
+    "flags": []
   }
 }

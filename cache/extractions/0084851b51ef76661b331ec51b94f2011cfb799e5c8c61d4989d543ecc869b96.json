@@ -26,6 +26,8 @@
     "receipt_number": "A/6446",
     "gstin": "27YUFFZ9311K2ZV",
     "gstin_valid": true,
+    "gstin_status": "valid",
+    "gstin_read": "27YUFFZ9311K2ZV",
     "total_amount": 494.0,
     "amount_in_words": "",
     "amount_in_words_value": null,

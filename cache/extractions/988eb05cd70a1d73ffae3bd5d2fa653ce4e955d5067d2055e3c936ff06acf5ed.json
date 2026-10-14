@@ -26,6 +26,8 @@
     "receipt_number": "3741",
     "gstin": "",
     "gstin_valid": false,
+    "gstin_status": "",
+    "gstin_read": "",
     "total_amount": 1550.0,
     "amount_in_words": "Five Hundred Fifty only",
     "amount_in_words_value": 550.0,

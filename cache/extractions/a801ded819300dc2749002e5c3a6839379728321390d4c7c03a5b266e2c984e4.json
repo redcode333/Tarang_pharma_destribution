@@ -26,6 +26,8 @@
     "receipt_number": "3755",
     "gstin": "",
     "gstin_valid": false,
+    "gstin_status": "",
+    "gstin_read": "",
     "total_amount": 430.0,
     "amount_in_words": "Four Hundred Thirty only",
     "amount_in_words_value": 430.0,
@@ -45,10 +47,8 @@
       "Four Hundred Thirty only",
       "Driver's Signature"
     ],
-    "possible_alteration": true,
-    "alteration_reasons": [
-      "Amount figure '430/-' has a trailing slash/dash that looks like a 7, making it look like 4307, but the amount in words is 'Four Hundred Thirty only'."
-    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
     "instructions_on_bill": [],
     "is_receipt": true,
     "readable": true,
@@ -61,8 +61,6 @@
       "gstin": 1.0,
       "total_amount": 0.8
     },
-    "flags": [
-      "possible_alteration"
-    ]
+    "flags": []
   }
 }

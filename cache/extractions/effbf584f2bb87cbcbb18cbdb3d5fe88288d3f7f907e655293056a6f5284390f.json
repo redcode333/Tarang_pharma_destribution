@@ -37,6 +37,8 @@
     "receipt_number": "HSR/26-27/4886",
     "gstin": "27UVQFW9408Y1ZS",
     "gstin_valid": true,
+    "gstin_status": "valid",
+    "gstin_read": "27UVQFW9408Y1ZS",
     "total_amount": 4704.0,
     "amount_in_words": "Rupees Four Thousand Seven Hundred Four Only",
     "amount_in_words_value": 4704.0,

@@ -23,7 +23,9 @@ from rapidfuzz import fuzz
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "src"))
 
+from receipts.decide import decide_all  # noqa: E402
 from receipts.extract import ExtractionCache  # noqa: E402
+from receipts.rules import APPROVE_LIMIT  # noqa: E402
 from receipts.images import file_hash  # noqa: E402
 from receipts.normalize import fix_gstin, gstin_problems, is_blank, parse_amount, parse_date, resolve_image  # noqa: E402
 
@@ -38,6 +40,8 @@ ADJUDICATIONS = REPO / "reports" / "adjudications.csv"
 SAMPLE20 = REPO / "reports" / "sample20_claims.txt"
 OUT = REPO / "reports" / "evaluation.md"
 GALLERY = REPO / "reports" / "error_gallery.md"
+TRAIN_DECISIONS = REPO / "reports" / "train_decisions.csv"
+CLAIMS_PER_MONTH = 2_400
 ADJ_COLUMNS = ["claim_id", "field", "verdict", "correct_value", "diagnosis"]
 VERDICTS = {"clerk_error", "model_error", "both_wrong", "ambiguous"}
 
@@ -250,6 +254,102 @@ def write_gallery(rows: pd.DataFrame, s: pd.DataFrame, adj: pd.DataFrame) -> Non
     GALLERY.write_text("\n".join(lines), encoding="utf-8")
 
 
+# --- decisions vs the clerk ----------------------------------------------------
+
+LEAK_REASONS = ("Possible duplicate", "Amount appears altered", "Receipt contains instructions", "Claimed Rs")
+
+
+def classify(row) -> str:
+    """Why we and the clerk disagree, in one of three buckets."""
+    if row["ours"] == "approve":
+        return "our miss"
+    reasons = row["reasons"]
+    over = any(r.startswith("Claimed Rs") and _claimed_over(r) for r in reasons)
+    if any(r.startswith(LEAK_REASONS[:3]) for r in reasons) or over:
+        return "clerk miss"
+    if any(r.startswith("Fuel bill vehicle") or r.startswith("Hotel bill not in") for r in reasons):
+        return "clerk miss (policy)"
+    return "acceptable caution"
+
+
+def _claimed_over(reason: str) -> bool:
+    m = re.match(r"Claimed Rs ([\d,.]+) vs bill Rs ([\d,.]+)", reason)
+    return bool(m) and float(m[1].replace(",", "")) > float(m[2].replace(",", ""))
+
+
+def at_risk(row) -> tuple[float, str]:
+    """Rupees a plain auto-approve rule would have paid wrongly on this claim, and how we know."""
+    claimed, r = row["claimed"], row["result"]
+    if claimed is None or claimed >= APPROVE_LIMIT:
+        return 0.0, ""
+    reasons = row["reasons"]
+    total = r.get("total_amount")
+    if any(x.startswith("Possible duplicate") for x in reasons):
+        return claimed, "repeat of an earlier bill (whole amount)"
+    if any(x.startswith("Amount appears altered") for x in reasons):
+        words = r.get("amount_in_words_value")
+        if words is not None and claimed > words:
+            return claimed - words, "altered: amount in words"
+        if total is not None and claimed > total + 10:
+            return claimed - total, "altered: printed amount"
+        if total is not None and 1000 <= total < 2000:
+            return 1000.0, "altered: leading 1 added (estimate Rs 1,000)"
+        return 0.0, "altered, original not known"
+    if total is not None and claimed > total + 10:
+        return claimed - total, "claimed above the bill"
+    return 0.0, ""
+
+
+def decision_section(train: pd.DataFrame, employees: pd.DataFrame) -> list[str]:
+    d = decide_all(train.assign(split="train"), employees)
+    d["status"] = train.set_index("claim_id").loc[d["claim_id"], "status"].to_numpy()
+    d["clerk"] = np.where(d["status"] == "approved", "approve", "review")
+    d["ours"] = d["decision"]
+    d["claimed"] = [parse_amount(v) for v in train.set_index("claim_id").loc[d["claim_id"], "amount_claimed"]]
+    d["kind"] = [classify(r) if r["ours"] != r["clerk"] else "" for _, r in d.iterrows()]
+    risk = [at_risk(r) for _, r in d.iterrows()]
+    d["at_risk_rs"] = [x for x, _ in risk]
+    d["at_risk_why"] = [w for _, w in risk]
+    d[["claim_id", "status", "clerk", "ours", "kind", "reason", "claimed", "at_risk_rs", "at_risk_why"]] \
+        .to_csv(TRAIN_DECISIONS, index=False)
+
+    under = d["claimed"].map(lambda v: v is not None and v < APPROVE_LIMIT)
+    cm = pd.crosstab(d["ours"], d["status"], margins=True, margins_name="all").reset_index()
+    cm = cm.rename(columns={"ours": "our decision \ clerk status"})
+    disagree = d[d["kind"] != ""].copy()
+    caught = d[d["at_risk_rs"] > 0]
+    paid = caught[caught["status"] == "approved"]
+    per_claim = caught["at_risk_rs"].sum() / len(d)
+    lines = ["## Decisions vs the clerk (train)", "",
+             "`decision` from `src/receipts/decide.py` on every train claim, in submission order, from cached "
+             "extractions. Clerk `approved` = approve; `queried` / `rejected` = review. "
+             f"Per-claim detail: `{TRAIN_DECISIONS.relative_to(REPO).as_posix()}`.", ""]
+    lines += md(cm)
+    lines += [f"- Auto-approved: **{(d['ours'] == 'approve').sum()} of {len(d)}** "
+              f"({(d['ours'] == 'approve').mean():.0%}); among claims under Rs 2,000: "
+              f"**{(d.loc[under, 'ours'] == 'approve').sum()} of {under.sum()}** ({(d.loc[under, 'ours'] == 'approve').mean():.0%}).",
+              f"- Agreement with the clerk: {(d['ours'] == d['clerk']).sum()} of {len(d)}. Disagreements by kind: "
+              + ", ".join(f"{k} {n}" for k, n in disagree["kind"].value_counts().items()) + ".", "",
+              "### Every disagreement", ""]
+    disagree["claimed"] = disagree["claimed"].map(lambda v: f"{v:,.2f}".replace(".00", "") if v is not None else "")
+    lines += md(disagree.sort_values(["kind", "claim_id"])[["claim_id", "status", "ours", "kind", "claimed", "reason"]])
+    lines += ["### Rupees a plain \"auto-approve everything under Rs 2,000\" rule would pay wrongly", "",
+              "Claims under Rs 2,000 that our checks send to review for a repeat bill, an altered amount or a claim "
+              "above the bill. A repeat counts in full; an altered or over-claimed bill counts the excess over the "
+              "real amount (from the amount in words or the printed figure; a leading \"1\" added to a "
+              "three-digit bill counts Rs 1,000).", ""]
+    by = caught.groupby("at_risk_why")["at_risk_rs"].agg(claims="count", rupees="sum").reset_index()
+    by["rupees"] = by["rupees"].map(lambda v: f"Rs {v:,.0f}")
+    lines += md(by.rename(columns={"at_risk_why": "what"}))
+    lines += [f"- **Total: Rs {caught['at_risk_rs'].sum():,.0f} on {len(caught)} claims** out of {len(d)} "
+              f"(Rs {d['claimed'].map(lambda v: v or 0).sum():,.0f} claimed). The clerk paid "
+              f"{len(paid)} of them anyway (Rs {paid['at_risk_rs'].sum():,.0f}).",
+              f"- Scaled to {CLAIMS_PER_MONTH:,} claims a month company-wide at the same rate "
+              f"(Rs {per_claim:,.2f} per claim): **Rs {per_claim * CLAIMS_PER_MONTH:,.0f} a month**. "
+              "This assumes the other divisions look like Nagpur's June-July 2026 claims.", ""]
+    return lines
+
+
 def main() -> int:
     sys.stdout.reconfigure(encoding="utf-8")  # the Windows console defaults to cp1252
     rows, missing_photo = load_rows()
@@ -299,6 +399,8 @@ def main() -> int:
                       ("duplicate photo", "Photo is byte-identical to another claim's"),
                       ("handwriting", "Model saw pen marks on the bill"), ("model_name", "By model")):
         lines += [f"## {title} (adjudicated, ★ metrics, dev + holdout)", ""] + md(breakdown(s, by))
+    employees = pd.read_csv(REPO / "data" / "employees.csv", dtype=str, keep_default_na=False)
+    lines += decision_section(train, employees)
     OUT.write_text("\n".join(lines), encoding="utf-8")
     write_gallery(rows, s, adj)
 

@@ -26,7 +26,9 @@
     "receipt_number": "8210",
     "gstin": "",
     "gstin_valid": false,
-    "total_amount": 3907.0,
+    "gstin_status": "",
+    "gstin_read": "",
+    "total_amount": 390.0,
     "amount_in_words": "Three Hundred Ninety only",
     "amount_in_words_value": 390.0,
     "pre_tax_amount": null,
@@ -36,11 +38,8 @@
     "handwritten_marks": [
       "paid"
     ],
-    "possible_alteration": true,
-    "alteration_reasons": [
-      "Figure 3907 does not match the amount in words \"Three Hundred Ninety only\"",
-      "amount in words reads Rs 390.00 but the figure reads Rs 3,907.00"
-    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
     "instructions_on_bill": [],
     "is_receipt": true,
     "readable": true,
@@ -54,8 +53,7 @@
       "total_amount": 0.99
     },
     "flags": [
-      "amount_words_mismatch",
-      "possible_alteration"
+      "total_from_words"
     ]
   }
 }

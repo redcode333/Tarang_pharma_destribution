@@ -26,6 +26,8 @@
     "receipt_number": "3835",
     "gstin": "",
     "gstin_valid": false,
+    "gstin_status": "",
+    "gstin_read": "",
     "total_amount": 1550.0,
     "amount_in_words": "One Thousand Five Hundred Fifty only",
     "amount_in_words_value": 1550.0,
@@ -43,10 +45,8 @@
       "1550/-",
       "One Thousand Five Hundred Fifty only"
     ],
-    "possible_alteration": true,
-    "alteration_reasons": [
-      "Amount in digits (1550/-) does not match the amount in words (One Thousand Five Hundred Fifty only)"
-    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
     "instructions_on_bill": [],
     "is_receipt": true,
     "readable": true,
@@ -59,8 +59,6 @@
       "gstin": 1.0,
       "total_amount": 0.95
     },
-    "flags": [
-      "possible_alteration"
-    ]
+    "flags": []
   }
 }

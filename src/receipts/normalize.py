@@ -266,3 +266,41 @@ def fix_gstin(value) -> tuple[str, bool]:
         if not gstin_problems(fixed):
             return fixed, True
     return s, False
+
+
+# Characters a camera or a model confuses in small print; each pair is tried both ways.
+GSTIN_CONFUSIONS = [("0", "8"), ("0", "O"), ("5", "S"), ("1", "I"), ("2", "Z"), ("8", "B")]
+
+
+def gstin_swap_candidates(value: str) -> set[str]:
+    """Every valid GSTIN one confusion-set swap away from `value`."""
+    s = normalize_gstin(value)
+    out = set()
+    for i, ch in enumerate(s):
+        for a, b in GSTIN_CONFUSIONS:
+            for x, y in ((a, b), (b, a)):
+                if ch == x:
+                    cand = s[:i] + y + s[i + 1:]
+                    if not gstin_problems(cand):
+                        out.add(cand)
+    return out
+
+
+def repair_gstin(value, known: str | None = None) -> tuple[str, str]:
+    """(GSTIN, status). status: "" (none read), "valid", "repaired" or "unreadable".
+
+    A read that fails the checksum after the layout fixes is repaired only when exactly one
+    single swap from GSTIN_CONFUSIONS makes it valid, or when a swap gives the GSTIN already
+    known for this vendor. Otherwise the raw read comes back as "unreadable"; never a guess."""
+    s = normalize_gstin(value)
+    if is_blank(s):
+        return "", ""
+    fixed, ok = fix_gstin(s)
+    if ok:
+        return fixed, "valid"
+    cands = gstin_swap_candidates(s) | (gstin_swap_candidates(fixed) if fixed != s else set())
+    if known and known in cands:
+        return known, "repaired"
+    if len(cands) == 1:
+        return cands.pop(), "repaired"
+    return s, "unreadable"

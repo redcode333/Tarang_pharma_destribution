@@ -26,6 +26,8 @@
     "receipt_number": "002830",
     "gstin": "",
     "gstin_valid": false,
+    "gstin_status": "",
+    "gstin_read": "",
     "total_amount": 3566.52,
     "amount_in_words": "",
     "amount_in_words_value": null,

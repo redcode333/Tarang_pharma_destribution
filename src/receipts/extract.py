@@ -22,8 +22,9 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator
 
 from .images import file_hash, load_image, rotate_clockwise, to_jpeg
-from .normalize import fix_gstin, is_blank, parse_amount, parse_date, words_to_amount
+from .normalize import is_blank, parse_amount, parse_date, repair_gstin, words_to_amount
 from .providers import ModelChain, build_chain
+from .vendors import VendorBook, default_book
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 CACHE_DIR = REPO_ROOT / "cache" / "extractions"
@@ -194,7 +195,16 @@ def _scrub_instructions(raw: RawExtraction) -> list[str]:
     return list(dict.fromkeys(found))
 
 
-def postprocess(raw: RawExtraction, rotation_applied: int = 0) -> dict:
+def slash_misread(figure: float, words: float) -> bool:
+    """True when the figure is the words amount with one extra trailing digit (390 -> 3907, 480 -> 4801),
+    the way a handwritten "/-" after the amount gets read."""
+    if words <= 0 or figure != int(figure) or words != int(words):
+        return False
+    f, w = str(int(figure)), str(int(words))
+    return len(f) == len(w) + 1 and f.startswith(w)
+
+
+def postprocess(raw: RawExtraction, rotation_applied: int = 0, vendors: VendorBook | None = None) -> dict:
     """Deterministic clean-up and flags on top of the model's reply."""
     raw = raw.model_copy(deep=True)
     instructions = _scrub_instructions(raw)
@@ -206,9 +216,13 @@ def postprocess(raw: RawExtraction, rotation_applied: int = 0) -> dict:
     if not raw.readable:
         flags.append("unreadable")
 
-    gstin, gstin_valid = fix_gstin(raw.gstin)
-    if gstin and not gstin_valid:
-        flags.append("gstin_invalid")
+    book = vendors if vendors is not None else default_book()
+    gstin, gstin_status = repair_gstin(raw.gstin, book.known_gstin(raw.vendor))
+    gstin_valid = gstin_status in ("valid", "repaired")
+    if gstin_status == "repaired":
+        flags.append("gstin_repaired")
+    elif gstin_status == "unreadable":
+        flags.append("gstin_unreadable")
         conf["gstin"] = min(conf["gstin"], 0.3)
 
     parsed_date = parse_date(raw.receipt_date)
@@ -216,13 +230,21 @@ def postprocess(raw: RawExtraction, rotation_applied: int = 0) -> dict:
         flags.append("date_unparsed")
         conf["receipt_date"] = min(conf["receipt_date"], 0.3)
 
-    reasons = [raw.alteration_reason] if raw.possible_alteration and raw.alteration_reason else []
+    model_altered = raw.possible_alteration
     words_value = words_to_amount(raw.amount_in_words)
-    if words_value is not None and raw.total_amount is not None \
-            and abs(words_value - raw.total_amount) > WORDS_TOLERANCE_RS:
+    if words_value is not None and raw.total_amount is not None and slash_misread(raw.total_amount, words_value):
+        # "390/-" read as 3907: the slash became a last digit. The words settle the figure.
+        flags.append("total_from_words")
+        raw.total_amount = words_value
+    words_agree = words_value is not None and raw.total_amount is not None \
+        and abs(words_value - raw.total_amount) <= WORDS_TOLERANCE_RS
+    if model_altered and words_agree and re.search(r"\bwords?\b", raw.alteration_reason, re.I):
+        model_altered = False  # the model's only evidence was figures vs words, and they agree
+    reasons = [raw.alteration_reason] if model_altered and raw.alteration_reason else []
+    if words_value is not None and raw.total_amount is not None and not words_agree:
         flags.append("amount_words_mismatch")
         reasons.append(f"amount in words reads Rs {words_value:,.2f} but the figure reads Rs {raw.total_amount:,.2f}")
-    altered = raw.possible_alteration or "amount_words_mismatch" in flags
+    altered = model_altered or "amount_words_mismatch" in flags
     if altered:
         flags.append("possible_alteration")
     if instructions:
@@ -238,6 +260,8 @@ def postprocess(raw: RawExtraction, rotation_applied: int = 0) -> dict:
         "receipt_number": raw.receipt_number,
         "gstin": gstin,
         "gstin_valid": gstin_valid,
+        "gstin_status": gstin_status,
+        "gstin_read": raw.gstin,
         "total_amount": raw.total_amount,
         "amount_in_words": raw.amount_in_words,
         "amount_in_words_value": words_value,

@@ -26,6 +26,8 @@
     "receipt_number": "HGE/26-27/7471",
     "gstin": "27PMLCE5129S3ZO",
     "gstin_valid": true,
+    "gstin_status": "valid",
+    "gstin_read": "27PMLCE5129S3ZO",
     "total_amount": 2352.0,
     "amount_in_words": "Rupees Two Thousand Three Hundred Fifty Two Only",
     "amount_in_words_value": 2352.0,

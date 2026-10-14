@@ -26,6 +26,8 @@
     "receipt_number": "SL13276215",
     "gstin": "27HJXCW9975D1ZJ",
     "gstin_valid": true,
+    "gstin_status": "valid",
+    "gstin_read": "27HJXCW9975D1ZJ",
     "total_amount": 339.84,
     "amount_in_words": "",
     "amount_in_words_value": null,

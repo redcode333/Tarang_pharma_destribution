@@ -26,6 +26,8 @@
     "receipt_number": "VX23263164",
     "gstin": "27OUUFX7743H2ZR",
     "gstin_valid": true,
+    "gstin_status": "valid",
+    "gstin_read": "27OUUFX7743H2ZR",
     "total_amount": 330.4,
     "amount_in_words": "",
     "amount_in_words_value": null,

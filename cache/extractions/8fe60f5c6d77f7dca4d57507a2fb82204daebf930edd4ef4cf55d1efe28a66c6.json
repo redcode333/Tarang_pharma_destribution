@@ -24,8 +24,10 @@
     "receipt_date": "2026-07-27",
     "receipt_date_raw": "27.07.2026",
     "receipt_number": "A/1729",
-    "gstin": "27GIZFL1893Q2ZK",
-    "gstin_valid": false,
+    "gstin": "27GIZFL1093Q2ZK",
+    "gstin_valid": true,
+    "gstin_status": "repaired",
+    "gstin_read": "27GIZFL1893Q2ZK",
     "total_amount": 2194.0,
     "amount_in_words": "",
     "amount_in_words_value": null,
@@ -45,12 +47,11 @@
       "vendor": 1.0,
       "receipt_date": 1.0,
       "receipt_number": 1.0,
-      "gstin": 0.3,
+      "gstin": 1.0,
       "total_amount": 1.0
     },
     "flags": [
-      "gstin_invalid",
-      "low_confidence:gstin"
+      "gstin_repaired"
     ]
   }
 }

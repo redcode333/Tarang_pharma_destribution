@@ -46,7 +46,7 @@ Printed Date: 14.06.2026; clerk typed the 13th.
 
 ### CLM-30562 · total_amount · model_error
 `data/images/IMG_20260618_100357.jpg`  
-model: `3907.0` · clerk: `390.0` · photo says: `390`  
+model: `390.0` · clerk: `390.0` · photo says: `390`  
 Handwritten 390/- with the slash read as a 7 (3907). Words say Three Hundred Ninety; the words check flags the mismatch, so the claim goes to review rather than paying 3907.
 
 ### CLM-30573 · vendor · clerk_error
@@ -96,7 +96,7 @@ Printed Bill No: A/1324; clerk typed A/124, which hid that this bill was claimed
 
 ### CLM-30661 · gstin · model_error
 `data/images/IMG_20260624_182555.jpg`  
-model: `27GIZFL1893Q2ZK` · clerk: `27GIZFL1093Q2ZK` · photo says: `27GIZFL1093Q2ZK`  
+model: `27GIZFL1093Q2ZK` · clerk: `27GIZFL1093Q2ZK` · photo says: `27GIZFL1093Q2ZK`  
 Printed 27GIZFL1093Q2ZK in small faint type; model read the 0 as 8. Checksum fails, so it is flagged.
 
 ### CLM-30681 · vendor · clerk_error
@@ -121,7 +121,7 @@ Printed Receipt No : 004023; clerk dropped the last digit.
 
 ### CLM-30724 · gstin · model_error
 `data/images/IMG_20260629_160432.jpg`  
-model: `27MTSPF445ST1ZB` · clerk: `27MTSPF4455T1ZB` · photo says: `27MTSPF4455T1ZB`  
+model: `27MTSPF4455T1ZB` · clerk: `27MTSPF4455T1ZB` · photo says: `27MTSPF4455T1ZB`  
 Printed 27MTSPF4455T1ZB; model read the second 5 as S. Checksum fails, so it is flagged.
 
 ### CLM-30745 · receipt_date · clerk_error
@@ -151,12 +151,12 @@ Header reads HOTEL SAIBABA BHOJNALAYA; clerk dropped 'Hotel'.
 
 ### CLM-30769 · gstin · model_error
 `data/images/IMG_20260630_162530.jpg`  
-model: `27GIZFL1893Q2ZK` · clerk: `27GIZFL1093Q2ZK` · photo says: `27GIZFL1093Q2ZK`  
+model: `27GIZFL1093Q2ZK` · clerk: `27GIZFL1093Q2ZK` · photo says: `27GIZFL1093Q2ZK`  
 Printed 27GIZFL1093Q2ZK (faint); model read 0 as 8. Checksum fails, so it is flagged.
 
 ### CLM-30804 · gstin · both_wrong
 `data/images/IMG_20260702_150756.jpg`  
-model: `27GIZFL1893Q2ZK` · clerk: `27GIZRL1093Q2ZK` · photo says: `27GIZFL1093Q2ZK`  
+model: `27GIZFL1093Q2ZK` · clerk: `27GIZRL1093Q2ZK` · photo says: `27GIZFL1093Q2ZK`  
 Printed 27GIZFL1093Q2ZK. Model read 0 as 8; clerk typed R for F. Both fail the checksum.
 
 ### CLM-30807 · receipt_number · clerk_error
@@ -221,7 +221,7 @@ Heavily shadowed photo; Bill No reads A/1503. Model read A/1583.
 
 ### CLM-31032 · gstin · model_error
 `data/images/IMG_20260714_110121.jpg`  
-model: `27GIZFL1893Q2ZK` · clerk: `27GIZFL1093Q2ZK` · photo says: `27GIZFL1093Q2ZK`  
+model: `27GIZFL1093Q2ZK` · clerk: `27GIZFL1093Q2ZK` · photo says: `27GIZFL1093Q2ZK`  
 Printed 27GIZFL1093Q2ZK under shadow; model read 0 as 8. Checksum fails, so it is flagged.
 
 ### CLM-31049 · total_amount · clerk_error

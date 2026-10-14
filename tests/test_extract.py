@@ -8,7 +8,9 @@ from PIL import Image
 
 from receipts import extract as ex
 from receipts.extract import ExtractionCache, extract, parse_reply, postprocess
-from receipts.normalize import fix_gstin, words_to_amount
+from receipts.normalize import fix_gstin, gstin_swap_candidates, repair_gstin, words_to_amount
+from receipts.vendors import VendorBook
+import pandas as pd
 from receipts.providers import (AllModelsExhausted, ModelChain, ModelResponse, NoProviderConfigured,
                                 RateLimited, Unavailable, UsageLog, build_chain)
 
@@ -102,6 +104,30 @@ def test_amount_in_words_disagreeing_with_figure_is_an_alteration():
     assert "Rs 940.00" in r["alteration_reasons"][0]
 
 
+def test_slash_read_as_a_digit_is_corrected_from_the_words():
+    r = postprocess(parse_reply(reply(total_amount=3907, amount_in_words="Three Hundred Ninety only",
+                                      possible_alteration=True, alteration_reason="3907 does not match the words")))
+    assert r["total_amount"] == 390 and "total_from_words" in r["flags"]
+    assert "possible_alteration" not in r["flags"]
+
+
+def test_model_words_flag_is_dropped_when_words_and_figure_agree():
+    r = postprocess(parse_reply(reply(total_amount=900, amount_in_words="Nine Hundred only", possible_alteration=True,
+                                      alteration_reason="Amount figures '900/-' does not match amount in words")))
+    assert "possible_alteration" not in r["flags"]
+
+
+def test_model_flag_on_other_evidence_stands_even_if_words_agree():
+    r = postprocess(parse_reply(reply(total_amount=1212.4, possible_alteration=True,
+                                      alteration_reason="Leading 1 in blue ink; 180 + 32.40 = 212.40")))
+    assert "possible_alteration" in r["flags"]
+
+
+def test_a_leading_digit_added_is_still_an_alteration():
+    r = postprocess(parse_reply(reply(total_amount=1550, amount_in_words="Five Hundred Fifty only")))
+    assert "possible_alteration" in r["flags"] and r["total_amount"] == 1550
+
+
 def test_rounding_in_words_is_not_an_alteration():
     r = postprocess(parse_reply(reply(total_amount=1940.4, amount_in_words="One Thousand Nine Hundred Forty")))
     assert "possible_alteration" not in r["flags"]
@@ -138,10 +164,53 @@ def test_instruction_text_in_a_normal_field_is_caught_without_the_model_reportin
     assert "instruction_text_on_bill" in r["flags"] and r["guest_name"] == ""
 
 
-def test_unreadable_and_invalid_gstin_flags():
-    r = postprocess(parse_reply(reply(readable=False, gstin="27GIZFL1093Q2ZA")))
-    assert {"unreadable", "gstin_invalid"} <= set(r["flags"])
-    assert r["confidence"]["gstin"] <= 0.3
+def test_unreadable_photo_and_unrepairable_gstin_flags():
+    r = postprocess(parse_reply(reply(readable=False, gstin="27HJXCW975D1ZJ")))  # a digit dropped: 14 chars
+    assert {"unreadable", "gstin_unreadable"} <= set(r["flags"])
+    assert r["gstin"] == "27HJXCW975D1ZJ" and r["confidence"]["gstin"] <= 0.3
+
+
+# --- GSTIN repair -------------------------------------------------------------
+
+def test_single_swap_with_one_valid_candidate_is_repaired():
+    # 27GIZFL1093Q2ZK with the 0 read as 8, as on CLM-30661 / 30769 / 31032
+    assert repair_gstin("27GIZFL1893Q2ZK") == ("27GIZFL1093Q2ZK", "repaired")
+    # 27MTSPF4455T1ZB with a 5 read as S, as on CLM-30724
+    assert repair_gstin("27MTSPF445ST1ZB") == ("27MTSPF4455T1ZB", "repaired")
+
+
+def test_valid_read_is_left_alone():
+    assert repair_gstin("27GIZFL1093Q2ZK") == ("27GIZFL1093Q2ZK", "valid")
+    assert repair_gstin("") == ("", "")
+
+
+def test_known_vendor_gstin_breaks_a_tie():
+    s = "27GIZFL1893Q2ZK"
+    cands = gstin_swap_candidates(s)
+    assert "27GIZFL1093Q2ZK" in cands
+    assert repair_gstin(s, known="27GIZFL1093Q2ZK") == ("27GIZFL1093Q2ZK", "repaired")
+
+
+def test_ambiguous_or_unfixable_reads_stay_raw_and_unreadable(monkeypatch):
+    import receipts.normalize as n
+    monkeypatch.setattr(n, "gstin_swap_candidates", lambda v: {"27AAAAA0000A1Z5", "27BBBBB0000B1Z5"})
+    assert n.repair_gstin("27XXXXX0000X1ZX") == ("27XXXXX0000X1ZX", "unreadable")
+    assert repair_gstin("27HJXCW975D1ZJ") == ("27HJXCW975D1ZJ", "unreadable")
+
+
+def test_postprocess_uses_the_vendor_book_for_gstin():
+    book = VendorBook(pd.DataFrame({"clerk_vendor": ["Annapurna Dining Hall"] * 2,
+                                    "clerk_gstin": ["27GIZFL1093Q2ZK", "27GIZFL1093Q2ZK"]}))
+    r = postprocess(parse_reply(reply(vendor="ANNAPURNA DINING HALL", gstin="27GIZFL1893Q2ZK")), vendors=book)
+    assert r["gstin"] == "27GIZFL1093Q2ZK" and "gstin_repaired" in r["flags"] and r["gstin_read"] == "27GIZFL1893Q2ZK"
+
+
+def test_vendor_book_matches_clerk_spellings():
+    book = VendorBook(pd.DataFrame({"clerk_vendor": ["Hotel Saibaba Bhojnalaya", "Hotel Saibaba Bhojnalaya",
+                                                     "Saibaba Bhojnalaya (Ngp)"], "clerk_gstin": ["", "", ""]}))
+    assert book.canonical_name("HOTEL SAIBABA BHOJNALAYA") == "Hotel Saibaba Bhojnalaya"
+    assert book.canonical_name("Saibaba Bhojnalaya - Wardha") == "Hotel Saibaba Bhojnalaya"
+    assert book.canonical_name("Totally Different Cafe") is None
 
 
 def test_dates_come_out_iso_day_first():

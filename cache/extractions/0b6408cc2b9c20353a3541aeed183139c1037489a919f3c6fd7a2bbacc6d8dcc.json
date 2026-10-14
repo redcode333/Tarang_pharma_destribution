@@ -26,6 +26,8 @@
     "receipt_number": "SL51865365",
     "gstin": "27HJXCW975D1ZJ",
     "gstin_valid": false,
+    "gstin_status": "unreadable",
+    "gstin_read": "27HJXCW975D1ZJ",
     "total_amount": 339.84,
     "amount_in_words": "",
     "amount_in_words_value": null,
@@ -51,7 +53,7 @@
       "total_amount": 1.0
     },
     "flags": [
-      "gstin_invalid",
+      "gstin_unreadable",
       "low_confidence:gstin"
     ]
   }

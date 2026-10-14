@@ -26,6 +26,8 @@
     "receipt_number": "A/1202",
     "gstin": "27GIZFL1093Q2ZK",
     "gstin_valid": true,
+    "gstin_status": "valid",
+    "gstin_read": "27GIZFL1093Q2ZK",
     "total_amount": 536.0,
     "amount_in_words": "",
     "amount_in_words_value": null,

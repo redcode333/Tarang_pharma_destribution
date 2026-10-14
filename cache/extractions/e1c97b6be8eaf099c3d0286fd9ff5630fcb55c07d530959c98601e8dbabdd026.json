@@ -26,6 +26,8 @@
     "receipt_number": "002691",
     "gstin": "",
     "gstin_valid": false,
+    "gstin_status": "",
+    "gstin_read": "",
     "total_amount": 300.0,
     "amount_in_words": "",
     "amount_in_words_value": null,

@@ -26,6 +26,8 @@
     "receipt_number": "PP57107049",
     "gstin": "27IRWFN4293M2Z1",
     "gstin_valid": true,
+    "gstin_status": "valid",
+    "gstin_read": "27IRWFN4293M2Z1",
     "total_amount": 141.6,
     "amount_in_words": "",
     "amount_in_words_value": null,

@@ -80,6 +80,8 @@ Python 3.11 lives in a conda env at `.venv/` (no `activate` needed; call the int
 - Evaluation: `.venv/python.exe scripts/evaluate.py` → `reports/evaluation.md`, `reports/error_gallery.md`;
   mismatches still to adjudicate go to `cache/mismatches_to_review.csv`; verdicts live in `reports/adjudications.csv`
 - Free quota: Flash-Lite 500 requests/day on this key, resets 07:00 UTC (12:30 IST)
+- Predictions: `.venv/python.exe scripts/make_predictions.py [--no-model]` → `predictions.csv` (validated before writing)
+- Cost: `.venv/python.exe scripts/cost.py --usd-inr 96.8 --fx-source "rate on 10 Oct 2026, banklive.net" --out reports/cost.md`
 - Recreate the env: `conda create -y -p ./.venv python=3.11 pip`, then
   `.venv/python.exe -m pip install pandas pillow imagehash pytest playwright python-dotenv google-genai pydantic` and
   `.venv/python.exe -m playwright install chromium`
@@ -93,6 +95,10 @@ Python 3.11 lives in a conda env at `.venv/` (no `activate` needed; call the int
 - `src/receipts/providers/` — Gemini (primary) and Groq (backup) behind one interface; `chain.py` throttles,
   falls back on 429/503 and logs every call to `cache/usage.csv`. Keys: `GEMINI_API_KEY`, `GROQ_API_KEY`
   in `.env`; none → `NoProviderConfigured`. Free tiers only; costs are quoted at paid-tier prices.
+- `src/receipts/rules.py` — one function per policy check, returning (passed, reason); thresholds at the top
+- `src/receipts/dedupe.py` — duplicate index (bill number + vendor, or pHash); claims fed in submission order
+- `src/receipts/decide.py` — `decide()` for one claim, `decide_all()` over train + test
+- `src/receipts/vendors.py` — vendor -> GSTIN and spellings from claims_train clerk columns
 - `scripts/fetch_images.py` — downloads every photo from the portal with Playwright
 - `scripts/import_images.py` — moves manual portal downloads into `data/images/`
 - `DECISIONS.md` — decision log, newest last

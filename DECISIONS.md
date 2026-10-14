@@ -307,3 +307,68 @@ the Rs 12.6–31.7 a clerk costs per claim.
   output blank and send the claim to review rather than output a wrong GSTIN.
 - **Vendor is the weakest field (94.0% adjudicated on normal photos)** because the clerk appends
   locations ("- Wardha", "(Ngp)", "Nagpur") and abbreviates; the printed header is what we read.
+
+## 2026-10-15 — Rules, decisions and predictions (playbook Prompts 4-5)
+
+Deadline: about 3 pm IST, Thursday 15 Oct 2026.
+
+### Cost
+
+- **USD 1 = Rs 96.8** (rate on 10 Oct 2026, banklive.net/en/convert/usd-to-inr, supplied by the
+  user). Measured on 461 photos: 1.08 calls, 2,032 input and 302 output tokens a photo. At paid
+  prices: Flash-Lite 3.5 Rs 0.132 a photo (Rs 317 a month for 2,400), 3.8 Flash Rs 0.257 (Rs 618).
+  A clerk costs Rs 12.6 (time) to Rs 31.7 (all cost) a claim. `reports/cost.md`.
+
+### Post-processing added
+
+- **GSTIN repair.** Q: what to do with a GSTIN that fails the checksum? D: try every single swap
+  from {0/8, 0/O, 5/S, 1/I, 2/Z, 8/B}; use it if exactly one candidate passes, or if a candidate
+  is the GSTIN the clerk typed most for that vendor in claims_train; else keep the raw read and
+  review as "GSTIN unreadable". Why: every model GSTIN misread in train was one of these swaps and
+  failed the checksum. Result: **5 of the 6 known misreads fixed**, all by the checksum alone; the
+  sixth (CLM-30611, a dropped digit) is not a swap and goes to review.
+- **"390/-" read as 3907.** Q: the model read the slash after a handwritten amount as a digit
+  twice (3907, 4801). D: if the figure is the amount in words with one extra trailing digit, the
+  total is the words amount (flag `total_from_words`). Why: the words agree with the bill's items.
+- **The model's "figures vs words" alteration flag is dropped when our parser finds they agree.**
+  Q: 3 false alteration flags (900, 1550, 430) where the model misjudged the words. D: drop the
+  model's flag only when its reason is about words and the deterministic check finds them equal;
+  any other evidence (ink, arithmetic) stands.
+- **Many more altered bills than the by-eye review found.** The model flags 14 photos; 9 show a
+  "1" added in front of the total in blue ink (212.40 -> 1212.40, 472 -> 1472), found because the
+  line items do not add up. Two were checked by eye and confirmed. `photo_review.csv` (from
+  thumbnails) missed them; it is left as it was, since it records what was checked by eye.
+
+### Rule thresholds (src/receipts/rules.py)
+
+| question | decision | why |
+|---|---|---|
+| When is a claim approved? | Under Rs 2,000 AND every check passes; Rs 2,000+ always review | The brief: auto-approve under Rs 2,000, clerks see the rest. Finding 2: the line alone would pay 13 of 14 repeats |
+| Amount tolerance | \|claimed − bill\| <= Rs 10 | Policy: rounding to the nearest Rs 10 is accepted. An under-claim beyond Rs 10 is reviewed too (it is a typing error, e.g. 432 for 4,032) |
+| Bill date vs expense date | ±1 day | A late-night bill or a one-day typing slip; on train, half of all larger date gaps were a bill claimed again |
+| Oldest bill | 60 days before submission | Just above the longest expense-to-submission gap in the data (58 days; median 5); recovery from salary only works within the quarter |
+| Duplicate: bill number | letters and digits only, lower case, leading zeros dropped | The clerk drops leading zeros (001885 vs 01885) |
+| Duplicate: vendor | rapidfuzz token_sort_ratio >= 80 after dropping "Hotel" and town tails, or one name's words contain the other's | ~117 spellings of ~70 vendors; same-number-different-shop pairs (parking tickets) must not match |
+| Duplicate: photo | pHash distance <= 4 | Real re-used photos are at 0; different bills on one template start at 6 |
+| Duplicate: what is compared | every earlier claim, train and test, in submission order; train claims under both the clerk's and the model's bill number | One clerk typo (A/124) hid the A/1324 repeat; indexing both closes that |
+| Fuel vehicle | must equal the claimant's `vehicle_no` (spaces/case ignored); one confusion-set character apart counts as equal | Policy needs the vehicle number; CLM-30925's plate 9042 was read as 9842 (blurred) |
+| Food | bill total > Rs 2,500 → review | Policy: up to Rs 2,500 per bill without prior approval |
+| Lodging | valid GSTIN; guest name vs employee name token_set_ratio >= 80 ignoring Mr./Ms.; pre-GST per night <= Rs 3,000 (M1/M2), Rs 4,500 (M3); nights unknown → 1 | Policy v3.2. Per night uses the bill's pre-tax amount, or the total if none printed (stricter) |
+| Low confidence | model confidence < 0.6 on total or date → review | Below that the model said it was guessing |
+| Photo unreadable / not a receipt / not extracted | review, query to rep (not-extracted: "Photo not read yet") | Policy: no readable bill photo → queried |
+
+### Results
+
+- **Train decisions vs the clerk** (`reports/evaluation.md`): we review all 8 claims the clerk
+  queried or rejected. We review 55 the clerk approved: 25 are Rs 2,000+ (the brief), 29 are
+  repeats, altered amounts or over-claims the clerk paid, 1 is a photo not yet read. Auto-approve
+  rate 78% overall, 86% under Rs 2,000.
+- **Rupees caught against "auto-approve everything under Rs 2,000"**: Rs 16,832 on 29 train
+  claims (repeats in full, altered and over-claimed bills the excess; a leading "1" counted as
+  Rs 1,000). Scaled to 2,400 claims a month: about Rs 1.43 lakh a month, assuming other divisions
+  look like Nagpur.
+- **predictions.csv: 147 approve, 43 review.** Vendor is printed in title case: on holdout it
+  matched the clerk's exact spelling 58% of the time, against 14% for the printed capitals and
+  51% for mapping to the clerk's most common spelling.
+- **2 train photos are still not extracted** (quota). They only affect train evaluation (shown as
+  "Photo not read yet"); every test photo is extracted.

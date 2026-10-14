@@ -26,6 +26,8 @@
     "receipt_number": "HGE/26-27/7505",
     "gstin": "27PMLCE5129S3ZO",
     "gstin_valid": true,
+    "gstin_status": "valid",
+    "gstin_read": "27PMLCE5129S3ZO",
     "total_amount": 4704.0,
     "amount_in_words": "Rupees Four Thousand Seven Hundred Four Only",
     "amount_in_words_value": 4704.0,

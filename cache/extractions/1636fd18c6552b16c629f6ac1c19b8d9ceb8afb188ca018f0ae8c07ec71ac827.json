@@ -24,8 +24,10 @@
     "receipt_date": "2026-06-23",
     "receipt_date_raw": "23/06/2026",
     "receipt_number": "6191",
-    "gstin": "27MTSPF445ST1ZB",
-    "gstin_valid": false,
+    "gstin": "27MTSPF4455T1ZB",
+    "gstin_valid": true,
+    "gstin_status": "repaired",
+    "gstin_read": "27MTSPF445ST1ZB",
     "total_amount": 315.0,
     "amount_in_words": "",
     "amount_in_words_value": null,
@@ -45,12 +47,11 @@
       "vendor": 1.0,
       "receipt_date": 1.0,
       "receipt_number": 1.0,
-      "gstin": 0.3,
+      "gstin": 1.0,
       "total_amount": 1.0
     },
     "flags": [
-      "gstin_invalid",
-      "low_confidence:gstin"
+      "gstin_repaired"
     ]
   }
 }

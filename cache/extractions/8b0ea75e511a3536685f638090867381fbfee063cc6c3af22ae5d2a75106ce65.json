@@ -26,6 +26,8 @@
     "receipt_number": "A/1774",
     "gstin": "27TABPK3765R1Z6",
     "gstin_valid": false,
+    "gstin_status": "unreadable",
+    "gstin_read": "27TABPK3765R1Z6",
     "total_amount": 1082.0,
     "amount_in_words": "",
     "amount_in_words_value": null,
@@ -51,7 +53,7 @@
       "total_amount": 1.0
     },
     "flags": [
-      "gstin_invalid",
+      "gstin_unreadable",
       "low_confidence:gstin"
     ]
   }

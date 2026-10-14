@@ -37,6 +37,8 @@
     "receipt_number": "2841",
     "gstin": "27XMECH9812R2ZH",
     "gstin_valid": true,
+    "gstin_status": "valid",
+    "gstin_read": "27XMECH9812R2ZH",
     "total_amount": 819.0,
     "amount_in_words": "",
     "amount_in_words_value": null,

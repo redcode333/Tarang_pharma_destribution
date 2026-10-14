@@ -26,7 +26,9 @@
     "receipt_number": "8501",
     "gstin": "",
     "gstin_valid": false,
-    "total_amount": 4801.0,
+    "gstin_status": "",
+    "gstin_read": "",
+    "total_amount": 480.0,
     "amount_in_words": "Four Hundred Eighty only",
     "amount_in_words_value": 480.0,
     "pre_tax_amount": null,
@@ -34,11 +36,8 @@
     "guest_name": "Shubham - Tarang",
     "nights": null,
     "handwritten_marks": [],
-    "possible_alteration": true,
-    "alteration_reasons": [
-      "Amount figure is 4801/- while amount in words is Four Hundred Eighty only",
-      "amount in words reads Rs 480.00 but the figure reads Rs 4,801.00"
-    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
     "instructions_on_bill": [],
     "is_receipt": true,
     "readable": true,
@@ -52,8 +51,7 @@
       "total_amount": 0.95
     },
     "flags": [
-      "amount_words_mismatch",
-      "possible_alteration"
+      "total_from_words"
     ]
   }
 }

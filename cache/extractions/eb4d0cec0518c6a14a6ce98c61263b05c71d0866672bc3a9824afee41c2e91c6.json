@@ -26,6 +26,8 @@
     "receipt_number": "HSR/26-27/4873",
     "gstin": "27UVQFW9408Y1ZS",
     "gstin_valid": true,
+    "gstin_status": "valid",
+    "gstin_read": "27UVQFW9408Y1ZS",
     "total_amount": 2352.0,
     "amount_in_words": "Rupees Two Thousand Three Hundred Fifty Two Only",
     "amount_in_words_value": 2352.0,

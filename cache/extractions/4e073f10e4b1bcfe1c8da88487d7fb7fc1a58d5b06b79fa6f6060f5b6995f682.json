@@ -36,6 +36,8 @@
     "receipt_number": "8178",
     "gstin": "",
     "gstin_valid": false,
+    "gstin_status": "",
+    "gstin_read": "",
     "total_amount": 125.0,
     "amount_in_words": "",
     "amount_in_words_value": null,

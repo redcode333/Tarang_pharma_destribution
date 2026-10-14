@@ -16,6 +16,13 @@ def file_hash(path: Path) -> str:
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def phash(path: Path) -> str:
+    """Perceptual hash of the photo as displayed (EXIF applied), hex. Same as scripts/audit.py."""
+    import imagehash
+
+    return str(imagehash.phash(load_image(path)))
+
+
 def load_image(path: Path) -> Image.Image:
     """The photo as displayed: EXIF orientation applied, RGB."""
     with Image.open(path) as im:

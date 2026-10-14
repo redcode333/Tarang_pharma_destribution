@@ -26,6 +26,8 @@
     "receipt_number": "HKC/26-27/5329",
     "gstin": "27HPFCA5856Y3ZE",
     "gstin_valid": true,
+    "gstin_status": "valid",
+    "gstin_read": "27HPFCA5856Y3ZE",
     "total_amount": 4032.0,
     "amount_in_words": "Rupees Four Thousand Thirty Two Only",
     "amount_in_words_value": 4032.0,

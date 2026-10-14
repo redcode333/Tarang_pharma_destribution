@@ -26,6 +26,8 @@
     "receipt_number": "SPL/26-27/2384",
     "gstin": "27GFZCR8659B2Z4",
     "gstin_valid": true,
+    "gstin_status": "valid",
+    "gstin_read": "27GFZCR8659B2Z4",
     "total_amount": 3136.0,
     "amount_in_words": "Rupees Three Thousand One Hundred Thirty Six Only",
     "amount_in_words_value": 3136.0,

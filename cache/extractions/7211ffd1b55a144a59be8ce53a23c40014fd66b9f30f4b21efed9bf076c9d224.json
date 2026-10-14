@@ -25,6 +25,8 @@
     "receipt_number": "8290",
     "gstin": "",
     "gstin_valid": false,
+    "gstin_status": "",
+    "gstin_read": "",
     "total_amount": 1940.0,
     "amount_in_words": "Nine Hundred Forty only",
     "amount_in_words_value": 940.0,
