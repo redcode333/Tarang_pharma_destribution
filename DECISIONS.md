@@ -394,3 +394,22 @@ Deadline: about 3 pm IST, Thursday 15 Oct 2026.
   `reports/adjudications.csv` as clerk errors with the original amount.
 - Test: 6 claims flagged altered; predictions now carry 200, 180, 472, 313.77, 390, 226.56
   instead of 1200, 1180, 1472, 1313.77, 1390, 1226.56.
+
+## 2026-10-15 — Service and screen
+
+- **One pipeline.** `/api/analyze` runs exactly what `predictions.csv` runs: `extract()` (cached
+  by photo hash, so a known photo costs nothing) → post-processing (GSTIN repair, original amount)
+  → `decide()`. `decide()` now also returns every check with passed / detail for the screen; the
+  reasons and predictions are unchanged (predictions.csv byte-identical after the refactor).
+- **No key = HTTP 503 with a plain message, always**, even for a photo already in the cache, as
+  briefed; `predictions.csv` is the place that works fully offline from the cache.
+- **Duplicate history in SQLite** (`cache/history.sqlite`, git-ignored, rebuilt on first start):
+  the 283 train claims under the clerk's and the model's bill number plus the photo pHash, and
+  every analysed claim. A claim is compared only with claims submitted on or before its date, and
+  never with itself, so re-analysing a train example finds what came before it, not itself.
+- **A web request waits at most 30 s for a rate-limited model**, then answers 503 "quota used up";
+  batch runs keep the 15-minute wait.
+- **Cost per request** is the paid-tier price of the calls that read that photo, at Rs 96.8 / USD,
+  shown even when the photo came from the cache (with "already read earlier").
+- Examples on the screen: CLM-30572 (clean, approve), CLM-30804 (bill A/1324 claimed again by a
+  colleague, duplicate of CLM-30661), CLM-30623 (fake "pre-verified" stamp, 940 inked to 1,940).

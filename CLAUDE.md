@@ -80,6 +80,8 @@ Python 3.11 lives in a conda env at `.venv/` (no `activate` needed; call the int
 - Evaluation: `.venv/python.exe scripts/evaluate.py` → `reports/evaluation.md`, `reports/error_gallery.md`;
   mismatches still to adjudicate go to `cache/mismatches_to_review.csv`; verdicts live in `reports/adjudications.csv`
 - Free quota: Flash-Lite 500 requests/day on this key, resets 07:00 UTC (12:30 IST)
+- Service: `.venv/python.exe -m uvicorn app.main:app` → http://localhost:8000 (`app/main.py`, `app/static/index.html`);
+  duplicate history in `cache/history.sqlite` (git-ignored, seeded on first start)
 - Predictions: `.venv/python.exe scripts/make_predictions.py [--no-model]` → `predictions.csv` (validated before writing)
 - Cost: `.venv/python.exe scripts/cost.py --usd-inr 96.8 --fx-source "rate on 10 Oct 2026, banklive.net" --out reports/cost.md`
 - Recreate the env: `conda create -y -p ./.venv python=3.11 pip`, then

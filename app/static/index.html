@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tarang receipts — claim check</title>
+<style>
+  :root { --ink: #1f2933; --muted: #616e7c; --line: #d9e2ec; --bg: #f5f7fa; --ok: #1f7a4d; --okbg: #e3f6ec;
+          --warn: #9a5b00; --warnbg: #fff3d6; --bad: #b42318; --card: #fff; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); }
+  header { padding: 16px 24px; background: var(--card); border-bottom: 1px solid var(--line); display: flex;
+           justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  header h1 { font-size: 18px; margin: 0; }
+  #health { font-size: 13px; color: var(--muted); }
+  #health.off { color: var(--warn); }
+  main { display: grid; grid-template-columns: minmax(300px, 420px) 1fr; gap: 20px; padding: 20px 24px; max-width: 1200px; margin: auto; }
+  @media (max-width: 860px) { main { grid-template-columns: 1fr; } }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
+  label { display: block; font-size: 13px; color: var(--muted); margin: 10px 0 4px; }
+  input, select, textarea { width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; font: inherit; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  #preview { width: 100%; max-height: 280px; object-fit: contain; background: #eef2f6; border-radius: 6px; margin-top: 8px; display: none; }
+  button { margin-top: 14px; width: 100%; padding: 11px; border: 0; border-radius: 8px; background: #243b53; color: #fff;
+           font: 600 15px system-ui, sans-serif; cursor: pointer; }
+  button:disabled { opacity: .55; cursor: wait; }
+  #badge { font: 700 30px system-ui, sans-serif; letter-spacing: .06em; padding: 14px 18px; border-radius: 10px; text-align: center; }
+  #badge.approve { background: var(--okbg); color: var(--ok); }
+  #badge.review { background: var(--warnbg); color: var(--warn); }
+  #reasons { margin: 10px 0 0; padding-left: 20px; }
+  .notice { padding: 12px 14px; border-radius: 8px; background: var(--warnbg); color: var(--warn); }
+  table { width: 100%; border-collapse: collapse; margin-top: 6px; }
+  td, th { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 600; color: var(--muted); font-size: 13px; }
+  .pass { color: var(--ok); font-weight: 700; } .fail { color: var(--bad); font-weight: 700; } .skip { color: var(--muted); }
+  .meta { font-size: 13px; color: var(--muted); margin-top: 10px; }
+  .hidden { display: none; }
+  h2 { font-size: 15px; margin: 18px 0 4px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Tarang Pharma — expense claim check</h1>
+  <div id="health">Checking service…</div>
+</header>
+<main>
+  <section class="card">
+    <label for="example">Load example</label>
+    <select id="example"><option value="">— choose a sample claim —</option></select>
+
+    <label for="photo">Receipt photo</label>
+    <input id="photo" type="file" accept="image/*">
+    <img id="preview" alt="Receipt preview">
+
+    <label for="emp">Employee</label>
+    <select id="emp"></select>
+    <div class="row">
+      <div><label for="category">Category</label>
+        <select id="category"><option>Food</option><option>Fuel</option><option>Lodging</option>
+          <option>Local travel</option><option>Courier</option><option>Parking</option></select></div>
+      <div><label for="amount">Amount claimed (Rs)</label><input id="amount" placeholder="e.g. 1,250"></div>
+    </div>
+    <div class="row">
+      <div><label for="expense">Expense date</label><input id="expense" placeholder="DD/MM/YYYY"></div>
+      <div><label for="submitted">Submitted on</label><input id="submitted" type="date"></div>
+    </div>
+    <label for="vendor">Vendor (as typed by the rep)</label><input id="vendor">
+    <label for="comment">Rep comment</label><input id="comment">
+    <input id="claim_id" type="hidden">
+    <button id="go">Analyze</button>
+  </section>
+
+  <section class="card" id="out">
+    <p class="meta" id="placeholder">Choose a photo and fill in the claim, or load an example, then press Analyze.</p>
+    <div id="notice" class="notice hidden"></div>
+    <div id="result" class="hidden">
+      <div id="badge"></div>
+      <ul id="reasons"></ul>
+      <h2>Read from the photo</h2>
+      <table id="fields"></table>
+      <h2>Checks</h2>
+      <table id="checks"><thead><tr><th></th><th>Check</th><th>Detail</th></tr></thead><tbody></tbody></table>
+      <div class="meta" id="meta"></div>
+    </div>
+  </section>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+let examplePhoto = null;   // Blob for a loaded example
+let examples = [];
+
+async function getJSON(url) { const r = await fetch(url); return r.json(); }
+
+async function init() {
+  try {
+    const h = await getJSON("/api/health");
+    $("health").textContent = h.model_configured ? `Model: ${h.models[0]} · ${h.history_claims} claims in duplicate history`
+                                                 : h.message;
+    $("health").className = h.model_configured ? "" : "off";
+  } catch { $("health").textContent = "Service not reachable"; $("health").className = "off"; }
+  const emps = await getJSON("/api/employees");
+  $("emp").innerHTML = emps.map(e => `<option value="${e.emp_id}">${e.name} (${e.emp_id}, ${e.grade})</option>`).join("");
+  examples = await getJSON("/api/examples");
+  $("example").innerHTML += examples.map(x => `<option value="${x.claim_id}">${x.claim_id}: ${x.label}</option>`).join("");
+  $("submitted").value = new Date().toISOString().slice(0, 10);
+}
+
+$("photo").addEventListener("change", () => {
+  examplePhoto = null; $("claim_id").value = "";
+  const f = $("photo").files[0];
+  if (f) { $("preview").src = URL.createObjectURL(f); $("preview").style.display = "block"; }
+});
+
+$("example").addEventListener("change", async () => {
+  const x = examples.find(e => e.claim_id === $("example").value);
+  if (!x) return;
+  $("photo").value = "";
+  examplePhoto = await (await fetch(x.photo_url)).blob();
+  $("preview").src = URL.createObjectURL(examplePhoto); $("preview").style.display = "block";
+  $("emp").value = x.emp_id; $("category").value = x.category; $("amount").value = x.amount_claimed;
+  $("expense").value = x.expense_date; $("submitted").value = x.submitted_on; $("vendor").value = x.vendor;
+  $("comment").value = x.rep_comment; $("claim_id").value = x.claim_id;
+});
+
+function esc(s) { return String(s ?? "").replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c])); }
+
+function showNotice(msg) {
+  $("placeholder").classList.add("hidden"); $("result").classList.add("hidden");
+  $("notice").textContent = msg; $("notice").classList.remove("hidden");
+}
+
+$("go").addEventListener("click", async () => {
+  const file = $("photo").files[0] || examplePhoto;
+  if (!file) return showNotice("Choose a receipt photo first, or load an example.");
+  if (!$("amount").value.trim()) return showNotice("Enter the amount claimed.");
+  const fd = new FormData();
+  fd.append("photo", file, file.name || "receipt.jpg");
+  fd.append("emp_id", $("emp").value); fd.append("submitted_on", $("submitted").value);
+  fd.append("expense_date", $("expense").value); fd.append("category", $("category").value);
+  fd.append("vendor", $("vendor").value); fd.append("amount_claimed", $("amount").value);
+  fd.append("rep_comment", $("comment").value); fd.append("claim_id", $("claim_id").value);
+  $("go").disabled = true; $("go").textContent = "Reading the receipt…";
+  try {
+    const r = await fetch("/api/analyze", {method: "POST", body: fd});
+    let body; try { body = await r.json(); } catch { body = {error: "The service sent an unexpected reply."}; }
+    if (!r.ok) return showNotice(body.error || "Something went wrong. The claim should go to a clerk.");
+    render(body);
+  } catch { showNotice("Could not reach the service. Is it running?"); }
+  finally { $("go").disabled = false; $("go").textContent = "Analyze"; }
+});
+
+function render(b) {
+  $("placeholder").classList.add("hidden"); $("notice").classList.add("hidden"); $("result").classList.remove("hidden");
+  $("badge").textContent = b.decision.toUpperCase(); $("badge").className = b.decision;
+  $("reasons").innerHTML = b.reasons.map(x => `<li>${esc(x)}</li>`).join("");
+  const f = b.fields, c = b.confidence || {};
+  const pct = k => c[k] !== undefined ? ` <span class="meta">(${Math.round(c[k] * 100)}%)</span>` : "";
+  $("fields").innerHTML = [["Vendor", "vendor"], ["Bill date", "receipt_date"], ["Bill number", "receipt_number"],
+    ["GSTIN", "gstin"], ["Total", "total_amount"]]
+    .map(([label, k]) => `<tr><th>${label}</th><td>${esc(f[k] ?? "—") || "—"}${pct(k)}</td></tr>`).join("");
+  $("checks").querySelector("tbody").innerHTML = b.checks.map(x => {
+    const mark = x.passed === true ? '<span class="pass">✓</span>' : x.passed === false ? '<span class="fail">✗</span>' : '<span class="skip">–</span>';
+    return `<tr><td>${mark}</td><td>${esc(x.name)}</td><td>${esc(x.detail)}</td></tr>`;
+  }).join("");
+  $("meta").textContent = `Model ${b.model} · ${b.latency_ms} ms · reading this photo costs about Rs ${b.est_cost_inr.toFixed(3)}`
+    + ` (${b.cost_note}) · claim ${b.claim_id}`;
+}
+
+init();
+</script>
+</body>
+</html>

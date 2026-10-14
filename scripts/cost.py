@@ -16,16 +16,9 @@ from pathlib import Path
 import pandas as pd
 
 REPO = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO / "src"))
 
-# USD per 1M tokens, paid tier (Standard), from https://ai.google.dev/gemini-api/docs/pricing
-# (page "Last updated 2026-10-14 UTC", read 2026-10-14). 3.8 Flash rises to $1.50 / $7.50 on 2027-01-01.
-PRICES = {
-    "gemini-3.8-flash": {"input": 0.75, "output": 3.75},
-    "gemini-3.6-flash": {"input": 0.75, "output": 3.75},
-    "gemini-3.5-flash-lite": {"input": 0.30, "output": 2.50},
-    "gemini-3.1-flash-lite": {"input": 0.25, "output": 1.50},
-}
-PRICES_SOURCE = "https://ai.google.dev/gemini-api/docs/pricing (last updated 2026-10-14)"
+from receipts.pricing import PRICES, PRICES_SOURCE  # noqa: E402
 
 
 def photo_tokens(records: list[dict]) -> pd.DataFrame:

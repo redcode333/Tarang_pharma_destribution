@@ -1,0 +1,18 @@
+# Python 3.11+. Pinned to the versions the repo was built and tested with.
+fastapi==0.143.1
+uvicorn[standard]==0.54.0
+python-multipart==0.0.32
+google-genai==2.30.1
+httpx==0.28.1
+pydantic==2.14.1
+python-dotenv==1.2.4
+pandas==3.0.6
+numpy==2.4.6
+pillow==12.3.0
+ImageHash==4.3.2
+PyWavelets==1.9.0
+scipy==1.17.1
+RapidFuzz==3.14.6
+pytest==9.1.1
+# Only needed to re-download the photos from the task portal (scripts/fetch_images.py):
+# playwright==1.64.0   then: python -m playwright install chromium

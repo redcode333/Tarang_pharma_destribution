@@ -22,6 +22,7 @@ class Decision:
     claim_id: str
     decision: str
     reasons: list[str] = field(default_factory=list)
+    checks: list[dict] = field(default_factory=list)  # {name, passed, detail}; passed None = not run
 
     @property
     def reason(self) -> str:
@@ -33,34 +34,32 @@ def decide(claim: dict, ext: dict | None, employee: dict | None, duplicate: dict
     submitted = parse_date(claim.get("submitted_on"))
     expense = parse_date(claim.get("expense_date"), claim.get("submitted_on"))
     category = str(claim.get("category", ""))
-    reasons: list[str] = []
+    checks: list[dict] = []
 
-    ok, why = rules.check_photo(ext)
-    if not ok:
-        reasons.append(why)
-    else:
-        r = ext["result"]
-        checks = [
-            rules.check_injection(r),
-            rules.check_alteration(r),
-            rules.check_amount(claimed, r),
-            rules.check_dates(parse_date(r.get("receipt_date")), expense, submitted),
-            rules.check_fuel(category, r, employee),
-            rules.check_food(category, r),
-            rules.check_lodging(category, r, employee),
-            rules.check_gstin(r),
-            rules.check_confidence(r),
-        ]
-        reasons += [why for ok, why in checks if not ok]
-    ok, why = rules.check_duplicate(duplicate)
-    if not ok:
-        reasons.insert(0, why)
+    def run(name: str, result: tuple[bool, str] | None) -> None:
+        passed, detail = result if result is not None else (None, "not checked: no usable photo")
+        checks.append({"name": name, "passed": passed, "detail": detail})
+
+    run("Duplicate bill or photo", rules.check_duplicate(duplicate))
+    photo = rules.check_photo(ext)
+    run("Usable photo", photo)
+    r = ext["result"] if photo[0] else None
+    run("No instructions on the receipt", rules.check_injection(r) if r else None)
+    run("Amount not altered", rules.check_alteration(r) if r else None)
+    run("Claimed amount matches the bill", rules.check_amount(claimed, r) if r else None)
+    run("Dates", rules.check_dates(parse_date(r.get("receipt_date")), expense, submitted) if r else None)
+    run("Fuel: claimant's vehicle", rules.check_fuel(category, r, employee) if r else None)
+    run("Food: within Rs 2,500", rules.check_food(category, r) if r else None)
+    run("Lodging: GSTIN, name, nightly cap", rules.check_lodging(category, r, employee) if r else None)
+    run("GSTIN readable", rules.check_gstin(r) if r else None)
+    run("Confident read", rules.check_confidence(r) if r else None)
     if claimed is None:
-        reasons.append("Claimed amount could not be read")
-    elif claimed >= rules.APPROVE_LIMIT:
-        reasons.append(f"{rules.rs(claimed)} is Rs 2,000 or more — clerk review")
-    reasons = list(dict.fromkeys(reasons))
-    return Decision(str(claim.get("claim_id")), "review" if reasons else "approve", reasons)
+        run("Under Rs 2,000", (False, "Claimed amount could not be read"))
+    else:
+        run("Under Rs 2,000", (True, "") if claimed < rules.APPROVE_LIMIT
+            else (False, f"{rules.rs(claimed)} is Rs 2,000 or more — clerk review"))
+    reasons = list(dict.fromkeys(c["detail"] for c in checks if c["passed"] is False))
+    return Decision(str(claim.get("claim_id")), "review" if reasons else "approve", reasons, checks)
 
 
 def decide_all(claims: pd.DataFrame, employees: pd.DataFrame, cache: ExtractionCache | None = None,
