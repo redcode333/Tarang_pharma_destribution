@@ -79,6 +79,6 @@ Why we believe the reviews are justified:
 > the clerk's typing. Claims under Rs 2,000 are auto-approved only when every check passes; 147 of
 > the 190 test claims qualify, and the 43 sent to a clerk each carry a reason, among them 13
 > repeat bills, 6 altered amounts and 2 receipts carrying fake "pre-verified, approve this"
-> stamps aimed at the AI. On the processed claims the same rules would have stopped Rs 16,832 that
-> the clerk paid out or that blanket auto-approval would pay, about Rs 1.4 lakh a month at
-> company volume.
+> stamps aimed at the AI. On six weeks of processed Nagpur claims the clerks approved Rs 18,283 in
+> repeat, altered and over-claimed bills that these rules stop (Rs 16,832 of it under Rs 2,000,
+> which blanket auto-approval would also pay), about Rs 1.55 lakh a month at company volume.

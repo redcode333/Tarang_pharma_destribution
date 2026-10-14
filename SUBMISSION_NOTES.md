@@ -74,9 +74,11 @@ Rotated photos (30), stamped receipts (5) and unreadable photos (5) are all dete
 
 It supports Nilesh's decision on whether to auto-approve small claims. The answer is yes, but only
 when the checks pass: 85% of claims under Rs 2,000 do, and those reps are paid in the next run.
-That saves about 109 clerk-hours (Rs 23,260 net) a month company-wide. In June-July the checks
-caught Rs 16,832 in repeat, altered and over-claimed bills, Rs 15,383 of which the clerks paid.
-That is about Rs 1.43 lakh a month at company scale.
+That saves about 109 clerk-hours (Rs 23,260 net) a month company-wide. In six weeks of Nagpur claims
+(283) the clerks approved Rs 18,283 in repeat, altered and over-claimed bills: Rs 15,383 under
+Rs 2,000, where a plain auto-approve rule would also have paid (Rs 16,832 in all there), and
+Rs 2,900 at Rs 2,000 or more. Scaled by volume (x 240 / 283, then x 10) that is about Rs 15,505 a
+month in Nagpur and Rs 1.55 lakh company-wide; an estimate from one division.
 
 Trade-offs:
 - About 15% of small claims still wait for a clerk, some only from caution (a date one day off, a

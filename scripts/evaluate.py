@@ -42,6 +42,7 @@ OUT = REPO / "reports" / "evaluation.md"
 GALLERY = REPO / "reports" / "error_gallery.md"
 TRAIN_DECISIONS = REPO / "reports" / "train_decisions.csv"
 CLAIMS_PER_MONTH = 2_400
+NAGPUR_CLAIMS_PER_MONTH = 240  # a tenth of company volume (email thread)
 ADJ_COLUMNS = ["claim_id", "field", "verdict", "correct_value", "diagnosis"]
 VERDICTS = {"clerk_error", "model_error", "both_wrong", "ambiguous"}
 
@@ -278,9 +279,9 @@ def _claimed_over(reason: str) -> bool:
 
 
 def at_risk(row) -> tuple[float, str]:
-    """Rupees a plain auto-approve rule would have paid wrongly on this claim, and how we know."""
+    """Rupees that would be paid wrongly on this claim if it were approved as claimed, and how we know."""
     claimed, r = row["claimed"], row["result"]
-    if claimed is None or claimed >= APPROVE_LIMIT:
+    if claimed is None:
         return 0.0, ""
     reasons = row["reasons"]
     total = r.get("total_amount")
@@ -317,9 +318,13 @@ def decision_section(train: pd.DataFrame, employees: pd.DataFrame) -> list[str]:
     cm = pd.crosstab(d["ours"], d["status"], margins=True, margins_name="all").reset_index()
     cm = cm.rename(columns={"ours": "our decision \ clerk status"})
     disagree = d[d["kind"] != ""].copy()
-    caught = d[d["at_risk_rs"] > 0]
-    paid = caught[caught["status"] == "approved"]
-    per_claim = caught["at_risk_rs"].sum() / len(d)
+    caught = d[d["at_risk_rs"] > 0].copy()
+    caught["band"] = np.where(caught["claimed"] < APPROVE_LIMIT, "under Rs 2,000", "Rs 2,000 or more")
+    small = caught[caught["band"] == "under Rs 2,000"]
+    paid = caught[caught["status"] == "approved"]          # approved wrongly by the clerks, both bands
+    paid_under, paid_over = paid[paid["band"] == "under Rs 2,000"], paid[paid["band"] == "Rs 2,000 or more"]
+    wrong = paid["at_risk_rs"].sum()
+    nagpur_month = wrong * NAGPUR_CLAIMS_PER_MONTH / len(d)  # train = len(d) claims = len(d)/240 Nagpur months
     lines = ["## Decisions vs the clerk (train)", "",
              "`decision` from `src/receipts/decide.py` on every train claim, in submission order, from cached "
              "extractions. Clerk `approved` = approve; `queried` / `rejected` = review. "
@@ -333,21 +338,30 @@ def decision_section(train: pd.DataFrame, employees: pd.DataFrame) -> list[str]:
               "### Every disagreement", ""]
     disagree["claimed"] = disagree["claimed"].map(lambda v: f"{v:,.2f}".replace(".00", "") if v is not None else "")
     lines += md(disagree.sort_values(["kind", "claim_id"])[["claim_id", "status", "ours", "kind", "claimed", "reason"]])
-    lines += ["### Rupees a plain \"auto-approve everything under Rs 2,000\" rule would pay wrongly", "",
-              "Claims under Rs 2,000 that our checks send to review for a repeat bill, an altered amount or a claim "
-              "above the bill. A repeat counts in full; an altered or over-claimed bill counts the excess over the "
-              "real amount (from the amount in words or the printed figure; a leading \"1\" added to a "
-              "three-digit bill counts Rs 1,000).", ""]
-    by = caught.groupby("at_risk_why")["at_risk_rs"].agg(claims="count", rupees="sum").reset_index()
+    lines += ["### Rupees paid wrongly, and what the checks catch", "",
+              "Claims our checks send to review for a repeat bill, an altered amount or a claim above the bill. "
+              "A repeat counts in full; an altered or over-claimed bill counts the excess over the real amount "
+              "(from the amount in words or the printed figure; a leading \"1\" added to a three-digit bill "
+              "counts Rs 1,000).", ""]
+    by = caught.groupby(["band", "at_risk_why"])["at_risk_rs"].agg(claims="count", rupees="sum").reset_index()
+    by["approved by the clerk"] = [f"Rs {paid.loc[(paid['band'] == b) & (paid['at_risk_why'] == w), 'at_risk_rs'].sum():,.0f}"
+                                   for b, w in zip(by["band"], by["at_risk_why"])]
     by["rupees"] = by["rupees"].map(lambda v: f"Rs {v:,.0f}")
     lines += md(by.rename(columns={"at_risk_why": "what"}))
-    lines += [f"- **Total: Rs {caught['at_risk_rs'].sum():,.0f} on {len(caught)} claims** out of {len(d)} "
-              f"(Rs {d['claimed'].map(lambda v: v or 0).sum():,.0f} claimed). The clerk paid "
-              f"{len(paid)} of them anyway (Rs {paid['at_risk_rs'].sum():,.0f}).",
-              f"- Scaled to {CLAIMS_PER_MONTH:,} claims a month company-wide at the same rate "
-              f"(Rs {per_claim:,.2f} per claim): **Rs {per_claim * CLAIMS_PER_MONTH:,.0f} a month**; "
-              f"Nagpur division alone ({CLAIMS_PER_MONTH // 10} a month): Rs {per_claim * CLAIMS_PER_MONTH / 10:,.0f}. "
-              "This assumes the other divisions look like Nagpur's June-July 2026 claims.", ""]
+    lines += [f"- **(a) Under Rs 2,000: Rs {small['at_risk_rs'].sum():,.2f} on {len(small)} claims.** A plain "
+              "\"auto-approve everything under Rs 2,000\" rule pays all of it with no human look. The clerks "
+              f"approved {len(paid_under)} of these claims (Rs {paid_under['at_risk_rs'].sum():,.2f}) and stopped "
+              f"{len(small) - len(paid_under)}.",
+              f"- **(b) Rs 2,000 or more: Rs {paid_over['at_risk_rs'].sum():,.2f} on {len(paid_over)} claims** the "
+              "clerks saw and approved anyway (" + ", ".join(
+                  f"{c} {w}" for c, w in zip(paid_over["claim_id"], paid_over["at_risk_why"])) + ").",
+              f"- **Approved wrongly by the clerks, both bands: Rs {wrong:,.2f}** on {len(paid)} of {len(d)} claims.",
+              f"- **By volume:** the {len(d)} train claims are {len(d)}/{NAGPUR_CLAIMS_PER_MONTH} = "
+              f"{len(d) / NAGPUR_CLAIMS_PER_MONTH:.2f} months of Nagpur claims, so the monthly leak is "
+              f"Rs {wrong:,.2f} x {NAGPUR_CLAIMS_PER_MONTH} / {len(d)} = **Rs {nagpur_month:,.0f} a month in Nagpur**, "
+              f"and x 10 = **Rs {nagpur_month * 10:,.0f} a month company-wide** ({CLAIMS_PER_MONTH:,} claims).",
+              "- Caveat: an estimate from about six weeks (9 June - 18 July 2026) of one division, scaled by claim "
+              "volume; other divisions may differ.", ""]
     return lines
 
 

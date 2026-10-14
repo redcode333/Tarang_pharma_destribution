@@ -29,7 +29,12 @@ A clerk costs Rs 216 an hour (Rs 76,000 for 352 hours). The 78% of claims approv
 
 ## What it recovers
 
-In Nagpur's June–July claims the checks found Rs 16,832 in repeat bills (16), altered amounts (8) and over-claims (5). The clerks approved Rs 15,383 of it, and your "auto-approve under Rs 2,000" rule would have paid all of it. At the same rate that is about Rs 1.43 lakh a month company-wide, Rs 14,274 in Nagpur. Recovering it is worth six times the clerk-time saving.
+In Nagpur's claims of 9 June – 18 July (283 claims), the checks found repeat bills, altered amounts and over-claims:
+
+- **Under Rs 2,000:** Rs 16,832 on 29 claims. Your plain "auto-approve under Rs 2,000" rule would pay all of it with no human look. The clerks paid Rs 15,383 of it.
+- **Rs 2,000 or more:** Rs 2,900 on 2 claims that the clerks saw and approved anyway.
+
+Approved wrongly in all: Rs 18,283. 283 claims is 1.18 months of Nagpur's volume, so that is about **Rs 15,505 a month in Nagpur, Rs 1.55 lakh company-wide**. This is an estimate from about six weeks of one division.
 
 ## The fake "PRE-VERIFIED" stamp
 

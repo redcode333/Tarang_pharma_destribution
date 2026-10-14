@@ -364,9 +364,11 @@ Deadline: about 3 pm IST, Thursday 15 Oct 2026.
   repeats, altered amounts or over-claims the clerk paid, 1 is a photo not yet read. Auto-approve
   rate 78% overall, 86% under Rs 2,000.
 - **Rupees caught against "auto-approve everything under Rs 2,000"**: Rs 16,832 on 29 train
-  claims (repeats in full, altered and over-claimed bills the excess; a leading "1" counted as
-  Rs 1,000). Scaled to 2,400 claims a month: about Rs 1.43 lakh a month, assuming other divisions
-  look like Nagpur.
+  claims under Rs 2,000 (repeats in full, altered and over-claimed bills the excess; a leading "1"
+  counted as Rs 1,000). *Corrected 2026-10-15:* the monthly figure is now based on rupees the
+  clerks approved wrongly in both bands (Rs 15,383 under Rs 2,000 + Rs 2,900 at Rs 2,000 or more =
+  Rs 18,283), scaled by claim volume: x 240 / 283 = Rs 15,505 a month in Nagpur, x 10 = Rs 1.55 lakh
+  company-wide. An estimate from about six weeks of one division.
 - **predictions.csv: 147 approve, 43 review.** Vendor is printed in title case: on holdout it
   matched the clerk's exact spelling 58% of the time, against 14% for the printed capitals and
   51% for mapping to the clerk's most common spelling.

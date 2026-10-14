@@ -149,17 +149,22 @@ The vendor prompt fix (dealer, not brand) came from the 20-claim sample, which i
 | CLM-31063 | approved | review | clerk miss | 325 | Possible duplicate of CLM-30416 (TPD-0459) |
 | CLM-31081 | approved | review | clerk miss | 212.40 | Possible duplicate of CLM-30608 (TPD-0478); Photo not read yet — run extraction |
 
-### Rupees a plain "auto-approve everything under Rs 2,000" rule would pay wrongly
+### Rupees paid wrongly, and what the checks catch
 
-Claims under Rs 2,000 that our checks send to review for a repeat bill, an altered amount or a claim above the bill. A repeat counts in full; an altered or over-claimed bill counts the excess over the real amount (from the amount in words or the printed figure; a leading "1" added to a three-digit bill counts Rs 1,000).
+Claims our checks send to review for a repeat bill, an altered amount or a claim above the bill. A repeat counts in full; an altered or over-claimed bill counts the excess over the real amount (from the amount in words or the printed figure; a leading "1" added to a three-digit bill counts Rs 1,000).
 
-| what | claims | rupees |
-|---|---|---|
-| altered: amount in words | 2 | Rs 2,000 |
-| altered: leading 1 added (estimate Rs 1,000) | 1 | Rs 1,000 |
-| altered: printed amount | 5 | Rs 4,500 |
-| claimed above the bill | 5 | Rs 1,320 |
-| repeat of an earlier bill (whole amount) | 16 | Rs 8,012 |
+| band | what | claims | rupees | approved by the clerk |
+|---|---|---|---|---|
+| Rs 2,000 or more | claimed above the bill | 1 | Rs 500 | Rs 500 |
+| Rs 2,000 or more | repeat of an earlier bill (whole amount) | 1 | Rs 2,400 | Rs 2,400 |
+| under Rs 2,000 | altered: amount in words | 2 | Rs 2,000 | Rs 2,000 |
+| under Rs 2,000 | altered: leading 1 added (estimate Rs 1,000) | 1 | Rs 1,000 | Rs 1,000 |
+| under Rs 2,000 | altered: printed amount | 5 | Rs 4,500 | Rs 3,500 |
+| under Rs 2,000 | claimed above the bill | 5 | Rs 1,320 | Rs 1,320 |
+| under Rs 2,000 | repeat of an earlier bill (whole amount) | 16 | Rs 8,012 | Rs 7,563 |
 
-- **Total: Rs 16,832 on 29 claims** out of 283 (Rs 195,558 claimed). The clerk paid 27 of them anyway (Rs 15,383).
-- Scaled to 2,400 claims a month company-wide at the same rate (Rs 59.48 per claim): **Rs 142,743 a month**; Nagpur division alone (240 a month): Rs 14,274. This assumes the other divisions look like Nagpur's June-July 2026 claims.
+- **(a) Under Rs 2,000: Rs 16,831.80 on 29 claims.** A plain "auto-approve everything under Rs 2,000" rule pays all of it with no human look. The clerks approved 27 of these claims (Rs 15,383.40) and stopped 2.
+- **(b) Rs 2,000 or more: Rs 2,899.80 on 2 claims** the clerks saw and approved anyway (CLM-30446 claimed above the bill, CLM-30736 repeat of an earlier bill (whole amount)).
+- **Approved wrongly by the clerks, both bands: Rs 18,283.20** on 29 of 283 claims.
+- **By volume:** the 283 train claims are 283/240 = 1.18 months of Nagpur claims, so the monthly leak is Rs 18,283.20 x 240 / 283 = **Rs 15,505 a month in Nagpur**, and x 10 = **Rs 155,052 a month company-wide** (2,400 claims).
+- Caveat: an estimate from about six weeks (9 June - 18 July 2026) of one division, scaled by claim volume; other divisions may differ.

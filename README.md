@@ -19,7 +19,7 @@ Distribution, expense receipts".
 |---|---|
 | Field accuracy, 196 held-out train claims | 94.7% vs the clerk's typing; **98.9%** after checking disagreements against the photo (most were clerk typos) |
 | Decisions on train | reviews all 8 claims the clerk queried or rejected; auto-approves 85% of claims under Rs 2,000 (220 of 258) |
-| Caught vs "auto-approve everything under Rs 2,000" | Rs 16,832 on 283 train claims (repeat bills, altered amounts, over-claims), about Rs 1.4 lakh a month at 2,400 claims |
+| Paid wrongly, found by the checks | Rs 18,283 approved by clerks on 283 train claims (repeat bills, altered amounts, over-claims); Rs 16,832 of the under-Rs-2,000 share would also pass plain auto-approval. About Rs 1.55 lakh a month at 2,400 claims (estimate from six weeks of one division) |
 | Test predictions | 147 approve, 43 review (`predictions.csv`) |
 | Model cost | Rs 0.13 a photo at paid Gemini rates, against Rs 12.6–31.7 a claim for a clerk |
 
