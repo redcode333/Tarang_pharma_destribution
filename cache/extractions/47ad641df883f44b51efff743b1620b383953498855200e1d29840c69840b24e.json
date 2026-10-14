@@ -1,0 +1,55 @@
+{
+  "sha256": "47ad641df883f44b51efff743b1620b383953498855200e1d29840c69840b24e",
+  "file": "IMG-20260628-WA0202.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:21:33+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1892,
+      "output_tokens": 264,
+      "thinking_tokens": 0,
+      "latency_ms": 1859,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"OM SAI FUEL POINT\",\n  \"receipt_date\": \"27/06/26\",\n  \"receipt_number\": \"002890\",\n  \"gstin\": \"\",\n  \"total_amount\": 333.64,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH31FA2290\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"blue ink scribble\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "OM SAI FUEL POINT",
+    "receipt_date": "2026-06-27",
+    "receipt_date_raw": "27/06/26",
+    "receipt_number": "002890",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 333.64,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH31FA2290",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [
+      "blue ink scribble"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

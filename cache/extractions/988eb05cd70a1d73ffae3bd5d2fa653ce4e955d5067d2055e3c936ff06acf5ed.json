@@ -1,0 +1,69 @@
+{
+  "sha256": "988eb05cd70a1d73ffae3bd5d2fa653ce4e955d5067d2055e3c936ff06acf5ed",
+  "file": "IMG-20260702-WA0131.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:24:23+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1904,
+      "output_tokens": 375,
+      "thinking_tokens": 0,
+      "latency_ms": 3405,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SHREE GANESH TOURS & TRAVELS\",\n  \"receipt_date\": \"23/06/2026\",\n  \"receipt_number\": \"3741\",\n  \"gstin\": \"\",\n  \"total_amount\": 1550,\n  \"amount_in_words\": \"Five Hundred Fifty only\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH34 CP 5187\",\n  \"guest_name\": \"Kalyani - Tarang\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"3741\",\n    \"23/6/26\",\n    \"Kalyani - Tarang\",\n    \"Nagpur Airport\",\n    \"Sitabuldi\",\n    \"MH34 CP 5187\",\n    \"42\",\n    \"1550/-\",\n    \"Five Hundred Fifty only\"\n  ],\n  \"possible_alteration\": true,\n  \"alteration_reason\": \"Amount figures (1550/-) and amount in words (Five Hundred Fifty only) do not match\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "SHREE GANESH TOURS & TRAVELS",
+    "receipt_date": "2026-06-23",
+    "receipt_date_raw": "23/06/2026",
+    "receipt_number": "3741",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 1550.0,
+    "amount_in_words": "Five Hundred Fifty only",
+    "amount_in_words_value": 550.0,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH34 CP 5187",
+    "guest_name": "Kalyani - Tarang",
+    "nights": null,
+    "handwritten_marks": [
+      "3741",
+      "23/6/26",
+      "Kalyani - Tarang",
+      "Nagpur Airport",
+      "Sitabuldi",
+      "MH34 CP 5187",
+      "42",
+      "1550/-",
+      "Five Hundred Fifty only"
+    ],
+    "possible_alteration": true,
+    "alteration_reasons": [
+      "Amount figures (1550/-) and amount in words (Five Hundred Fifty only) do not match",
+      "amount in words reads Rs 550.00 but the figure reads Rs 1,550.00"
+    ],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": [
+      "amount_words_mismatch",
+      "possible_alteration"
+    ]
+  }
+}

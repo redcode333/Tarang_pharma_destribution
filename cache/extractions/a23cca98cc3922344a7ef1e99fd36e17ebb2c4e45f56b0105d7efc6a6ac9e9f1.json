@@ -1,0 +1,56 @@
+{
+  "sha256": "a23cca98cc3922344a7ef1e99fd36e17ebb2c4e45f56b0105d7efc6a6ac9e9f1",
+  "file": "IMG_20260615_083214.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:10:05+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1884,
+      "output_tokens": 283,
+      "thinking_tokens": 0,
+      "latency_ms": 2469,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"GREEN LEAF RESTAURANT\",\n  \"receipt_date\": \"11/06/2026\",\n  \"receipt_number\": \"A/6149\",\n  \"gstin\": \"27YUFFZ9311K2ZV\",\n  \"total_amount\": 546.00,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": 520.00,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"paid cash\",\n    \"signature line\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "GREEN LEAF RESTAURANT",
+    "receipt_date": "2026-06-11",
+    "receipt_date_raw": "11/06/2026",
+    "receipt_number": "A/6149",
+    "gstin": "27YUFFZ9311K2ZV",
+    "gstin_valid": true,
+    "total_amount": 546.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": 520.0,
+    "vehicle_no_on_bill": "",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [
+      "paid cash",
+      "signature line"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

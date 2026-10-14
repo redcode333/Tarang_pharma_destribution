@@ -1,0 +1,53 @@
+{
+  "sha256": "22413313f66364399b68a8b3fbb7ad522a6e42d8c3237d4bb7843006498c17e1",
+  "file": "IMG_20260629_170106.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:22:58+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1911,
+      "output_tokens": 294,
+      "thinking_tokens": 0,
+      "latency_ms": 2061,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"HOTEL KRISHNA COMFORTS\",\n  \"receipt_date\": \"28.06.2026\",\n  \"receipt_number\": \"HKC/26-27/5219\",\n  \"gstin\": \"27HPFCA5856Y3ZE\",\n  \"total_amount\": 4032.0,\n  \"amount_in_words\": \"Rupees Four Thousand Thirty Two Only\",\n  \"pre_tax_amount\": 3600.0,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"Mr./Ms. Sagar Ingole\",\n  \"nights\": 2,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "HOTEL KRISHNA COMFORTS",
+    "receipt_date": "2026-06-28",
+    "receipt_date_raw": "28.06.2026",
+    "receipt_number": "HKC/26-27/5219",
+    "gstin": "27HPFCA5856Y3ZE",
+    "gstin_valid": true,
+    "total_amount": 4032.0,
+    "amount_in_words": "Rupees Four Thousand Thirty Two Only",
+    "amount_in_words_value": 4032.0,
+    "pre_tax_amount": 3600.0,
+    "vehicle_no_on_bill": "",
+    "guest_name": "Mr./Ms. Sagar Ingole",
+    "nights": 2,
+    "handwritten_marks": [],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

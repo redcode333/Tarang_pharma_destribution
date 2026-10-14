@@ -1,0 +1,55 @@
+{
+  "sha256": "6b6e2f1fb0761ddd6684eedb63325e48f557dfc84796db755c0299b245ffc333",
+  "file": "IMG-20260618-WA0179.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:14:38+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1884,
+      "output_tokens": 273,
+      "thinking_tokens": 0,
+      "latency_ms": 2171,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"MAA DURGA CAB SERVICE\",\n  \"receipt_date\": \"15-6-2026\",\n  \"receipt_number\": \"8235\",\n  \"gstin\": \"\",\n  \"total_amount\": 500,\n  \"amount_in_words\": \"Five Hundred only\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH31 CP 2149\",\n  \"guest_name\": \"Shubham - Tarang\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"paid cash\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "MAA DURGA CAB SERVICE",
+    "receipt_date": "2026-06-15",
+    "receipt_date_raw": "15-6-2026",
+    "receipt_number": "8235",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 500.0,
+    "amount_in_words": "Five Hundred only",
+    "amount_in_words_value": 500.0,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH31 CP 2149",
+    "guest_name": "Shubham - Tarang",
+    "nights": null,
+    "handwritten_marks": [
+      "paid cash"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

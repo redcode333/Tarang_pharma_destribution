@@ -1,0 +1,57 @@
+{
+  "sha256": "c2e408c9957db5bc173462559e88cf0bb5b32808fe3a490e464de543eb6728a7",
+  "file": "IMG_20260617_205508.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:12:06+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1884,
+      "output_tokens": 328,
+      "thinking_tokens": 0,
+      "latency_ms": 3140,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SPEEDLINK COURIERS\",\n  \"receipt_date\": \"12-06-2026\",\n  \"receipt_number\": \"SL90524164\",\n  \"gstin\": \"27HJXCW9975D1ZJ\",\n  \"total_amount\": 1212.40,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": 180.00,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"Dr. S. Rao\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": true,\n  \"alteration_reason\": \"Total amount printed or modified with a blue '1' making it 1212.40 whereas subtotal plus GST (180.00 + 32.40) equals 212.40.\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 0.9\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "SPEEDLINK COURIERS",
+    "receipt_date": "2026-06-12",
+    "receipt_date_raw": "12-06-2026",
+    "receipt_number": "SL90524164",
+    "gstin": "27HJXCW9975D1ZJ",
+    "gstin_valid": true,
+    "total_amount": 1212.4,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": 180.0,
+    "vehicle_no_on_bill": "",
+    "guest_name": "Dr. S. Rao",
+    "nights": null,
+    "handwritten_marks": [],
+    "possible_alteration": true,
+    "alteration_reasons": [
+      "Total amount printed or modified with a blue '1' making it 1212.40 whereas subtotal plus GST (180.00 + 32.40) equals 212.40."
+    ],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 0.9
+    },
+    "flags": [
+      "possible_alteration"
+    ]
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "sha256": "7e412e32434d02fd5d062e02fd8e51ed51fd6739e204b86b5241088177ce61b2",
+  "file": "IMG_20260617_084423.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:11:53+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1914,
+      "output_tokens": 293,
+      "thinking_tokens": 0,
+      "latency_ms": 2344,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"HIGHWAY KING DHABA\",\n  \"receipt_date\": \"08/06/2026\",\n  \"receipt_number\": \"1239\",\n  \"gstin\": \"\",\n  \"total_amount\": 310,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"8/6/26\",\n    \"60\",\n    \"110\",\n    \"20\",\n    \"120\",\n    \"310\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 0.99,\n    \"receipt_date\": 0.95,\n    \"receipt_number\": 0.99,\n    \"gstin\": 1.0,\n    \"total_amount\": 0.99\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "HIGHWAY KING DHABA",
+    "receipt_date": "2026-06-08",
+    "receipt_date_raw": "08/06/2026",
+    "receipt_number": "1239",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 310.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [
+      "8/6/26",
+      "60",
+      "110",
+      "20",
+      "120",
+      "310"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 0.99,
+      "receipt_date": 0.95,
+      "receipt_number": 0.99,
+      "gstin": 1.0,
+      "total_amount": 0.99
+    },
+    "flags": []
+  }
+}

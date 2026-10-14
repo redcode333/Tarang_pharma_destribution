@@ -1,0 +1,63 @@
+{
+  "sha256": "97b96b1837f32988d11c0ddce54c69dc612dd86101c9d0381a309e3f97be4f28",
+  "file": "IMG-20260710-WA0115.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:31:40+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1860,
+      "output_tokens": 343,
+      "thinking_tokens": 0,
+      "latency_ms": 2328,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SHREE GANESH TOURS & TRAVELS\",\n  \"receipt_date\": \"09/07/2026\",\n  \"receipt_number\": \"3849\",\n  \"gstin\": \"\",\n  \"total_amount\": 900,\n  \"amount_in_words\": \"Nine Hundred only\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH34 CP 5236\",\n  \"guest_name\": \"Akash - Tarang\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"tick mark near receipt no\",\n    \"Akash - Tarang\",\n    \"Chandrapur\",\n    \"Ballarpur\",\n    \"MH34 CP 5236\",\n    \"69\",\n    \"900/-\",\n    \"Nine Hundred only\",\n    \"signature\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 0.95,\n    \"receipt_number\": 0.95,\n    \"gstin\": 1.0,\n    \"total_amount\": 0.98\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "SHREE GANESH TOURS & TRAVELS",
+    "receipt_date": "2026-07-09",
+    "receipt_date_raw": "09/07/2026",
+    "receipt_number": "3849",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 900.0,
+    "amount_in_words": "Nine Hundred only",
+    "amount_in_words_value": 900.0,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH34 CP 5236",
+    "guest_name": "Akash - Tarang",
+    "nights": null,
+    "handwritten_marks": [
+      "tick mark near receipt no",
+      "Akash - Tarang",
+      "Chandrapur",
+      "Ballarpur",
+      "MH34 CP 5236",
+      "69",
+      "900/-",
+      "Nine Hundred only",
+      "signature"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 0.95,
+      "receipt_number": 0.95,
+      "gstin": 1.0,
+      "total_amount": 0.98
+    },
+    "flags": []
+  }
+}

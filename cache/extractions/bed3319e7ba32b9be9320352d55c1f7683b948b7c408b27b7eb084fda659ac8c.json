@@ -1,0 +1,55 @@
+{
+  "sha256": "bed3319e7ba32b9be9320352d55c1f7683b948b7c408b27b7eb084fda659ac8c",
+  "file": "IMG_20260703_154353.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:26:10+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1882,
+      "output_tokens": 274,
+      "thinking_tokens": 0,
+      "latency_ms": 2453,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"MAA DURGA CAB SERVICE\",\n  \"receipt_date\": \"25/6/26\",\n  \"receipt_number\": \"8293\",\n  \"gstin\": \"\",\n  \"total_amount\": 1130,\n  \"amount_in_words\": \"One Thousand One Hundred Thirty only\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH31 CP 2974\",\n  \"guest_name\": \"Vaibhav - Tarang\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"paid cash\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "MAA DURGA CAB SERVICE",
+    "receipt_date": "2026-06-25",
+    "receipt_date_raw": "25/6/26",
+    "receipt_number": "8293",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 1130.0,
+    "amount_in_words": "One Thousand One Hundred Thirty only",
+    "amount_in_words_value": 1130.0,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH31 CP 2974",
+    "guest_name": "Vaibhav - Tarang",
+    "nights": null,
+    "handwritten_marks": [
+      "paid cash"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

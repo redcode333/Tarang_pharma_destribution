@@ -1,0 +1,66 @@
+{
+  "sha256": "38ce446b2a60c180acde9744d6669b36abf33fb5103af8c05a717e815914ebed",
+  "file": "IMG_20260722_190559.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T16:41:17+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1884,
+      "output_tokens": 264,
+      "thinking_tokens": 0,
+      "latency_ms": 7938,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 270,\n  \"vendor\": \"SHREE SAI PETROLEUM\",\n  \"receipt_date\": \"17-07-2026\",\n  \"receipt_number\": \"007436\",\n  \"gstin\": \"\",\n  \"total_amount\": 300.00,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH32BB1205\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 0.95,\n    \"receipt_date\": 0.95,\n    \"receipt_number\": 0.95,\n    \"gstin\": 1.0,\n    \"total_amount\": 0.95\n  }\n}",
+      "rotation": 0
+    },
+    {
+      "step": "rotated_270",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1895,
+      "output_tokens": 279,
+      "thinking_tokens": 0,
+      "latency_ms": 21655,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SHREE SAI PETROLEUM\",\n  \"receipt_date\": \"17-07-2026\",\n  \"receipt_number\": \"007436\",\n  \"gstin\": \"\",\n  \"total_amount\": 300.0,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH32BB1285\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"Civil lines\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [\n    \"visit Again\"\n  ],\n  \"confidence\": {\n    \"vendor\": 0.95,\n    \"receipt_date\": 0.95,\n    \"receipt_number\": 0.95,\n    \"gstin\": 0.0,\n    \"total_amount\": 0.95\n  }\n}",
+      "rotation": 270
+    }
+  ],
+  "rotation_detected": 270,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "SHREE SAI PETROLEUM",
+    "receipt_date": "2026-07-17",
+    "receipt_date_raw": "17-07-2026",
+    "receipt_number": "007436",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 300.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH32BB1285",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [
+      "Civil lines"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 270,
+    "confidence": {
+      "vendor": 0.95,
+      "receipt_date": 0.95,
+      "receipt_number": 0.95,
+      "gstin": 0.0,
+      "total_amount": 0.95
+    },
+    "flags": []
+  }
+}

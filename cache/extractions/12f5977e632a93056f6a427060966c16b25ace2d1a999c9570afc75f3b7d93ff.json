@@ -1,0 +1,64 @@
+{
+  "sha256": "12f5977e632a93056f6a427060966c16b25ace2d1a999c9570afc75f3b7d93ff",
+  "file": "IMG_20260730_112551.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T16:48:44+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1908,
+      "output_tokens": 354,
+      "thinking_tokens": 0,
+      "latency_ms": 7484,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SHREE GANESH TOURS & TRAVELS\",\n  \"receipt_date\": \"23/07/26\",\n  \"receipt_number\": \"3950\",\n  \"gstin\": \"\",\n  \"total_amount\": 1170,\n  \"amount_in_words\": \"One Thousand One Hundred Seventy only\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH32 CP 8817\",\n  \"guest_name\": \"Prachi - Tarang\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"Prachi - Tarang\",\n    \"23/07/26\",\n    \"Wardha\",\n    \"Sewagram\",\n    \"MH32 CP 8817\",\n    \"71\",\n    \"1170/-\",\n    \"for claim\",\n    \"One Thousand One Hundred Seventy only\",\n    \"signature\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "SHREE GANESH TOURS & TRAVELS",
+    "receipt_date": "2026-07-23",
+    "receipt_date_raw": "23/07/26",
+    "receipt_number": "3950",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 1170.0,
+    "amount_in_words": "One Thousand One Hundred Seventy only",
+    "amount_in_words_value": 1170.0,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH32 CP 8817",
+    "guest_name": "Prachi - Tarang",
+    "nights": null,
+    "handwritten_marks": [
+      "Prachi - Tarang",
+      "23/07/26",
+      "Wardha",
+      "Sewagram",
+      "MH32 CP 8817",
+      "71",
+      "1170/-",
+      "for claim",
+      "One Thousand One Hundred Seventy only",
+      "signature"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

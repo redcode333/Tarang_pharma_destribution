@@ -1,0 +1,55 @@
+{
+  "sha256": "896cc9af1a0dcd54028348ca08bffce63779b3a537c31abd202fc3930642561f",
+  "file": "IMG-20260807-WA0125.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:05:15+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1889,
+      "output_tokens": 266,
+      "thinking_tokens": 0,
+      "latency_ms": 2405,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"GAJANAN PETROLEUM\",\n  \"receipt_date\": \"02.08.2026\",\n  \"receipt_number\": \"009440\",\n  \"gstin\": \"\",\n  \"total_amount\": 250.00,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH34CA5530\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"OK\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 0.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "GAJANAN PETROLEUM",
+    "receipt_date": "2026-08-02",
+    "receipt_date_raw": "02.08.2026",
+    "receipt_number": "009440",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 250.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH34CA5530",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [
+      "OK"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 0.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

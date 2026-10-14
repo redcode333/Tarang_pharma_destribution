@@ -1,0 +1,64 @@
+{
+  "sha256": "e1e32d7dd5ca4450a48e1ec3d9afca6eb77ced9535c3597fa89799b873f43eb1",
+  "file": "IMG-20260807-WA0145.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:05:39+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1893,
+      "output_tokens": 291,
+      "thinking_tokens": 0,
+      "latency_ms": 2234,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 90,\n  \"vendor\": \"LAXMI AUTO FUELS\",\n  \"receipt_date\": \"05/08/26\",\n  \"receipt_number\": \"005049\",\n  \"gstin\": \"27DPAFU4120X1ZM\",\n  \"total_amount\": 500.00,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH32AY2051\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [\n    \"Thank You! Visit Again\",\n    \"Save Fuel, Save Money\"\n  ],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    },
+    {
+      "step": "rotated_90",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1904,
+      "output_tokens": 283,
+      "thinking_tokens": 0,
+      "latency_ms": 2453,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 180,\n  \"vendor\": \"LAXMI AUTO FUELS\",\n  \"receipt_date\": \"05/08/26\",\n  \"receipt_number\": \"005049\",\n  \"gstin\": \"27DPAFU4120X1ZM\",\n  \"total_amount\": 500.00,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH32AY2051\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [\n    \"Save Fuel, Save Money\"\n  ],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 90
+    }
+  ],
+  "rotation_detected": 90,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "LAXMI AUTO FUELS",
+    "receipt_date": "2026-08-05",
+    "receipt_date_raw": "05/08/26",
+    "receipt_number": "005049",
+    "gstin": "27DPAFU4120X1ZM",
+    "gstin_valid": true,
+    "total_amount": 500.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH32AY2051",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 180,
+    "rotation_applied": 90,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

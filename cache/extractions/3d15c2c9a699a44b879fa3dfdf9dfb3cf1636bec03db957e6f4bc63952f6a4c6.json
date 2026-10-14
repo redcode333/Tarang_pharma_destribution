@@ -1,0 +1,53 @@
+{
+  "sha256": "3d15c2c9a699a44b879fa3dfdf9dfb3cf1636bec03db957e6f4bc63952f6a4c6",
+  "file": "IMG_20260704_133452.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:26:16+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1893,
+      "output_tokens": 256,
+      "thinking_tokens": 0,
+      "latency_ms": 2063,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"NEW HIGHWAY SERVICE STATION\",\n  \"receipt_date\": \"28/06/2026\",\n  \"receipt_number\": \"001482\",\n  \"gstin\": \"\",\n  \"total_amount\": 200.0,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH27DE7781\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "NEW HIGHWAY SERVICE STATION",
+    "receipt_date": "2026-06-28",
+    "receipt_date_raw": "28/06/2026",
+    "receipt_number": "001482",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 200.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH27DE7781",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

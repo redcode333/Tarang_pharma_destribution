@@ -1,0 +1,53 @@
+{
+  "sha256": "3e50137af035e446fe65fba9b4051cf4d1ee7f7e2c0d8fe0b2032ffe106fab62",
+  "file": "IMG_20260807_213207.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:07:39+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1884,
+      "output_tokens": 294,
+      "thinking_tokens": 0,
+      "latency_ms": 2265,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SAI PALACE LODGE\",\n  \"receipt_date\": \"01.08.2026\",\n  \"receipt_number\": \"SPL/26-27/2384\",\n  \"gstin\": \"27GFZCR8659B2Z4\",\n  \"total_amount\": 3136.0,\n  \"amount_in_words\": \"Rupees Three Thousand One Hundred Thirty Six Only\",\n  \"pre_tax_amount\": 2800.0,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"Mr./Ms. Sagar Ingole\",\n  \"nights\": 1,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "SAI PALACE LODGE",
+    "receipt_date": "2026-08-01",
+    "receipt_date_raw": "01.08.2026",
+    "receipt_number": "SPL/26-27/2384",
+    "gstin": "27GFZCR8659B2Z4",
+    "gstin_valid": true,
+    "total_amount": 3136.0,
+    "amount_in_words": "Rupees Three Thousand One Hundred Thirty Six Only",
+    "amount_in_words_value": 3136.0,
+    "pre_tax_amount": 2800.0,
+    "vehicle_no_on_bill": "",
+    "guest_name": "Mr./Ms. Sagar Ingole",
+    "nights": 1,
+    "handwritten_marks": [],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

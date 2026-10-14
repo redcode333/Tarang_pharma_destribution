@@ -1,0 +1,63 @@
+{
+  "sha256": "b389dda166ee682901c689c2ad72bea09d5c0dd383045592c30e20926e56ec42",
+  "file": "IMG_20260711_175810.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:31:54+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1882,
+      "output_tokens": 353,
+      "thinking_tokens": 0,
+      "latency_ms": 10094,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SHREE GANESH TOURS & TRAVELS\",\n  \"receipt_date\": \"11-7-2026\",\n  \"receipt_number\": \"3855\",\n  \"gstin\": \"\",\n  \"total_amount\": 370,\n  \"amount_in_words\": \"Three Hundred Seventy only\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH34 CN 8103\",\n  \"guest_name\": \"Komal - Tarang\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"3855\",\n    \"11-7-2026\",\n    \"Komal - Tarang\",\n    \"Wardha\",\n    \"Hinganghat\",\n    \"MH34 CN 8103\",\n    \"25\",\n    \"370/-\",\n    \"Three Hundred Seventy only\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 0.99,\n    \"receipt_date\": 0.99,\n    \"receipt_number\": 0.99,\n    \"gstin\": 1.0,\n    \"total_amount\": 0.99\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "SHREE GANESH TOURS & TRAVELS",
+    "receipt_date": "2026-07-11",
+    "receipt_date_raw": "11-7-2026",
+    "receipt_number": "3855",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 370.0,
+    "amount_in_words": "Three Hundred Seventy only",
+    "amount_in_words_value": 370.0,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH34 CN 8103",
+    "guest_name": "Komal - Tarang",
+    "nights": null,
+    "handwritten_marks": [
+      "3855",
+      "11-7-2026",
+      "Komal - Tarang",
+      "Wardha",
+      "Hinganghat",
+      "MH34 CN 8103",
+      "25",
+      "370/-",
+      "Three Hundred Seventy only"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 0.99,
+      "receipt_date": 0.99,
+      "receipt_number": 0.99,
+      "gstin": 1.0,
+      "total_amount": 0.99
+    },
+    "flags": []
+  }
+}

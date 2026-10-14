@@ -1,0 +1,53 @@
+{
+  "sha256": "cdb00aa7d119e0cd5d557a4764caf719c4b329561930bbf95cab0e8fc26033b4",
+  "file": "IMG_20260718_154240.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:37:31+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1892,
+      "output_tokens": 280,
+      "thinking_tokens": 0,
+      "latency_ms": 10453,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"VIDARBHA EXPRESS COURIER\",\n  \"receipt_date\": \"22/06/2026\",\n  \"receipt_number\": \"VX11449697\",\n  \"gstin\": \"27OUUFX7743H2ZR\",\n  \"total_amount\": 448.40,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": 380.00,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"Dr. A. Kulkarni\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "VIDARBHA EXPRESS COURIER",
+    "receipt_date": "2026-06-22",
+    "receipt_date_raw": "22/06/2026",
+    "receipt_number": "VX11449697",
+    "gstin": "27OUUFX7743H2ZR",
+    "gstin_valid": true,
+    "total_amount": 448.4,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": 380.0,
+    "vehicle_no_on_bill": "",
+    "guest_name": "Dr. A. Kulkarni",
+    "nights": null,
+    "handwritten_marks": [],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "sha256": "0dff4f69c8cdb0b2b6f01bc99109b6b9c5edeec7763f7de9f54753857d7ecfc3",
+  "file": "IMG-20260802-WA0239.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T16:51:56+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1892,
+      "output_tokens": 269,
+      "thinking_tokens": 0,
+      "latency_ms": 2094,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SPEEDLINK COURIERS\",\n  \"receipt_date\": \"29-07-2026\",\n  \"receipt_number\": \"SL67387447\",\n  \"gstin\": \"27HJXCW9975D1ZJ\",\n  \"total_amount\": 141.6,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": 120.0,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "SPEEDLINK COURIERS",
+    "receipt_date": "2026-07-29",
+    "receipt_date_raw": "29-07-2026",
+    "receipt_number": "SL67387447",
+    "gstin": "27HJXCW9975D1ZJ",
+    "gstin_valid": true,
+    "total_amount": 141.6,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": 120.0,
+    "vehicle_no_on_bill": "",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

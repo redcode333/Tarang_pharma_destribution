@@ -1,0 +1,60 @@
+{
+  "sha256": "71d3b74afa4a86202f29573213a3a140d24525ab2651a7239ce45d5220a38ba6",
+  "file": "IMG_20260727_212552.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T16:44:39+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1877,
+      "output_tokens": 302,
+      "thinking_tokens": 0,
+      "latency_ms": 3984,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"HIGHWAY KING DHABA\",\n  \"receipt_date\": \"19/07/2026\",\n  \"receipt_number\": \"1359\",\n  \"gstin\": \"\",\n  \"total_amount\": 185,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"19-7-2026\",\n    \"1 Dal Fry 120\",\n    \"1 Lassi 50\",\n    \"1 Chai 15\",\n    \"185\",\n    \"UPI\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 0.95,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "HIGHWAY KING DHABA",
+    "receipt_date": "2026-07-19",
+    "receipt_date_raw": "19/07/2026",
+    "receipt_number": "1359",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 185.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [
+      "19-7-2026",
+      "1 Dal Fry 120",
+      "1 Lassi 50",
+      "1 Chai 15",
+      "185",
+      "UPI"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 0.95,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

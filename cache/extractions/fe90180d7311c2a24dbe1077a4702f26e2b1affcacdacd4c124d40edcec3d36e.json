@@ -1,0 +1,57 @@
+{
+  "sha256": "fe90180d7311c2a24dbe1077a4702f26e2b1affcacdacd4c124d40edcec3d36e",
+  "file": "IMG_20260801_101249.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T16:49:56+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1893,
+      "output_tokens": 320,
+      "thinking_tokens": 0,
+      "latency_ms": 1905,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"OM SAI FUEL POINT\",\n  \"receipt_date\": \"01/08/26\",\n  \"receipt_number\": \"004585\",\n  \"gstin\": \"\",\n  \"total_amount\": 1313.77,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH31FA2290\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": true,\n  \"alteration_reason\": \"Total amount 1313.77 does not match Amount (Rs) 313.77; first digit '1' in total is in a different color/font.\",\n  \"instructions_on_bill\": [\n    \"Thank You! Visit Again\",\n    \"Save Fuel, Save Money\"\n  ],\n  \"confidence\": {\n    \"vendor\": 0.95,\n    \"receipt_date\": 0.95,\n    \"receipt_number\": 0.95,\n    \"gstin\": 0.0,\n    \"total_amount\": 0.90\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "OM SAI FUEL POINT",
+    "receipt_date": "2026-08-01",
+    "receipt_date_raw": "01/08/26",
+    "receipt_number": "004585",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 1313.77,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH31FA2290",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [],
+    "possible_alteration": true,
+    "alteration_reasons": [
+      "Total amount 1313.77 does not match Amount (Rs) 313.77; first digit '1' in total is in a different color/font."
+    ],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 0.95,
+      "receipt_date": 0.95,
+      "receipt_number": 0.95,
+      "gstin": 0.0,
+      "total_amount": 0.9
+    },
+    "flags": [
+      "possible_alteration"
+    ]
+  }
+}

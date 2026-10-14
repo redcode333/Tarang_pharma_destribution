@@ -255,3 +255,55 @@ tokens (none measured yet, since every call fell back to Flash-Lite). 3.8 Flash 
 on 2027-01-01. **Rupees need a dated USD→INR rate**; `scripts/cost.py --usd-inr <rate>` takes it
 as an input instead of a figure baked in. Either way it is well under one rupee per photo against
 the Rs 12.6–31.7 a clerk costs per claim.
+
+## 2026-10-14 — Full extraction and evaluation (playbook Prompt 3)
+
+### Prompt and model changes before the full run
+
+- **Vendor = the seller's own outlet name, not the brand** (prompt version 2026-10-14.2). On the
+  20-claim sample, 4 fuel bills came back as "BPCL" / "IndianOil SHREE SAI PETROLEUM"; re-run
+  with `--refresh`, all 4 now read the dealer and match the clerk (Laxmi Auto Fuels x3, Shree
+  Sai Petroleum). Amounts and flags unchanged. The other 16 sample records keep version .1.
+- **CLM-30982's GSTIN 27OILFO1994Z2ZV is correct**, not stamp text: it is printed in the bill
+  header, passes the checksum, and the clerk typed exactly it on 7 other Ashirwad claims. The
+  clerk left it blank on this claim (and on CLM-31018). No blanking rule was needed for it.
+- **Flash-Lite is now the primary model**, 3.8 Flash the fallback (3.8 Flash returned 503 on
+  every one of 19 tries over the day).
+- **Printed receipt footers are not instructions.** On the full run the model filed "Thank you,
+  visit again", "Vehicle parked at owner's risk", "Save Fuel, Save Money" under
+  `instructions_on_bill` on 38 photos. Lines made only of known footer text are now dropped;
+  any other text still raises `instruction_text_on_bill`. Applied with `--reprocess`, no calls.
+  Result on all 461 distinct photos, against `reports/photo_review.csv`: stamps 5/5 caught,
+  0 false alarms (was 38); unreadable 5/5, 0 false alarms; turned photos 30/30 detected.
+
+### Quota
+
+- **Flash-Lite's free daily quota on this key is 500 requests**: exactly 500 calls succeeded,
+  then a per-day 429 at 17:37 UTC. Daily quotas reset at midnight Pacific time (07:00 UTC,
+  12:30 IST), per https://ai.google.dev/gemini-api/docs/rate-limits.
+- **Done: all 187 test photos (190 claims, 3 photos missing) and 278 of 280 train photos.** The
+  2 left are train photos; they need a re-run after the reset. The planned fall-back to a
+  120-claim train sample was not needed.
+
+### Evaluation (`reports/evaluation.md`, `reports/error_gallery.md`)
+
+- **Dev = first 80 train rows, holdout = the rest.** No prompt tuning was done on holdout rows,
+  except the vendor fix, which came from the 20-claim sample (16 of its claims are in holdout);
+  holdout is also reported without them and moves by 0.1-0.2 points.
+- **Two accuracies, never mixed:** against the clerk as typed, and adjudicated, where 47
+  mismatches were checked against the photo by eye (`reports/adjudications.csv`) and 15 GSTIN
+  mismatches settled automatically (clerk's value blank or failing the checksum, model's value
+  valid and typed by the clerk for the same vendor elsewhere). 16 vendor mismatches were not
+  opened and still count against the model.
+- **Holdout, all five fields pooled: 94.8% vs clerk, 98.5% adjudicated.** Dev: 93.2% / 97.5%.
+- **Of the 47 checked: 38 clerk errors, 8 model errors, 1 both wrong.** The clerk's slips: a
+  dropped digit or letter in the bill number (15), a date one day off or day/month swapped (7),
+  an amount mistyped or taken from an altered bill (6), a shortened or embellished vendor (6),
+  a blank GSTIN where the bill shows one (4, plus the automatic ones). The model's: GSTIN 0 read as 8 or 5 as S in small faint
+  type (5, all failing the checksum), a dropped GSTIN digit (1, fails the length check), a blurred
+  or shadowed bill number (2), and 390/- read as 3907 (1, caught by the amount-in-words check).
+- **Every model GSTIN misread fails the checksum**, so the checksum is a reliable misread signal.
+  For predictions (Prompt 5): a GSTIN that fails the checksum after the O/0, I/1 fixes should be
+  output blank and send the claim to review rather than output a wrong GSTIN.
+- **Vendor is the weakest field (94.0% adjudicated on normal photos)** because the clerk appends
+  locations ("- Wardha", "(Ngp)", "Nagpur") and abbreviates; the printed header is what we read.

@@ -1,0 +1,60 @@
+{
+  "sha256": "1b227541c14c6175f254e7dc76cfb1fd986963b92da536f5ae54970b307795a2",
+  "file": "IMG_20260706_123828.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:27:46+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1911,
+      "output_tokens": 291,
+      "thinking_tokens": 0,
+      "latency_ms": 2094,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"HOTEL RAJDHANI DHABA\",\n  \"receipt_date\": \"30-6-2026\",\n  \"receipt_number\": \"3422\",\n  \"gstin\": \"\",\n  \"total_amount\": 170,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"30-6-2026\",\n    \"1 Lassi\",\n    \"50\",\n    \"1 Dal Fry\",\n    \"120\",\n    \"170\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1,\n    \"receipt_date\": 0.9,\n    \"receipt_number\": 0.9,\n    \"gstin\": 1,\n    \"total_amount\": 0.9\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "HOTEL RAJDHANI DHABA",
+    "receipt_date": "2026-06-30",
+    "receipt_date_raw": "30-6-2026",
+    "receipt_number": "3422",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 170.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [
+      "30-6-2026",
+      "1 Lassi",
+      "50",
+      "1 Dal Fry",
+      "120",
+      "170"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 0.9,
+      "receipt_number": 0.9,
+      "gstin": 1.0,
+      "total_amount": 0.9
+    },
+    "flags": []
+  }
+}

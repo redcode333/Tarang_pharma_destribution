@@ -1,0 +1,55 @@
+{
+  "sha256": "e7d94c997d4f34641bc238ae8f66d833a001081b926347636718b6847267ceac",
+  "file": "IMG-20260715-WA0155.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:36:18+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1893,
+      "output_tokens": 270,
+      "thinking_tokens": 0,
+      "latency_ms": 18203,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SHREE SAI PETROLEUM\",\n  \"receipt_date\": \"10-07-2026\",\n  \"receipt_number\": \"007343\",\n  \"gstin\": \"\",\n  \"total_amount\": 200.00,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH31FG6627\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"paid\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 0.99,\n    \"receipt_date\": 0.99,\n    \"receipt_number\": 0.99,\n    \"gstin\": 0.0,\n    \"total_amount\": 0.99\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "SHREE SAI PETROLEUM",
+    "receipt_date": "2026-07-10",
+    "receipt_date_raw": "10-07-2026",
+    "receipt_number": "007343",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 200.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH31FG6627",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [
+      "paid"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 0.99,
+      "receipt_date": 0.99,
+      "receipt_number": 0.99,
+      "gstin": 0.0,
+      "total_amount": 0.99
+    },
+    "flags": []
+  }
+}

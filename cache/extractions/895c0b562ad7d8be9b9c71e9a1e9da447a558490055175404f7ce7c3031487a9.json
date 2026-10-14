@@ -1,0 +1,62 @@
+{
+  "sha256": "895c0b562ad7d8be9b9c71e9a1e9da447a558490055175404f7ce7c3031487a9",
+  "file": "IMG-20260628-WA0048.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:21:51+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1884,
+      "output_tokens": 338,
+      "thinking_tokens": 0,
+      "latency_ms": 1936,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SHREE GANESH TOURS & TRAVELS\",\n  \"receipt_date\": \"25/6/26\",\n  \"receipt_number\": \"3747\",\n  \"gstin\": \"\",\n  \"total_amount\": 700,\n  \"amount_in_words\": \"Seven Hundred only\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH31 CN 7173\",\n  \"guest_name\": \"Pooja - Tarang\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"25/6/26\",\n    \"Pooja - Tarang\",\n    \"Nagpur\",\n    \"Hingna MIDC\",\n    \"MH31 CN 7173\",\n    \"41\",\n    \"700/-\",\n    \"Seven Hundred only\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "SHREE GANESH TOURS & TRAVELS",
+    "receipt_date": "2026-06-25",
+    "receipt_date_raw": "25/6/26",
+    "receipt_number": "3747",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 700.0,
+    "amount_in_words": "Seven Hundred only",
+    "amount_in_words_value": 700.0,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH31 CN 7173",
+    "guest_name": "Pooja - Tarang",
+    "nights": null,
+    "handwritten_marks": [
+      "25/6/26",
+      "Pooja - Tarang",
+      "Nagpur",
+      "Hingna MIDC",
+      "MH31 CN 7173",
+      "41",
+      "700/-",
+      "Seven Hundred only"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

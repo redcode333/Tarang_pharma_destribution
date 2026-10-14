@@ -1,0 +1,55 @@
+{
+  "sha256": "6cfcaf54b42a9e24cf78ed7e95a4284a118ddd0933db48701e0d231e517e23af",
+  "file": "IMG_20260803_100639.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T16:52:45+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1892,
+      "output_tokens": 278,
+      "thinking_tokens": 0,
+      "latency_ms": 3078,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SPICE ROUTE KITCHEN\",\n  \"receipt_date\": \"31-07-2026\",\n  \"receipt_number\": \"6520\",\n  \"gstin\": \"27NCRPN1784A3Z1\",\n  \"total_amount\": 1124.00,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": 1070.00,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"tick mark\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "SPICE ROUTE KITCHEN",
+    "receipt_date": "2026-07-31",
+    "receipt_date_raw": "31-07-2026",
+    "receipt_number": "6520",
+    "gstin": "27NCRPN1784A3Z1",
+    "gstin_valid": true,
+    "total_amount": 1124.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": 1070.0,
+    "vehicle_no_on_bill": "",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [
+      "tick mark"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

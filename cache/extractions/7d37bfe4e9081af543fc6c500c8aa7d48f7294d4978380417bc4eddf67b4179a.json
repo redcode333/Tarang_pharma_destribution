@@ -1,0 +1,60 @@
+{
+  "sha256": "7d37bfe4e9081af543fc6c500c8aa7d48f7294d4978380417bc4eddf67b4179a",
+  "file": "IMG_20260803_152913.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T16:51:51+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1884,
+      "output_tokens": 293,
+      "thinking_tokens": 0,
+      "latency_ms": 2375,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SAI RAM TEA & SNACKS\",\n  \"receipt_date\": \"25/07/26\",\n  \"receipt_number\": \"6972\",\n  \"gstin\": \"\",\n  \"total_amount\": 60,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"25/07/26\",\n    \"1 Poha\",\n    \"30\",\n    \"2 Roti\",\n    \"30\",\n    \"60\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 0.95,\n    \"receipt_date\": 0.95,\n    \"receipt_number\": 0.95,\n    \"gstin\": 1.0,\n    \"total_amount\": 0.95\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "SAI RAM TEA & SNACKS",
+    "receipt_date": "2026-07-25",
+    "receipt_date_raw": "25/07/26",
+    "receipt_number": "6972",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 60.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [
+      "25/07/26",
+      "1 Poha",
+      "30",
+      "2 Roti",
+      "30",
+      "60"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 0.95,
+      "receipt_date": 0.95,
+      "receipt_number": 0.95,
+      "gstin": 1.0,
+      "total_amount": 0.95
+    },
+    "flags": []
+  }
+}

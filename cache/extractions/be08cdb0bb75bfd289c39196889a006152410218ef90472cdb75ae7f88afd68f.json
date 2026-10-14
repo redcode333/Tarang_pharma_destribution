@@ -1,0 +1,62 @@
+{
+  "sha256": "be08cdb0bb75bfd289c39196889a006152410218ef90472cdb75ae7f88afd68f",
+  "file": "IMG_20260804_105631.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:02:33+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1877,
+      "output_tokens": 331,
+      "thinking_tokens": 0,
+      "latency_ms": 2640,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"PUNJABI TADKA DHABA\",\n  \"receipt_date\": \"26/07/26\",\n  \"receipt_number\": \"8332\",\n  \"gstin\": \"\",\n  \"total_amount\": 270,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"26/07/26\",\n    \"1 Egg Curry 140\",\n    \"1 Rice 80\",\n    \"1 Samosa 20\",\n    \"1 Poha 30\",\n    \"270\",\n    \"paid cash\",\n    \"signature\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [\n    \"Thank You - Visit Again\"\n  ],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 0.95,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "PUNJABI TADKA DHABA",
+    "receipt_date": "2026-07-26",
+    "receipt_date_raw": "26/07/26",
+    "receipt_number": "8332",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 270.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [
+      "26/07/26",
+      "1 Egg Curry 140",
+      "1 Rice 80",
+      "1 Samosa 20",
+      "1 Poha 30",
+      "270",
+      "paid cash",
+      "signature"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 0.95,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

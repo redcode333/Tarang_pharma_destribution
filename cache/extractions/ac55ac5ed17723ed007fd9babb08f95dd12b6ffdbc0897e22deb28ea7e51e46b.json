@@ -1,0 +1,56 @@
+{
+  "sha256": "ac55ac5ed17723ed007fd9babb08f95dd12b6ffdbc0897e22deb28ea7e51e46b",
+  "file": "IMG_20260615_083022.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:10:36+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1896,
+      "output_tokens": 285,
+      "thinking_tokens": 0,
+      "latency_ms": 3625,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SITABULDI MULTILEVEL PARKING\",\n  \"receipt_date\": \"11/06/2026\",\n  \"receipt_number\": \"107957\",\n  \"gstin\": \"\",\n  \"total_amount\": 30.0,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH31FG6627\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"lunch w/ Dr. Joshi\",\n    \"circled 30.00\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 0.95,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "SITABULDI MULTILEVEL PARKING",
+    "receipt_date": "2026-06-11",
+    "receipt_date_raw": "11/06/2026",
+    "receipt_number": "107957",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 30.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH31FG6627",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [
+      "lunch w/ Dr. Joshi",
+      "circled 30.00"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 0.95,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

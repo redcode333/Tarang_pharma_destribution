@@ -1,0 +1,64 @@
+{
+  "sha256": "f722a8f557e362f2552105e33b71955166669602c29ebd94524cb42c729a854b",
+  "file": "IMG_20260721_100629.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T16:41:35+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1889,
+      "output_tokens": 282,
+      "thinking_tokens": 0,
+      "latency_ms": 2577,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 90,\n  \"vendor\": \"ASHIRWAD VEG RESTAURANT\",\n  \"receipt_date\": \"21.07.2026\",\n  \"receipt_number\": \"6423\",\n  \"gstin\": \"27OILF01994Z2ZV\",\n  \"total_amount\": 294.00,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": 280.00,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [\n    \"Thank you, visit again!\"\n  ],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    },
+    {
+      "step": "rotated_90",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1900,
+      "output_tokens": 281,
+      "thinking_tokens": 0,
+      "latency_ms": 6375,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"ASHIRWAD VEG RESTAURANT\",\n  \"receipt_date\": \"21.07.2026\",\n  \"receipt_number\": \"6423\",\n  \"gstin\": \"27OILF01994Z2ZV\",\n  \"total_amount\": 294.00,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": 280.00,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [\n    \"Thank you, visit again!\"\n  ],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 90
+    }
+  ],
+  "rotation_detected": 90,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "ASHIRWAD VEG RESTAURANT",
+    "receipt_date": "2026-07-21",
+    "receipt_date_raw": "21.07.2026",
+    "receipt_number": "6423",
+    "gstin": "27OILFO1994Z2ZV",
+    "gstin_valid": true,
+    "total_amount": 294.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": 280.0,
+    "vehicle_no_on_bill": "",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 90,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

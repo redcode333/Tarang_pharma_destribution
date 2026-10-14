@@ -1,0 +1,62 @@
+{
+  "sha256": "a0db4dd5123e6df00a61d98088ba287469aef5f69cfbdd03b0b874d1e8be82eb",
+  "file": "IMG_20260731_103806.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T16:49:33+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1908,
+      "output_tokens": 336,
+      "thinking_tokens": 0,
+      "latency_ms": 2578,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SHREE GANESH TOURS & TRAVELS\",\n  \"receipt_date\": \"25-7-2026\",\n  \"receipt_number\": \"4011\",\n  \"gstin\": \"\",\n  \"total_amount\": 740,\n  \"amount_in_words\": \"Seven Hundred Forty only\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH31 CN 7565\",\n  \"guest_name\": \"Akash - Tarang\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"4011\",\n    \"Akash - Tarang\",\n    \"Railway Stn\",\n    \"Dhantoli\",\n    \"MH31 CN 7565\",\n    \"55\",\n    \"740/-\",\n    \"Seven Hundred Forty only\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "SHREE GANESH TOURS & TRAVELS",
+    "receipt_date": "2026-07-25",
+    "receipt_date_raw": "25-7-2026",
+    "receipt_number": "4011",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 740.0,
+    "amount_in_words": "Seven Hundred Forty only",
+    "amount_in_words_value": 740.0,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH31 CN 7565",
+    "guest_name": "Akash - Tarang",
+    "nights": null,
+    "handwritten_marks": [
+      "4011",
+      "Akash - Tarang",
+      "Railway Stn",
+      "Dhantoli",
+      "MH31 CN 7565",
+      "55",
+      "740/-",
+      "Seven Hundred Forty only"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

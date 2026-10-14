@@ -1,0 +1,55 @@
+{
+  "sha256": "844e43efcc124421236e847e33a5639d38d4a4718f89b82bb573190f69f76328",
+  "file": "IMG_20260806_194813.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:07:09+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1882,
+      "output_tokens": 273,
+      "thinking_tokens": 0,
+      "latency_ms": 2469,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"MAA DURGA CAB SERVICE\",\n  \"receipt_date\": \"3/8/26\",\n  \"receipt_number\": \"8323\",\n  \"gstin\": \"\",\n  \"total_amount\": 910,\n  \"amount_in_words\": \"Nine Hundred Ten only\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH32 AT 9010\",\n  \"guest_name\": \"Vaibhav - Tarang\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"UPI\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 0.99,\n    \"receipt_date\": 0.95,\n    \"receipt_number\": 0.99,\n    \"gstin\": 1.0,\n    \"total_amount\": 0.99\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "MAA DURGA CAB SERVICE",
+    "receipt_date": "2026-08-03",
+    "receipt_date_raw": "3/8/26",
+    "receipt_number": "8323",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 910.0,
+    "amount_in_words": "Nine Hundred Ten only",
+    "amount_in_words_value": 910.0,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH32 AT 9010",
+    "guest_name": "Vaibhav - Tarang",
+    "nights": null,
+    "handwritten_marks": [
+      "UPI"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 0.99,
+      "receipt_date": 0.95,
+      "receipt_number": 0.99,
+      "gstin": 1.0,
+      "total_amount": 0.99
+    },
+    "flags": []
+  }
+}

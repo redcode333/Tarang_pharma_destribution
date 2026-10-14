@@ -1,0 +1,55 @@
+{
+  "sha256": "f2989793535bd8c55eda545d1d21f133886c982cef190d702e0407c3aee95beb",
+  "file": "IMG_20260617_180258.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:13:14+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1889,
+      "output_tokens": 296,
+      "thinking_tokens": 0,
+      "latency_ms": 2203,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"PROMPT PARCEL SERVICES\",\n  \"receipt_date\": \"10/06/2026\",\n  \"receipt_number\": \"PP14933472\",\n  \"gstin\": \"27IRWFN4293M2Z1\",\n  \"total_amount\": 141.60,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": 120.00,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"Dr. Agrawal mtg\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [\n    \"Not responsible for prohibited items\"\n  ],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "PROMPT PARCEL SERVICES",
+    "receipt_date": "2026-06-10",
+    "receipt_date_raw": "10/06/2026",
+    "receipt_number": "PP14933472",
+    "gstin": "27IRWFN4293M2Z1",
+    "gstin_valid": true,
+    "total_amount": 141.6,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": 120.0,
+    "vehicle_no_on_bill": "",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [
+      "Dr. Agrawal mtg"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

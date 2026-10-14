@@ -1,0 +1,55 @@
+{
+  "sha256": "f549d8f0f97c9a4a71588607fb0db3bf9ba51b8ea23ccd4767dbe3d61864e662",
+  "file": "IMG_20260801_141124.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T16:50:44+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1889,
+      "output_tokens": 273,
+      "thinking_tokens": 0,
+      "latency_ms": 1875,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"PROMPT PARCEL SERVICES\",\n  \"receipt_date\": \"23/07/2026\",\n  \"receipt_number\": \"PP31929414\",\n  \"gstin\": \"27IRWFN4293M2Z1\",\n  \"total_amount\": 141.60,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": 120.00,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"tick mark near Pcs\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1,\n    \"receipt_date\": 1,\n    \"receipt_number\": 1,\n    \"gstin\": 1,\n    \"total_amount\": 1\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "PROMPT PARCEL SERVICES",
+    "receipt_date": "2026-07-23",
+    "receipt_date_raw": "23/07/2026",
+    "receipt_number": "PP31929414",
+    "gstin": "27IRWFN4293M2Z1",
+    "gstin_valid": true,
+    "total_amount": 141.6,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": 120.0,
+    "vehicle_no_on_bill": "",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [
+      "tick mark near Pcs"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "sha256": "95ce705fe868b086420cd774a469791e4135a684a53f5294c8e967259a231780",
+  "file": "IMG_20260623_203853.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:18:09+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1884,
+      "output_tokens": 310,
+      "thinking_tokens": 0,
+      "latency_ms": 2764,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"HOTEL KRISHNA COMFORTS\",\n  \"receipt_date\": \"19.06.2026\",\n  \"receipt_number\": \"HKC/26-27/5190\",\n  \"gstin\": \"27HPFCA5856Y3ZE\",\n  \"total_amount\": 2016.0,\n  \"amount_in_words\": \"Rupees Two Thousand Sixteen Only\",\n  \"pre_tax_amount\": 1800.0,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"Mr./Ms. Tushar Barde\",\n  \"nights\": 1,\n  \"handwritten_marks\": [\n    \"lunch w/ Dr. Waghmare\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "HOTEL KRISHNA COMFORTS",
+    "receipt_date": "2026-06-19",
+    "receipt_date_raw": "19.06.2026",
+    "receipt_number": "HKC/26-27/5190",
+    "gstin": "27HPFCA5856Y3ZE",
+    "gstin_valid": true,
+    "total_amount": 2016.0,
+    "amount_in_words": "Rupees Two Thousand Sixteen Only",
+    "amount_in_words_value": 2016.0,
+    "pre_tax_amount": 1800.0,
+    "vehicle_no_on_bill": "",
+    "guest_name": "Mr./Ms. Tushar Barde",
+    "nights": 1,
+    "handwritten_marks": [
+      "lunch w/ Dr. Waghmare"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

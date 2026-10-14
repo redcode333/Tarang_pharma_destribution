@@ -1,0 +1,53 @@
+{
+  "sha256": "3aa081bbdceee98d4aebbb6c2f98cebe3db6d92a23949b09a8030a80aff2fb1b",
+  "file": "IMG-20260704-WA0046.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:25:22+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1860,
+      "output_tokens": 261,
+      "thinking_tokens": 0,
+      "latency_ms": 2342,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"GAJANAN PETROLEUM\",\n  \"receipt_date\": \"04.07.2026\",\n  \"receipt_number\": \"008887\",\n  \"gstin\": \"\",\n  \"total_amount\": 250.0,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH32AY2051\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 0.99,\n    \"receipt_date\": 0.99,\n    \"receipt_number\": 0.99,\n    \"gstin\": 1.0,\n    \"total_amount\": 0.99\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "GAJANAN PETROLEUM",
+    "receipt_date": "2026-07-04",
+    "receipt_date_raw": "04.07.2026",
+    "receipt_number": "008887",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 250.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH32AY2051",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 0.99,
+      "receipt_date": 0.99,
+      "receipt_number": 0.99,
+      "gstin": 1.0,
+      "total_amount": 0.99
+    },
+    "flags": []
+  }
+}

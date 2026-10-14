@@ -1,0 +1,65 @@
+{
+  "sha256": "1adb898d79950a315cb60fdc8dfe5ac56d15d647665b0e7a47811c61503f8ee3",
+  "file": "IMG_20260621_170151.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:15:56+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1882,
+      "output_tokens": 357,
+      "thinking_tokens": 0,
+      "latency_ms": 2234,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"ROYAL TRAVELS\",\n  \"receipt_date\": \"19-6-2026\",\n  \"receipt_number\": \"8360\",\n  \"gstin\": \"\",\n  \"total_amount\": 1260,\n  \"amount_in_words\": \"One Thousand Two Hundred Sixty only\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH32 CN 7162\",\n  \"guest_name\": \"Tushar - Tarang\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"tick on bill no.\",\n    \"19-6-2026\",\n    \"8360\",\n    \"Tushar - Tarang\",\n    \"Ganesh peth\",\n    \"AIIMS Mihan\",\n    \"MH32 CN 7162\",\n    \"72\",\n    \"1260/-\",\n    \"One Thousand Two Hundred Sixty only\",\n    \"signature\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1,\n    \"receipt_date\": 1,\n    \"receipt_number\": 1,\n    \"gstin\": 1,\n    \"total_amount\": 1\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "ROYAL TRAVELS",
+    "receipt_date": "2026-06-19",
+    "receipt_date_raw": "19-6-2026",
+    "receipt_number": "8360",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 1260.0,
+    "amount_in_words": "One Thousand Two Hundred Sixty only",
+    "amount_in_words_value": 1260.0,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH32 CN 7162",
+    "guest_name": "Tushar - Tarang",
+    "nights": null,
+    "handwritten_marks": [
+      "tick on bill no.",
+      "19-6-2026",
+      "8360",
+      "Tushar - Tarang",
+      "Ganesh peth",
+      "AIIMS Mihan",
+      "MH32 CN 7162",
+      "72",
+      "1260/-",
+      "One Thousand Two Hundred Sixty only",
+      "signature"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

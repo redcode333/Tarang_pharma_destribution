@@ -1,0 +1,55 @@
+{
+  "sha256": "8efd7d3d8f9241444cf35440a55a2b7fc548df05221957b898ecc792cbbd5722",
+  "file": "IMG_20260801_111355.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T16:50:20+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1884,
+      "output_tokens": 275,
+      "thinking_tokens": 0,
+      "latency_ms": 2141,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"ASHIRWAD VEG RESTAURANT\",\n  \"receipt_date\": \"26.07.2026\",\n  \"receipt_number\": \"6535\",\n  \"gstin\": \"27OILF01994Z2ZV\",\n  \"total_amount\": 840.0,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": 800.0,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"paid\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "ASHIRWAD VEG RESTAURANT",
+    "receipt_date": "2026-07-26",
+    "receipt_date_raw": "26.07.2026",
+    "receipt_number": "6535",
+    "gstin": "27OILFO1994Z2ZV",
+    "gstin_valid": true,
+    "total_amount": 840.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": 800.0,
+    "vehicle_no_on_bill": "",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [
+      "paid"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "sha256": "a47db1a682034873a9fa7e422e66d49ea7130d6f2930ca02f27a1a8933e21a4b",
+  "file": "IMG_20260801_102204.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T16:49:51+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1884,
+      "output_tokens": 232,
+      "thinking_tokens": 0,
+      "latency_ms": 1969,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": false,\n  \"rotation_needed\": 0,\n  \"vendor\": \"OM SAI FUEL POINT\",\n  \"receipt_date\": \"\",\n  \"receipt_number\": \"004744\",\n  \"gstin\": \"\",\n  \"total_amount\": null,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 0.95,\n    \"receipt_date\": 0.0,\n    \"receipt_number\": 0.95,\n    \"gstin\": 0.0,\n    \"total_amount\": 0.0\n  }\n}",
+      "rotation": 0
+    },
+    {
+      "step": "rotated_180",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1895,
+      "output_tokens": 232,
+      "thinking_tokens": 0,
+      "latency_ms": 2484,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": false,\n  \"rotation_needed\": 180,\n  \"vendor\": \"OM SAI FUEL POINT\",\n  \"receipt_date\": \"\",\n  \"receipt_number\": \"004744\",\n  \"gstin\": \"\",\n  \"total_amount\": null,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 0.9,\n    \"receipt_date\": 0.0,\n    \"receipt_number\": 0.9,\n    \"gstin\": 0.0,\n    \"total_amount\": 0.0\n  }\n}",
+      "rotation": 180
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "OM SAI FUEL POINT",
+    "receipt_date": "",
+    "receipt_date_raw": "",
+    "receipt_number": "004744",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": null,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": false,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 0.95,
+      "receipt_date": 0.0,
+      "receipt_number": 0.95,
+      "gstin": 0.0,
+      "total_amount": 0.0
+    },
+    "flags": [
+      "unreadable",
+      "low_confidence:receipt_date",
+      "low_confidence:total_amount"
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "sha256": "300722e1935c5d6bcdfa44873b71e8a963797bb88b0e5989ca00c7fe3adfd9de",
+  "file": "IMG-20260701-WA0140.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:24:50+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1911,
+      "output_tokens": 298,
+      "thinking_tokens": 0,
+      "latency_ms": 5967,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"HOTEL CENTRE POINT INN\",\n  \"receipt_date\": \"02/07/2026\",\n  \"receipt_number\": \"HCP/26-27/4602\",\n  \"gstin\": \"27BOCPW1223G1Z2\",\n  \"total_amount\": 3136.00,\n  \"amount_in_words\": \"Rupees Three Thousand One Hundred Thirty Six Only\",\n  \"pre_tax_amount\": 2800.00,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"Mr./Ms. Komal Shende\",\n  \"nights\": 1,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "HOTEL CENTRE POINT INN",
+    "receipt_date": "2026-07-02",
+    "receipt_date_raw": "02/07/2026",
+    "receipt_number": "HCP/26-27/4602",
+    "gstin": "27BOCPW1223G1Z2",
+    "gstin_valid": true,
+    "total_amount": 3136.0,
+    "amount_in_words": "Rupees Three Thousand One Hundred Thirty Six Only",
+    "amount_in_words_value": 3136.0,
+    "pre_tax_amount": 2800.0,
+    "vehicle_no_on_bill": "",
+    "guest_name": "Mr./Ms. Komal Shende",
+    "nights": 1,
+    "handwritten_marks": [],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

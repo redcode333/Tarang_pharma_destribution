@@ -1,0 +1,65 @@
+{
+  "sha256": "77d1a4cc30959d102c378a9fd0edf0bd3ef6a510e20f94578a3f56db27509ab8",
+  "file": "IMG_20260718_093004.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T16:38:04+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1914,
+      "output_tokens": 328,
+      "thinking_tokens": 0,
+      "latency_ms": 3577,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SAI RAM TEA & SNACKS\",\n  \"receipt_date\": \"13/07/2026\",\n  \"receipt_number\": \"6928\",\n  \"gstin\": \"\",\n  \"total_amount\": 405,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"13/7/26\",\n    \"1 Rice\",\n    \"80\",\n    \"1 Paneer Bhurji\",\n    \"160\",\n    \"1 Thali\",\n    \"150\",\n    \"1 Roti\",\n    \"15\",\n    \"405\",\n    \"signature line\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 0.9,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "SAI RAM TEA & SNACKS",
+    "receipt_date": "2026-07-13",
+    "receipt_date_raw": "13/07/2026",
+    "receipt_number": "6928",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 405.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [
+      "13/7/26",
+      "1 Rice",
+      "80",
+      "1 Paneer Bhurji",
+      "160",
+      "1 Thali",
+      "150",
+      "1 Roti",
+      "15",
+      "405",
+      "signature line"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 0.9,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

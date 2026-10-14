@@ -1,0 +1,56 @@
+{
+  "sha256": "e18c819e0599ae2c5483f24c1322635a8ff9781c0faa38979952ea751b117f65",
+  "file": "IMG_20260719_101539.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T16:37:58+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1868,
+      "output_tokens": 265,
+      "thinking_tokens": 0,
+      "latency_ms": 3344,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"HOTEL RAJDHANI DHABA\",\n  \"receipt_date\": \"14/7/2026\",\n  \"receipt_number\": \"3509\",\n  \"gstin\": \"\",\n  \"total_amount\": 220.0,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"Sitabuldi visit\",\n    \"squiggly line\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "HOTEL RAJDHANI DHABA",
+    "receipt_date": "2026-07-14",
+    "receipt_date_raw": "14/7/2026",
+    "receipt_number": "3509",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 220.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [
+      "Sitabuldi visit",
+      "squiggly line"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

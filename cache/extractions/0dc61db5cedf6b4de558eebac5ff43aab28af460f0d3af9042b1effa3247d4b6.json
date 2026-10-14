@@ -1,0 +1,55 @@
+{
+  "sha256": "0dc61db5cedf6b4de558eebac5ff43aab28af460f0d3af9042b1effa3247d4b6",
+  "file": "IMG_20260630_164905.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:22:34+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1892,
+      "output_tokens": 278,
+      "thinking_tokens": 0,
+      "latency_ms": 2030,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"CAFE COFFEE CORNER\",\n  \"receipt_date\": \"29-06-2026\",\n  \"receipt_number\": \"A/1434\",\n  \"gstin\": \"27TABPX3765R2Z6\",\n  \"total_amount\": 672.00,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": 640.00,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"Civil Lines audit\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "CAFE COFFEE CORNER",
+    "receipt_date": "2026-06-29",
+    "receipt_date_raw": "29-06-2026",
+    "receipt_number": "A/1434",
+    "gstin": "27TABPX3765R2Z6",
+    "gstin_valid": true,
+    "total_amount": 672.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": 640.0,
+    "vehicle_no_on_bill": "",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [
+      "Civil Lines audit"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

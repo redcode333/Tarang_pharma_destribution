@@ -1,0 +1,63 @@
+{
+  "sha256": "ff08f4974bf5b86c5316189104d34614b3968a979faebd7a6376a1a2efca3973",
+  "file": "IMG_20260721_214011.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T16:41:44+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1854,
+      "output_tokens": 352,
+      "thinking_tokens": 0,
+      "latency_ms": 2735,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SHREE GANESH TOURS & TRAVELS\",\n  \"receipt_date\": \"17/07/2026\",\n  \"receipt_number\": \"3916\",\n  \"gstin\": \"\",\n  \"total_amount\": 470,\n  \"amount_in_words\": \"Four Hundred Seventy only\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH32 CN 8679\",\n  \"guest_name\": \"Amol - Tarang\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"3916\",\n    \"17/7/2026\",\n    \"Amol - Tarang\",\n    \"Ganeshpeth\",\n    \"AIIMS Mihan\",\n    \"MH32 CN 8679\",\n    \"29\",\n    \"470/-\",\n    \"Four Hundred Seventy only\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "SHREE GANESH TOURS & TRAVELS",
+    "receipt_date": "2026-07-17",
+    "receipt_date_raw": "17/07/2026",
+    "receipt_number": "3916",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 470.0,
+    "amount_in_words": "Four Hundred Seventy only",
+    "amount_in_words_value": 470.0,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH32 CN 8679",
+    "guest_name": "Amol - Tarang",
+    "nights": null,
+    "handwritten_marks": [
+      "3916",
+      "17/7/2026",
+      "Amol - Tarang",
+      "Ganeshpeth",
+      "AIIMS Mihan",
+      "MH32 CN 8679",
+      "29",
+      "470/-",
+      "Four Hundred Seventy only"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "sha256": "cf814219cd27ddcde0ea51d7701d723525b3d97c695151175fae5022c8d3f6e6",
+  "file": "IMG_20260801_144116.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T16:50:39+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1904,
+      "output_tokens": 361,
+      "thinking_tokens": 0,
+      "latency_ms": 2608,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SHREE GANESH TOURS & TRAVELS\",\n  \"receipt_date\": \"29/07/26\",\n  \"receipt_number\": \"4067\",\n  \"gstin\": \"\",\n  \"total_amount\": 930,\n  \"amount_in_words\": \"Nine Hundred Thirty only\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH32 CP 4246\",\n  \"guest_name\": \"Amol - Tarang\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"Amol - Tarang\",\n    \"29/07/26\",\n    \"Nagpur Airport\",\n    \"Sitabuldi\",\n    \"MH32 CP 4246\",\n    \"64\",\n    \"930/-\",\n    \"Nine Hundred Thirty only\",\n    \"up\"\n  ],\n  \"possible_alteration\": true,\n  \"alteration_reason\": \"There is a handwritten scribble correction over the word 'Hundred' in amount in words.\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "SHREE GANESH TOURS & TRAVELS",
+    "receipt_date": "2026-07-29",
+    "receipt_date_raw": "29/07/26",
+    "receipt_number": "4067",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 930.0,
+    "amount_in_words": "Nine Hundred Thirty only",
+    "amount_in_words_value": 930.0,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH32 CP 4246",
+    "guest_name": "Amol - Tarang",
+    "nights": null,
+    "handwritten_marks": [
+      "Amol - Tarang",
+      "29/07/26",
+      "Nagpur Airport",
+      "Sitabuldi",
+      "MH32 CP 4246",
+      "64",
+      "930/-",
+      "Nine Hundred Thirty only",
+      "up"
+    ],
+    "possible_alteration": true,
+    "alteration_reasons": [
+      "There is a handwritten scribble correction over the word 'Hundred' in amount in words."
+    ],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": [
+      "possible_alteration"
+    ]
+  }
+}

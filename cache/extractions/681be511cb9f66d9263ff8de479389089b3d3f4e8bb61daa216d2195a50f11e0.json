@@ -1,0 +1,53 @@
+{
+  "sha256": "681be511cb9f66d9263ff8de479389089b3d3f4e8bb61daa216d2195a50f11e0",
+  "file": "IMG-20260704-WA0175.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:25:39+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1889,
+      "output_tokens": 258,
+      "thinking_tokens": 0,
+      "latency_ms": 1765,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"JAI AMBE FUELS\",\n  \"receipt_date\": \"01/07/2026\",\n  \"receipt_number\": \"001166\",\n  \"gstin\": \"\",\n  \"total_amount\": 150.00,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH29AR4419\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "JAI AMBE FUELS",
+    "receipt_date": "2026-07-01",
+    "receipt_date_raw": "01/07/2026",
+    "receipt_number": "001166",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 150.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH29AR4419",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "sha256": "b6e27543c894c65a8c6752f809f11f8996dd7647f357c61184651c13abf90ada",
+  "file": "IMG-20260723-WA0041.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T16:42:29+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1884,
+      "output_tokens": 297,
+      "thinking_tokens": 0,
+      "latency_ms": 5577,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"HOTEL SHUBHAM RESIDENCY\",\n  \"receipt_date\": \"14/07/2026\",\n  \"receipt_number\": \"HSR/26-27/4915\",\n  \"gstin\": \"27UVQFW9408Y1ZS\",\n  \"total_amount\": 2352.00,\n  \"amount_in_words\": \"Rupees Two Thousand Three Hundred Fifty Two Only\",\n  \"pre_tax_amount\": 2100.00,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"Kalyani Deshmukh\",\n  \"nights\": 1,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "HOTEL SHUBHAM RESIDENCY",
+    "receipt_date": "2026-07-14",
+    "receipt_date_raw": "14/07/2026",
+    "receipt_number": "HSR/26-27/4915",
+    "gstin": "27UVQFW9408Y1ZS",
+    "gstin_valid": true,
+    "total_amount": 2352.0,
+    "amount_in_words": "Rupees Two Thousand Three Hundred Fifty Two Only",
+    "amount_in_words_value": 2352.0,
+    "pre_tax_amount": 2100.0,
+    "vehicle_no_on_bill": "",
+    "guest_name": "Kalyani Deshmukh",
+    "nights": 1,
+    "handwritten_marks": [],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

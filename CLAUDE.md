@@ -77,6 +77,9 @@ Python 3.11 lives in a conda env at `.venv/` (no `activate` needed; call the int
 - 20-claim sample: `scripts/sample_compare.py --select` (fixed list in `reports/sample20_claims.txt`), then
   `scripts/sample_compare.py` → `reports/sample20.md`
 - Cost per photo: `.venv/python.exe scripts/cost.py --usd-inr <dated rate>`
+- Evaluation: `.venv/python.exe scripts/evaluate.py` → `reports/evaluation.md`, `reports/error_gallery.md`;
+  mismatches still to adjudicate go to `cache/mismatches_to_review.csv`; verdicts live in `reports/adjudications.csv`
+- Free quota: Flash-Lite 500 requests/day on this key, resets 07:00 UTC (12:30 IST)
 - Recreate the env: `conda create -y -p ./.venv python=3.11 pip`, then
   `.venv/python.exe -m pip install pandas pillow imagehash pytest playwright python-dotenv google-genai pydantic` and
   `.venv/python.exe -m playwright install chromium`

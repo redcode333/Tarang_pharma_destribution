@@ -1,0 +1,58 @@
+{
+  "sha256": "31cd4c7fb6a1cb5c0a7ed4311e48449c78946adb285fe581fd6a66234904a5a8",
+  "file": "IMG-20260628-WA0014.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:20:47+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1911,
+      "output_tokens": 283,
+      "thinking_tokens": 0,
+      "latency_ms": 3858,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SAI RAM TEA & SNACKS\",\n  \"receipt_date\": \"24/06/2026\",\n  \"receipt_number\": \"6906\",\n  \"gstin\": \"\",\n  \"total_amount\": 210,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"24/6/26\",\n    \"1 Lassi 50\",\n    \"1 Paneer Bhurji 160\",\n    \"210\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1,\n    \"receipt_date\": 0.95,\n    \"receipt_number\": 1,\n    \"gstin\": 1,\n    \"total_amount\": 1\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "SAI RAM TEA & SNACKS",
+    "receipt_date": "2026-06-24",
+    "receipt_date_raw": "24/06/2026",
+    "receipt_number": "6906",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 210.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [
+      "24/6/26",
+      "1 Lassi 50",
+      "1 Paneer Bhurji 160",
+      "210"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 0.95,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

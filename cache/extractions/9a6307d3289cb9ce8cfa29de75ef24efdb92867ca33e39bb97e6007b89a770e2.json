@@ -1,0 +1,64 @@
+{
+  "sha256": "9a6307d3289cb9ce8cfa29de75ef24efdb92867ca33e39bb97e6007b89a770e2",
+  "file": "IMG_20260614_121336.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:09:35+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1892,
+      "output_tokens": 265,
+      "thinking_tokens": 0,
+      "latency_ms": 2422,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 180,\n  \"vendor\": \"GAJANAN PETROLEUM\",\n  \"receipt_date\": \"11.06.2026\",\n  \"receipt_number\": \"008298\",\n  \"gstin\": \"\",\n  \"total_amount\": 3039.20,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH31FR1147\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 0.95,\n    \"receipt_date\": 0.95,\n    \"receipt_number\": 0.95,\n    \"gstin\": 0.0,\n    \"total_amount\": 0.95\n  }\n}",
+      "rotation": 0
+    },
+    {
+      "step": "rotated_180",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1903,
+      "output_tokens": 259,
+      "thinking_tokens": 0,
+      "latency_ms": 2609,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"GAJANAN PETROLEUM\",\n  \"receipt_date\": \"11.06.2026\",\n  \"receipt_number\": \"008298\",\n  \"gstin\": \"\",\n  \"total_amount\": 3039.20,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH31FR1147\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 180
+    }
+  ],
+  "rotation_detected": 180,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "GAJANAN PETROLEUM",
+    "receipt_date": "2026-06-11",
+    "receipt_date_raw": "11.06.2026",
+    "receipt_number": "008298",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 3039.2,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH31FR1147",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 180,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

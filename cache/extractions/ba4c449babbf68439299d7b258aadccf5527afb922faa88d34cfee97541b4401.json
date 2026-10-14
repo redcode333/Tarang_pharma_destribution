@@ -1,0 +1,64 @@
+{
+  "sha256": "ba4c449babbf68439299d7b258aadccf5527afb922faa88d34cfee97541b4401",
+  "file": "IMG-20260724-WA0196.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T16:43:15+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1875,
+      "output_tokens": 359,
+      "thinking_tokens": 0,
+      "latency_ms": 4375,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SHREE GANESH TOURS & TRAVELS\",\n  \"receipt_date\": \"20-07-2026\",\n  \"receipt_number\": \"3928\",\n  \"gstin\": \"\",\n  \"total_amount\": 540.0,\n  \"amount_in_words\": \"Five Hundred Forty only\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH32 CN 3498\",\n  \"guest_name\": \"Harshal - Tarang\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"20-7-2026\",\n    \"3928\",\n    \"Harshal - Tarang\",\n    \"Ganeshpeth\",\n    \"AIIMS Mihan\",\n    \"MH32 CN 3498\",\n    \"32\",\n    \"540/-\",\n    \"Five Hundred Forty only\",\n    \"signature\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "SHREE GANESH TOURS & TRAVELS",
+    "receipt_date": "2026-07-20",
+    "receipt_date_raw": "20-07-2026",
+    "receipt_number": "3928",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 540.0,
+    "amount_in_words": "Five Hundred Forty only",
+    "amount_in_words_value": 540.0,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH32 CN 3498",
+    "guest_name": "Harshal - Tarang",
+    "nights": null,
+    "handwritten_marks": [
+      "20-7-2026",
+      "3928",
+      "Harshal - Tarang",
+      "Ganeshpeth",
+      "AIIMS Mihan",
+      "MH32 CN 3498",
+      "32",
+      "540/-",
+      "Five Hundred Forty only",
+      "signature"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

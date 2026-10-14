@@ -1,0 +1,17 @@
+claim_id,split,field,model_value,clerk_value,category,condition
+CLM-30458,dev,vendor,SITABULDI MULTILEVEL PARKING,Sitabuldi Multilevel Parking - Wardha,Parking,normal
+CLM-30472,dev,vendor,SHREE GANESH TOURS & TRAVELS,Shri Ganesh ours & Travels,Local travel,normal
+CLM-30489,dev,vendor,HIGHWAY KING DHABA,Highway King haba (Ngp),Food,normal
+CLM-30495,dev,vendor,GAJANAN PETROLEUM,Gajanan Petroleum (Ngp),Fuel,normal
+CLM-30512,dev,vendor,LAXMI AUTO FUELS,Laxmi Auto Fuels Nagpur,Fuel,normal
+CLM-30546,dev,vendor,SITABULDI MULTILEVEL PARKING,Sitabuldi M.L. Parking,Parking,normal
+CLM-30549,dev,vendor,OM SAI FUEL POINT,Om Sai Fuel Point (Ngp),Fuel,rotated
+CLM-30581,dev,vendor,MAA DURGA CAB SERVICE,Maa Durga Cab Serviice - Wardha,Local travel,normal
+CLM-30587,dev,vendor,HIGHWAY KING DHABA,Highway King Dhaba - Wardha,Food,normal
+CLM-30625,holdout,vendor,SPEEDLINK COURIERS,SpeedLink Cour.s (Ngp),Courier,normal
+CLM-30656,holdout,vendor,GAJANAN PETROLEUM,Gajanan Petro,Fuel,normal
+CLM-30740,holdout,vendor,OM SAI FUEL POINT,Om SaiF uel Point,Fuel,normal
+CLM-30849,holdout,vendor,SHIVAM FAMILY RESTAURANT,Shivam Family Restaurant Nagpur,Food,normal
+CLM-30902,holdout,vendor,LAXMI AUTO FUELS,Laxmi Auto Fuels Nagpur,Fuel,normal
+CLM-30996,holdout,vendor,SHREE GANESH TOURS & TRAVELS,Shree Ganesh Tours & Travels - Wardha,Local travel,normal
+CLM-31000,holdout,vendor,VIDARBHA EXPRESS COURIER,Vidarbha Express Courier - Wardha,Courier,normal

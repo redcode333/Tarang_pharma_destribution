@@ -1,0 +1,61 @@
+{
+  "sha256": "89df074f18c252fae401d59ef2c908f1fc2a5fc3f0777bdb71846420cd064b96",
+  "file": "IMG_20260805_160119.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:04:45+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1896,
+      "output_tokens": 317,
+      "thinking_tokens": 0,
+      "latency_ms": 2483,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SAI RAM TEA & SNACKS\",\n  \"receipt_date\": \"05/08/2026\",\n  \"receipt_number\": \"7012\",\n  \"gstin\": \"\",\n  \"total_amount\": 240,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"tick on roti\",\n    \"5-8-2026\",\n    \"7012\",\n    \"4 Roti 60\",\n    \"1 Poha 30\",\n    \"1 Thali 150\",\n    \"240\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 0.99,\n    \"receipt_date\": 0.95,\n    \"receipt_number\": 0.95,\n    \"gstin\": 1.0,\n    \"total_amount\": 0.99\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "SAI RAM TEA & SNACKS",
+    "receipt_date": "2026-08-05",
+    "receipt_date_raw": "05/08/2026",
+    "receipt_number": "7012",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 240.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [
+      "tick on roti",
+      "5-8-2026",
+      "7012",
+      "4 Roti 60",
+      "1 Poha 30",
+      "1 Thali 150",
+      "240"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 0.99,
+      "receipt_date": 0.95,
+      "receipt_number": 0.95,
+      "gstin": 1.0,
+      "total_amount": 0.99
+    },
+    "flags": []
+  }
+}

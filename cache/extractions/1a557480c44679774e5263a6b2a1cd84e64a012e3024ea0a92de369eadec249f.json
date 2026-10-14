@@ -1,0 +1,63 @@
+{
+  "sha256": "1a557480c44679774e5263a6b2a1cd84e64a012e3024ea0a92de369eadec249f",
+  "file": "IMG-20260728-WA0151.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T16:45:53+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1882,
+      "output_tokens": 351,
+      "thinking_tokens": 0,
+      "latency_ms": 5109,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SHREE GANESH TOURS & TRAVELS\",\n  \"receipt_date\": \"27/7/2026\",\n  \"receipt_number\": \"4043\",\n  \"gstin\": \"\",\n  \"total_amount\": 790,\n  \"amount_in_words\": \"Seven Hundred Ninety only\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH34 CP 4219\",\n  \"guest_name\": \"Pooja - Tarang\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"27/7/2026\",\n    \"4043\",\n    \"Pooja - Tarang\",\n    \"Railway Stn\",\n    \"Dhantoli\",\n    \"MH34 CP 4219\",\n    \"58\",\n    \"790/-\",\n    \"Seven Hundred Ninety only\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "SHREE GANESH TOURS & TRAVELS",
+    "receipt_date": "2026-07-27",
+    "receipt_date_raw": "27/7/2026",
+    "receipt_number": "4043",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 790.0,
+    "amount_in_words": "Seven Hundred Ninety only",
+    "amount_in_words_value": 790.0,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH34 CP 4219",
+    "guest_name": "Pooja - Tarang",
+    "nights": null,
+    "handwritten_marks": [
+      "27/7/2026",
+      "4043",
+      "Pooja - Tarang",
+      "Railway Stn",
+      "Dhantoli",
+      "MH34 CP 4219",
+      "58",
+      "790/-",
+      "Seven Hundred Ninety only"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

@@ -1,25 +1,26 @@
 {
   "sha256": "4d56000089bfc0a6ad28144c9395eea783da4e0371ab790fb43a33e85e3e76b1",
   "file": "IMG_20260711_124855.jpg",
-  "prompt_version": "2026-10-14.1",
-  "created_utc": "2026-10-14T16:22:02+00:00",
-  "status": "ok",
-  "model": "gemini-3.5-flash-lite",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T16:37:12+00:00",
   "passes": [
     {
       "step": "first",
       "provider": "gemini",
       "model": "gemini-3.5-flash-lite",
-      "input_tokens": 1842,
-      "output_tokens": 295,
+      "input_tokens": 1892,
+      "output_tokens": 305,
       "thinking_tokens": 0,
-      "latency_ms": 6047,
-      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"BPCL\",\n  \"receipt_date\": \"05/07/26\",\n  \"receipt_number\": \"004338\",\n  \"gstin\": \"27DPAFU4120X1ZM\",\n  \"total_amount\": 1536.01,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH32BB1205\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": true,\n  \"alteration_reason\": \"Total amount printed as 536.01 but modified/overwritten to 1536.01 in blue ink\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 0.9\n  }\n}",
+      "latency_ms": 1797,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"LAXMI AUTO FUELS\",\n  \"receipt_date\": \"05/07/26\",\n  \"receipt_number\": \"004338\",\n  \"gstin\": \"27DPAFU4120X1ZM\",\n  \"total_amount\": 1536.01,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH32BB1205\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": true,\n  \"alteration_reason\": \"Total amount (1536.01) does not match the product amount (536.01); leading '1' in blue ink is suspicious.\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 0.9\n  }\n}",
       "rotation": 0
     }
   ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
   "result": {
-    "vendor": "BPCL",
+    "vendor": "LAXMI AUTO FUELS",
     "receipt_date": "2026-07-05",
     "receipt_date_raw": "05/07/26",
     "receipt_number": "004338",
@@ -35,7 +36,7 @@
     "handwritten_marks": [],
     "possible_alteration": true,
     "alteration_reasons": [
-      "Total amount printed as 536.01 but modified/overwritten to 1536.01 in blue ink"
+      "Total amount (1536.01) does not match the product amount (536.01); leading '1' in blue ink is suspicious."
     ],
     "instructions_on_bill": [],
     "is_receipt": true,
@@ -52,6 +53,5 @@
     "flags": [
       "possible_alteration"
     ]
-  },
-  "rotation_detected": 0
+  }
 }

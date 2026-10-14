@@ -28,7 +28,7 @@ from .providers import ModelChain, build_chain
 REPO_ROOT = Path(__file__).resolve().parents[2]
 CACHE_DIR = REPO_ROOT / "cache" / "extractions"
 USAGE_PATH = REPO_ROOT / "cache" / "usage.csv"
-PROMPT_VERSION = "2026-10-14.1"
+PROMPT_VERSION = "2026-10-14.2"  # .2: vendor is the dealer / outlet, not the oil-company brand
 
 CORE_FIELDS = ("vendor", "receipt_date", "receipt_number", "gstin", "total_amount")
 LOW_CONFIDENCE = 0.6
@@ -47,7 +47,9 @@ JSON keys:
   "is_receipt": bool,              false if the photo is not a bill or receipt at all
   "readable": bool,                false if vendor or total cannot be read (blurred, dark, cut off)
   "rotation_needed": 0|90|180|270, degrees to turn the photo CLOCKWISE so the text reads upright
-  "vendor": str,                   business name exactly as printed in the header
+  "vendor": str,                   the seller's own business / outlet name exactly as printed, e.g. the
+                                   fuel dealer "Laxmi Auto Fuels". NOT a brand or oil-company logo
+                                   above it (BPCL, HP, HPCL, IndianOil, IOCL)
   "receipt_date": str,             bill date exactly as printed (Indian bills are DD/MM/YYYY); no time
   "receipt_number": str,           bill / receipt / ticket / AWB / invoice number exactly as printed
                                    (keep prefixes like "A/", slashes, dashes and leading zeros)
@@ -81,6 +83,16 @@ USER_FIX_JSON = "Your previous reply was not valid ({error}). Reply with the JSO
 INSTRUCTION_TEXT = re.compile(
     r"pre-?\s?verified|automated processing|approve (it|this|the bill)|skip (any|the|all)?\s*(duplicate|check)"
     r"|reconciled by|ignore (all|any|previous|the above)|system prompt|in your output", re.I)
+
+
+# Printed receipt footers the model sometimes files under instructions_on_bill. A line made only of
+# these is not an instruction; anything else still raises the flag, so a new injection wording is
+# never dropped silently. Seen on the real photos: 38 of 43 flags before this filter were footers.
+BOILERPLATE = re.compile(
+    r"^\W*(?:(?:thank\s*you|thanks)\W*(?:for\s+visiting|visit\s+again|come\s+again)?|visit\s+again|come\s+again"
+    r"|save\s+fuel,?\s*save\s+money|vehicle\s+parked\s+at\s+owner'?s\s+risk|not\s+responsible\s+for\s+prohibited\s+items"
+    r"|track\s*:?.*shipment.*|goods\s+once\s+sold.*|subject\s+to\s+.*jurisdiction|e\s*&\s*o\s*e|have\s+a\s+nice\s+day"
+    r")\W*$", re.I)
 
 
 class Confidence(BaseModel):
@@ -167,7 +179,8 @@ def parse_reply(text: str) -> RawExtraction:
 
 def _scrub_instructions(raw: RawExtraction) -> list[str]:
     """Move instruction-like text out of normal fields. Returns everything found."""
-    found = list(raw.instructions_on_bill)
+    found = [t for t in raw.instructions_on_bill
+             if INSTRUCTION_TEXT.search(t) or not all(BOILERPLATE.match(line) for line in t.splitlines() if line.strip())]
     for name in ("vendor", "receipt_number", "guest_name", "amount_in_words", "alteration_reason",
                  "vehicle_no_on_bill", "receipt_date", "gstin"):
         value = getattr(raw, name)

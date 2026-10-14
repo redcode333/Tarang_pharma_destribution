@@ -1,0 +1,64 @@
+{
+  "sha256": "de053e704058443df163c080d9cc37d4499758662c7e47f5515b974c11874130",
+  "file": "IMG_20260710_103529.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:30:58+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1885,
+      "output_tokens": 344,
+      "thinking_tokens": 0,
+      "latency_ms": 1766,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SHREE GANESH TOURS & TRAVELS\",\n  \"receipt_date\": \"3/7/2026\",\n  \"receipt_number\": \"3799\",\n  \"gstin\": \"\",\n  \"total_amount\": 1280,\n  \"amount_in_words\": \"One Thousand Two Hundred Eighty only\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH31 AT 4654\",\n  \"guest_name\": \"Harshal - Tarang\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"3/7/2026\",\n    \"Harshal - Tarang\",\n    \"Wardha\",\n    \"Sewagram\",\n    \"MH31 AT 4654\",\n    \"80\",\n    \"1280/-\",\n    \"One Thousand Two Hundred Eighty only\",\n    \"2 pax\",\n    \"signature\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1,\n    \"receipt_date\": 1,\n    \"receipt_number\": 1,\n    \"gstin\": 1,\n    \"total_amount\": 1\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "SHREE GANESH TOURS & TRAVELS",
+    "receipt_date": "2026-07-03",
+    "receipt_date_raw": "3/7/2026",
+    "receipt_number": "3799",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 1280.0,
+    "amount_in_words": "One Thousand Two Hundred Eighty only",
+    "amount_in_words_value": 1280.0,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH31 AT 4654",
+    "guest_name": "Harshal - Tarang",
+    "nights": null,
+    "handwritten_marks": [
+      "3/7/2026",
+      "Harshal - Tarang",
+      "Wardha",
+      "Sewagram",
+      "MH31 AT 4654",
+      "80",
+      "1280/-",
+      "One Thousand Two Hundred Eighty only",
+      "2 pax",
+      "signature"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

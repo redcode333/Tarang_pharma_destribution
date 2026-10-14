@@ -1,0 +1,53 @@
+{
+  "sha256": "4a6a42602a0eae3c9ba6575d52c4e7263044e7e2d2276a0a28daa343aea0b3d0",
+  "file": "IMG_20260627_214225.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:20:34+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1893,
+      "output_tokens": 267,
+      "thinking_tokens": 0,
+      "latency_ms": 2750,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SHIVAM FAMILY RESTAURANT\",\n  \"receipt_date\": \"26/06/2026\",\n  \"receipt_number\": \"2647\",\n  \"gstin\": \"27XMECH9812R2ZH\",\n  \"total_amount\": 336.00,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": 320.00,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "SHIVAM FAMILY RESTAURANT",
+    "receipt_date": "2026-06-26",
+    "receipt_date_raw": "26/06/2026",
+    "receipt_number": "2647",
+    "gstin": "27XMECH9812R2ZH",
+    "gstin_valid": true,
+    "total_amount": 336.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": 320.0,
+    "vehicle_no_on_bill": "",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

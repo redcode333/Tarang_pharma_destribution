@@ -1,0 +1,64 @@
+{
+  "sha256": "b861843bd56e5fb883dc558e13d6879ab007c14374bee2404e8f53efa5b22618",
+  "file": "IMG_20260719_085411.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T16:38:16+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1860,
+      "output_tokens": 268,
+      "thinking_tokens": 0,
+      "latency_ms": 1985,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 180,\n  \"vendor\": \"MAA DURGA CAB SERVICE\",\n  \"receipt_date\": \"10/7/2026\",\n  \"receipt_number\": \"8305\",\n  \"gstin\": \"\",\n  \"total_amount\": 250.0,\n  \"amount_in_words\": \"Two Hundred Fifty only\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH34 AT 9589\",\n  \"guest_name\": \"Ashwini - Tarang\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    },
+    {
+      "step": "rotated_180",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1871,
+      "output_tokens": 267,
+      "thinking_tokens": 0,
+      "latency_ms": 3204,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"MAA DURGA CAB SERVICE\",\n  \"receipt_date\": \"10/07/2026\",\n  \"receipt_number\": \"8305\",\n  \"gstin\": \"\",\n  \"total_amount\": 250.0,\n  \"amount_in_words\": \"Two Hundred Fifty only\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH34 AT 9589\",\n  \"guest_name\": \"Ashwini - Tarang\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 180
+    }
+  ],
+  "rotation_detected": 180,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "MAA DURGA CAB SERVICE",
+    "receipt_date": "2026-07-10",
+    "receipt_date_raw": "10/07/2026",
+    "receipt_number": "8305",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 250.0,
+    "amount_in_words": "Two Hundred Fifty only",
+    "amount_in_words_value": 250.0,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH34 AT 9589",
+    "guest_name": "Ashwini - Tarang",
+    "nights": null,
+    "handwritten_marks": [],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 180,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  }
+}

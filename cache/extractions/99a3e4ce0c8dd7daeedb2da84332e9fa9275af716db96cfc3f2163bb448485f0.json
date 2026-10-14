@@ -1,0 +1,68 @@
+{
+  "sha256": "99a3e4ce0c8dd7daeedb2da84332e9fa9275af716db96cfc3f2163bb448485f0",
+  "file": "IMG-20260707-WA0066.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-14T17:28:04+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1884,
+      "output_tokens": 249,
+      "thinking_tokens": 0,
+      "latency_ms": 2202,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": false,\n  \"rotation_needed\": 0,\n  \"vendor\": \"VIDARBHA EXPRESS COURIER\",\n  \"receipt_date\": \"\",\n  \"receipt_number\": \"VX93237127\",\n  \"gstin\": \"27OUUFX7743H2ZR\",\n  \"total_amount\": null,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 0.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 0.0\n  }\n}",
+      "rotation": 0
+    },
+    {
+      "step": "rotated_180",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1895,
+      "output_tokens": 252,
+      "thinking_tokens": 0,
+      "latency_ms": 2250,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": false,\n  \"rotation_needed\": 180,\n  \"vendor\": \"VIDARBHA EXPRESS COURIER\",\n  \"receipt_date\": \"\",\n  \"receipt_number\": \"VX93237127\",\n  \"gstin\": \"27OUUFX7743H2ZR\",\n  \"total_amount\": null,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 0.9,\n    \"receipt_date\": 0.0,\n    \"receipt_number\": 0.9,\n    \"gstin\": 0.9,\n    \"total_amount\": 0.0\n  }\n}",
+      "rotation": 180
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "result": {
+    "vendor": "VIDARBHA EXPRESS COURIER",
+    "receipt_date": "",
+    "receipt_date_raw": "",
+    "receipt_number": "VX93237127",
+    "gstin": "27OUUFX7743H2ZR",
+    "gstin_valid": true,
+    "total_amount": null,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": false,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 0.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 0.0
+    },
+    "flags": [
+      "unreadable",
+      "low_confidence:receipt_date",
+      "low_confidence:total_amount"
+    ]
+  }
+}
