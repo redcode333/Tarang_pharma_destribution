@@ -18,7 +18,7 @@ Distribution, expense receipts".
 | | |
 |---|---|
 | Field accuracy, 196 held-out train claims | 94.7% vs the clerk's typing; **98.9%** after checking disagreements against the photo (most were clerk typos) |
-| Decisions on train | reviews all 8 claims the clerk queried or rejected; auto-approves 85% of claims under Rs 2,000 |
+| Decisions on train | reviews all 8 claims the clerk queried or rejected; auto-approves 85% of claims under Rs 2,000 (220 of 258) |
 | Caught vs "auto-approve everything under Rs 2,000" | Rs 16,832 on 283 train claims (repeat bills, altered amounts, over-claims), about Rs 1.4 lakh a month at 2,400 claims |
 | Test predictions | 147 approve, 43 review (`predictions.csv`) |
 | Model cost | Rs 0.13 a photo at paid Gemini rates, against Rs 12.6–31.7 a claim for a clerk |
@@ -26,7 +26,8 @@ Distribution, expense receipts".
 Details: [reports/evaluation.md](reports/evaluation.md) (accuracy, decisions vs the clerk, every
 disagreement), [reports/cost.md](reports/cost.md), [reports/expected_score.md](reports/expected_score.md),
 [reports/audit.md](reports/audit.md) (what the data looks like), [memo.md](memo.md) (one page for
-the Finance Controller) and [DECISIONS.md](DECISIONS.md) (every judgement call and why).
+the Finance Controller, also [memo.pdf](memo.pdf)), [SUBMISSION_NOTES.md](SUBMISSION_NOTES.md) (how it was
+built and measured, what was thrown away) and [DECISIONS.md](DECISIONS.md) (every judgement call and why).
 
 Screenshots of the screen: [approve](reports/evidence/ui_approve.png),
 [duplicate](reports/evidence/ui_duplicate.png), [injection stamp](reports/evidence/ui_injection.png),
