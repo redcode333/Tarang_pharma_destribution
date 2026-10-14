@@ -1,6 +1,7 @@
 """Audit the raw claims data and write reports/audit.md. pandas only, no LLM calls.
 
 Usage: python scripts/audit.py [--data-dir data] [--out reports/audit.md] [--cache cache/image_stats.csv]
+                               [--review reports/photo_review.csv]
 """
 from __future__ import annotations
 
@@ -53,7 +54,10 @@ C_CGSTIN = "clerk_gstin"
 REQUIRED_FILES = ["claims_train.csv", "claims_test.csv", "employees.csv"]
 AUTO_APPROVE_LIMIT = 2000
 NEAR_AMOUNT_RS = 10
-PHASH_MAX_DISTANCE = 6
+# On the real photos, pairs come at distance 0 (the same file) and then 6, 8, 10... rising
+# smoothly; every pair at 6 that was eyeballed is two different bills shot on the same
+# template. 4 keeps re-saved or rescaled copies and drops the template look-alikes.
+PHASH_MAX_DISTANCE = 4
 PARKING_NAMES = ["Rohan", "Pooja", "Harshal"]
 
 LATE_DAYS = 20          # expense-to-submission gap treated as a late submission
@@ -761,7 +765,11 @@ def sec_image_hashes(ctx, rep: Report) -> None:
     else:
         rep.p("No pairs found.")
     rep.table(cols(pairs, "file_a", "file_b", "distance", "same_bytes", "claims_a", "claims_b",
-                   "who_a", "who_b", "same_employee"), 40)
+                   "who_a", "who_b", "same_employee", "clerk bill nos"), 40)
+    if len(pairs):
+        rep.p("`clerk bill nos` shows whether the bill-number check (section 5) could catch the pair: "
+              "\"same\" it does, \"differ\" means the clerk typed two numbers for one photo, "
+              "\"not typed\" means at least one claim is unprocessed.")
 
     rep.h(3, "Sideways images")
     ok = stats[stats["error"] == ""].copy()
@@ -774,16 +782,36 @@ def sec_image_hashes(ctx, rep: Report) -> None:
     rep.table(counts)
     rep.bullets([
         f"EXIF says rotate 90/270 (orientation 5-8): **{int(rotated.sum())}** - fixed by applying EXIF before reading",
-        f"Wider than tall after applying EXIF: **{int(landscape.sum())}** of {len(ok)} - "
-        "likely sideways if the receipt is a portrait slip, but a landscape bill also lands here",
-        f"Stored pixels wider than tall, before EXIF: {int((ok['width'] > ok['height']).sum())}",
+        f"Wider than tall after applying EXIF: {int(landscape.sum())} of {len(ok)}. This is not a rotation "
+        "signal here: most photos are framed wider than the slip, and many slips are landscape. "
+        "Turned photos are counted by eye in the visual review below.",
     ])
-    side = ok[landscape].copy()
-    if len(side):
-        side["ratio"] = (side["shown_w"] / side["shown_h"]).round(2)
-        side["claims"] = side["file"].map(ctx.claims_by_file).fillna("")
-        rep.table(side.sort_values("ratio", ascending=False)[
-            ["file", "width", "height", "exif_orientation", "ratio", "claims"]], 20)
+
+    rep.h(3, "Visual review")
+    review = ctx.review
+    if review is None:
+        rep.p("No `reports/photo_review.csv`; nothing reviewed by eye.")
+        return
+    rep.p(f"From `reports/photo_review.csv`: every photo looked at by eye on contact sheets (EXIF applied), "
+          f"turned, unreadable and stamped photos written down. {len(review)} rows.")
+    review = review.assign(claims=review["file"].map(ctx.claims_by_file).fillna(""))
+    by_claim = ctx.claims.set_index(C_ID) if C_ID in ctx.claims.columns else None
+    summary = []
+    for finding, g in review.groupby("finding", sort=False):
+        ids = [i for c in g["claims"] for i in c.split(", ") if i]
+        rows = by_claim.loc[ids] if by_claim is not None and ids else pd.DataFrame()
+        summary.append({"finding": finding, "photos": len(g), "claims": len(ids),
+                        "splits": joined(f"{n} {s}" for s, n in rows["split"].value_counts().items()) if len(rows) else "",
+                        "train statuses": joined(f"{n} {s}" for s, n in rows.loc[rows["split"] == "train", C_STATUS]
+                                                 .value_counts().items()) if len(rows) and C_STATUS in rows else ""})
+    rep.table(pd.DataFrame(summary), None)
+    detail = review[review["detail"] != ""].copy()
+    if len(detail) and by_claim is not None:
+        first = detail["claims"].str.split(", ").str[0]
+        for c in (C_EMP, C_AMT, C_CAMT, C_STATUS, C_NOTE):
+            if c in by_claim.columns:
+                detail[c] = first.map(by_claim[c]).fillna("")
+        rep.table(cols(detail, "file", "finding", "detail", "claims", C_EMP, C_AMT, C_CAMT, C_STATUS, C_NOTE), None)
 
 
 def sec_gstin(ctx, rep: Report) -> None:
@@ -841,7 +869,7 @@ class Context:
     pass
 
 
-def build_context(data_dir: Path, cache_path: Path) -> Context:
+def build_context(data_dir: Path, cache_path: Path, review_path: Path) -> Context:
     ctx = Context()
     ctx.images_dir = data_dir / "images"
     ctx.train = read_csv(data_dir / "claims_train.csv")
@@ -864,7 +892,13 @@ def build_context(data_dir: Path, cache_path: Path) -> Context:
         pairs[f"who_{side}"] = pairs[f"file_{side}"].map(who_by_file).fillna("")
     pairs["same_employee"] = np.where((pairs["who_a"] == "") | (pairs["who_b"] == ""), "unclaimed",
                                       np.where(pairs["who_a"] == pairs["who_b"], "yes", "no"))
+    bill_by_file = by_file[C_CBILL].agg(lambda v: alnum(v.iloc[0])) if C_CBILL in claimed.columns else pd.Series(dtype=object)
+    ba, bb = (pairs[f"file_{s}"].map(bill_by_file).fillna("") for s in ("a", "b"))
+    pairs["clerk bill nos"] = np.where((ba == "") | (bb == ""), "not typed", np.where(ba == bb, "same", "differ"))
     ctx.pairs = pairs
+    ctx.review = None
+    if review_path.is_file():
+        ctx.review = pd.read_csv(review_path, dtype=str, keep_default_na=False)
     ctx.repeats = find_repeated_bills(ctx.claims[ctx.claims["split"] == "train"])
     return ctx
 
@@ -874,6 +908,8 @@ def main() -> int:
     ap.add_argument("--data-dir", type=Path, default=REPO / "data")
     ap.add_argument("--out", type=Path, default=REPO / "reports" / "audit.md")
     ap.add_argument("--cache", type=Path, default=REPO / "cache" / "image_stats.csv")
+    ap.add_argument("--review", type=Path, default=REPO / "reports" / "photo_review.csv",
+                    help="photos reviewed by eye: file, finding, detail")
     args = ap.parse_args()
 
     data_dir = args.data_dir.resolve()
@@ -882,7 +918,7 @@ def main() -> int:
         print(f"Cannot run the audit: missing in {data_dir}: {', '.join(missing)}", file=sys.stderr)
         return 2
 
-    ctx = build_context(data_dir, args.cache.resolve())
+    ctx = build_context(data_dir, args.cache.resolve(), args.review.resolve())
     rep = Report()
     rep.h(1, "Data audit")
     rep.p("Generated by `scripts/audit.py` from the raw CSVs and images. No LLM calls.")
