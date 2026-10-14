@@ -46,6 +46,8 @@ def main() -> int:
     ap.add_argument("--fx-source", default=FX_SOURCE_DEFAULT, help="where and when the rate is from")
     ap.add_argument("--out", type=Path, default=None, help="also write the result as markdown, e.g. reports/cost.md")
     ap.add_argument("--cache-dir", type=Path, default=REPO / "cache" / "extractions")
+    ap.add_argument("--auto-approve-rate", type=float, default=0.78,
+                    help="share of all claims auto-approved, from reports/evaluation.md (train: 220 of 283)")
     args = ap.parse_args()
 
     records = [json.loads(p.read_text(encoding="utf-8")) for p in sorted(args.cache_dir.glob("*.json"))]
@@ -75,6 +77,22 @@ def main() -> int:
               "- Thinking tokens: none measured, because every photo was read by Flash-Lite (3.8 Flash was overloaded). "
               "A 3.8 Flash run would add its thinking tokens to the output side.",
               "- 3.8 Flash prices double on 2027-01-01 (pricing page)."]
+    if fx:
+        lite = PRICES["gemini-3.5-flash-lite"]
+        photo_rs = (df["input"].mean() * lite["input"] + df["output"].mean() * lite["output"]) / 1e6 * fx
+        rate_h = CLERK_COST_MONTH / CLERK_HOURS_MONTH
+        lines += ["", "## Monthly saving (Flash-Lite)", "",
+                  f"Auto-approved claims never reach a clerk: {args.auto_approve_rate:.0%} of all claims "
+                  "(train, reports/evaluation.md). No time is counted as saved on claims that still go to a clerk, "
+                  "and every photo is charged to the model.", "",
+                  "| scale | claims a month | auto-approved | clerk hours saved | value at Rs "
+                  f"{rate_h:,.0f}/hour | model cost | net saving |", "|---|---|---|---|---|---|---|"]
+        for label, n in (("Company", CLAIMS_MONTH), ("Nagpur division", CLAIMS_MONTH // 10)):
+            auto = n * args.auto_approve_rate
+            hours = auto * CLERK_MIN_PER_CLAIM / 60
+            model = n * photo_rs
+            lines.append(f"| {label} | {n:,} | {auto:,.0f} | {hours:,.1f} | Rs {hours * rate_h:,.0f} | "
+                         f"Rs {model:,.0f} | Rs {hours * rate_h - model:,.0f} |")
     text = "\n".join(lines) + "\n"
     sys.stdout.reconfigure(encoding="utf-8")
     print(text)

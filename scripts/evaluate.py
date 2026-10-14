@@ -345,7 +345,8 @@ def decision_section(train: pd.DataFrame, employees: pd.DataFrame) -> list[str]:
               f"(Rs {d['claimed'].map(lambda v: v or 0).sum():,.0f} claimed). The clerk paid "
               f"{len(paid)} of them anyway (Rs {paid['at_risk_rs'].sum():,.0f}).",
               f"- Scaled to {CLAIMS_PER_MONTH:,} claims a month company-wide at the same rate "
-              f"(Rs {per_claim:,.2f} per claim): **Rs {per_claim * CLAIMS_PER_MONTH:,.0f} a month**. "
+              f"(Rs {per_claim:,.2f} per claim): **Rs {per_claim * CLAIMS_PER_MONTH:,.0f} a month**; "
+              f"Nagpur division alone ({CLAIMS_PER_MONTH // 10} a month): Rs {per_claim * CLAIMS_PER_MONTH / 10:,.0f}. "
               "This assumes the other divisions look like Nagpur's June-July 2026 claims.", ""]
     return lines
 

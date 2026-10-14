@@ -162,4 +162,4 @@ Claims under Rs 2,000 that our checks send to review for a repeat bill, an alter
 | repeat of an earlier bill (whole amount) | 16 | Rs 8,012 |
 
 - **Total: Rs 16,832 on 29 claims** out of 283 (Rs 195,558 claimed). The clerk paid 27 of them anyway (Rs 15,383).
-- Scaled to 2,400 claims a month company-wide at the same rate (Rs 59.48 per claim): **Rs 142,743 a month**. This assumes the other divisions look like Nagpur's June-July 2026 claims.
+- Scaled to 2,400 claims a month company-wide at the same rate (Rs 59.48 per claim): **Rs 142,743 a month**; Nagpur division alone (240 a month): Rs 14,274. This assumes the other divisions look like Nagpur's June-July 2026 claims.
