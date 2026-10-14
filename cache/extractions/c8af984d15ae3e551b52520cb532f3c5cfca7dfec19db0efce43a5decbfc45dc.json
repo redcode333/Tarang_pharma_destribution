@@ -1,0 +1,55 @@
+{
+  "sha256": "c8af984d15ae3e551b52520cb532f3c5cfca7dfec19db0efce43a5decbfc45dc",
+  "file": "IMG_20260612_125007.jpg",
+  "prompt_version": "2026-10-14.1",
+  "created_utc": "2026-10-14T16:23:57+00:00",
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1842,
+      "output_tokens": 276,
+      "thinking_tokens": 0,
+      "latency_ms": 2172,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"BPCL\",\n  \"receipt_date\": \"08/06/2026\",\n  \"receipt_number\": \"003075\",\n  \"gstin\": \"27DPAFU4120X1ZM\",\n  \"total_amount\": 150.00,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH32AY2051\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"paid cash\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "result": {
+    "vendor": "BPCL",
+    "receipt_date": "2026-06-08",
+    "receipt_date_raw": "08/06/2026",
+    "receipt_number": "003075",
+    "gstin": "27DPAFU4120X1ZM",
+    "gstin_valid": true,
+    "total_amount": 150.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH32AY2051",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [
+      "paid cash"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  },
+  "rotation_detected": 0
+}

@@ -1,0 +1,30 @@
+ts_utc,file,sha256,step,provider,model,outcome,input_tokens,output_tokens,thinking_tokens,latency_ms,detail
+2026-10-14T16:21:36+00:00,IMG_20260711_165958.jpg,48ebc5289a94b8de,first,gemini,gemini-3.8-flash,unavailable,,,,,"503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+2026-10-14T16:21:38+00:00,IMG_20260711_165958.jpg,48ebc5289a94b8de,first,gemini,gemini-3.5-flash-lite,ok,1834,317,0,2719,
+2026-10-14T16:21:50+00:00,IMG_20260708_103658.jpg,a4330a09cef8a73f,first,gemini,gemini-3.5-flash-lite,ok,1839,346,0,8297,
+2026-10-14T16:21:52+00:00,IMG_20260622_191832.jpg,7211ffd1b55a144a,first,gemini,gemini-3.5-flash-lite,ok,1827,409,0,2360,
+2026-10-14T16:22:02+00:00,IMG_20260711_124855.jpg,4d56000089bfc0a6,first,gemini,gemini-3.5-flash-lite,ok,1842,295,0,6047,
+2026-10-14T16:22:08+00:00,IMG_20260705_180453.jpg,2c1cc6a4560832f0,first,gemini,gemini-3.5-flash-lite,ok,1858,348,0,5733,
+2026-10-14T16:22:11+00:00,IMG_20260705_180453.jpg,2c1cc6a4560832f0,rotated_90,gemini,gemini-3.8-flash,unavailable,,,,,"503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+2026-10-14T16:22:17+00:00,IMG_20260705_180453.jpg,2c1cc6a4560832f0,rotated_90,gemini,gemini-3.5-flash-lite,ok,1869,382,0,5672,
+2026-10-14T16:22:20+00:00,IMG-20260711-WA0205.jpg,ca0d75682a7ca2fc,first,gemini,gemini-3.5-flash-lite,ok,1839,262,0,2889,
+2026-10-14T16:22:29+00:00,IMG-20260711-WA0205.jpg,ca0d75682a7ca2fc,rotated_90,gemini,gemini-3.5-flash-lite,ok,1850,298,0,6577,
+2026-10-14T16:22:34+00:00,IMG-20260618-WA0208.jpg,4e073f10e4b1bcfe,first,gemini,gemini-3.5-flash-lite,ok,1834,299,0,4266,
+2026-10-14T16:22:38+00:00,IMG-20260618-WA0208.jpg,4e073f10e4b1bcfe,rotated_180,gemini,gemini-3.5-flash-lite,ok,1845,301,0,2780,
+2026-10-14T16:22:45+00:00,IMG-20260710-WA0167.jpg,a25396c23e45b27c,first,gemini,gemini-3.5-flash-lite,ok,1842,208,0,3405,
+2026-10-14T16:22:47+00:00,IMG-20260710-WA0167.jpg,a25396c23e45b27c,rotated_180,gemini,gemini-3.8-flash,unavailable,,,,,"503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+2026-10-14T16:22:50+00:00,IMG-20260710-WA0167.jpg,a25396c23e45b27c,rotated_180,gemini,gemini-3.5-flash-lite,ok,1853,218,0,2266,
+2026-10-14T16:22:58+00:00,IMG_20260630_175914.jpg,ae1344ce6ca26348,first,gemini,gemini-3.5-flash-lite,ok,1834,272,0,4280,
+2026-10-14T16:23:02+00:00,IMG-20260621-WA0194.jpg,5ddda6874ad833a5,first,gemini,gemini-3.5-flash-lite,ok,1843,286,0,2311,
+2026-10-14T16:23:08+00:00,IMG_20260620_212353.jpg,bbb452e7df3d53cf,first,gemini,gemini-3.5-flash-lite,ok,1846,264,0,2186,
+2026-10-14T16:23:14+00:00,IMG-20260715-WA0213.jpg,98502a676e7d5be8,first,gemini,gemini-3.5-flash-lite,ok,1846,256,0,2391,
+2026-10-14T16:23:34+00:00,IMG_20260624_121405.jpg,624d41535dee88e5,first,gemini,gemini-3.5-flash-lite,ok,1842,280,0,16967,
+2026-10-14T16:23:55+00:00,IMG_20260612_125007.jpg,c8af984d15ae3e55,first,gemini,gemini-3.8-flash,unavailable,,,,,"503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+2026-10-14T16:23:57+00:00,IMG_20260612_125007.jpg,c8af984d15ae3e55,first,gemini,gemini-3.5-flash-lite,ok,1842,276,0,2172,
+2026-10-14T16:24:03+00:00,IMG_20260617_121852.jpg,2865d6feb09e7649,first,gemini,gemini-3.5-flash-lite,ok,1812,351,0,1985,
+2026-10-14T16:24:10+00:00,IMG_20260703_112843.jpg,6aa1e6f1fab92ce0,first,gemini,gemini-3.5-flash-lite,ok,1835,354,0,2547,
+2026-10-14T16:24:16+00:00,IMG_20260703_175613.jpg,503492abf5bad63b,first,gemini,gemini-3.5-flash-lite,ok,1854,297,0,2860,
+2026-10-14T16:24:22+00:00,IMG-20260701-WA0166.jpg,84bbab8a2f7d6bac,first,gemini,gemini-3.5-flash-lite,ok,1846,297,0,3032,
+2026-10-14T16:24:27+00:00,IMG-20260706-WA0216.jpg,a93dd6d34732e1da,first,gemini,gemini-3.5-flash-lite,ok,1856,261,0,2329,
+2026-10-14T16:24:30+00:00,IMG_20260702_154204.jpg,4f3be8b5cebeb52e,first,gemini,gemini-3.8-flash,unavailable,,,,,"503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+2026-10-14T16:24:32+00:00,IMG_20260702_154204.jpg,4f3be8b5cebeb52e,first,gemini,gemini-3.5-flash-lite,ok,1861,265,0,1407,

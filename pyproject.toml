@@ -2,11 +2,11 @@
 name = "tarang-receipts"
 version = "0.1.0"
 requires-python = ">=3.11"
-dependencies = ["pandas", "pillow", "imagehash"]
+dependencies = ["pandas", "pillow", "imagehash", "pydantic>=2", "google-genai", "httpx", "python-dotenv"]
 
 [project.optional-dependencies]
 dev = ["pytest"]
-fetch = ["playwright", "python-dotenv"]
+fetch = ["playwright"]
 
 [build-system]
 requires = ["setuptools>=68"]

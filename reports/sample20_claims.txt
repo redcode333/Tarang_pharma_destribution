@@ -1,0 +1,21 @@
+# 20 train claims for the first extraction run; see scripts/sample_compare.py
+CLM-30982  # stamped
+CLM-30919  # stamped
+CLM-30623  # stamped
+CLM-31009  # altered, clerk rejected
+CLM-30868  # turned 90
+CLM-30978  # turned 90
+CLM-30523  # upside down
+CLM-30979  # unreadable
+CLM-30770  # normal
+CLM-30608  # normal
+CLM-30572  # normal
+CLM-31047  # normal
+CLM-30633  # normal
+CLM-30425  # normal
+CLM-30524  # normal
+CLM-30840  # normal
+CLM-30819  # normal
+CLM-30774  # normal
+CLM-30874  # normal
+CLM-30799  # normal

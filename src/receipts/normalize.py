@@ -77,6 +77,57 @@ def parse_amount(value) -> float | None:
     return round(float(m.group(1).replace(",", "") + (m.group(2) or "")), 2)
 
 
+_UNITS = {w: i for i, w in enumerate(
+    "zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen "
+    "fifteen sixteen seventeen eighteen nineteen".split())}
+_TENS = {w: 10 * i for i, w in enumerate("twenty thirty forty fifty sixty seventy eighty ninety".split(), start=2)}
+_TENS.update(fourty=40, ninty=90, nienty=90)  # spellings seen on handwritten slips
+_SCALES = {"thousand": 1_000, "lakh": 100_000, "lakhs": 100_000, "lac": 100_000, "lacs": 100_000,
+           "crore": 10_000_000, "crores": 10_000_000}
+_FILLER = {"rupees", "rupee", "rs", "inr", "only", "and", "a"}
+
+
+def _words_to_int(words: list[str]) -> int | None:
+    total = current = 0
+    seen = False
+    for w in words:
+        if w in _UNITS:
+            current += _UNITS[w]
+        elif w in _TENS:
+            current += _TENS[w]
+        elif w in ("hundred", "hundreds"):
+            current = (current or 1) * 100
+        elif w in _SCALES:
+            total += (current or 1) * _SCALES[w]
+            current = 0
+        elif w in _FILLER:
+            continue
+        else:
+            return None
+        seen = True
+    return total + current if seen else None
+
+
+def words_to_amount(text) -> float | None:
+    """Rupee amount written in words on Indian bills, e.g. 'One Thousand Sixty only',
+    'Rupees Two Lakh Five Thousand and Fifty Paise'. None if blank or any word is unknown."""
+    if is_blank(text):
+        return None
+    words = re.findall(r"[a-z]+", str(text).lower())
+    if "paise" in words or "paisa" in words:
+        cut = words.index("paise" if "paise" in words else "paisa")
+        head = words[:cut]
+        # The paise figure is the number words just before "paise", after the last "and".
+        split = len(head) - 1 - head[::-1].index("and") if "and" in head else 0
+        rupees = _words_to_int(head[:split]) if split else 0
+        paise = _words_to_int(head[split:])
+        if rupees is None or paise is None:
+            return None
+        return round(rupees + paise / 100, 2)
+    value = _words_to_int(words)
+    return float(value) if value is not None else None
+
+
 # --- dates ------------------------------------------------------------------
 
 _MONTHS = ["january", "february", "march", "april", "may", "june", "july",
@@ -187,3 +238,31 @@ def gstin_problems(value) -> list[str]:
     if any(ch not in _GSTIN_CHARS for ch in s) or gstin_check_char(s[:14]) != s[14]:
         problems.append("checksum")
     return problems
+
+
+# Positions that must be digits (state code, the 4 PAN digits, entity number) or letters (PAN letters).
+_GSTIN_DIGIT_POS = (0, 1, 7, 8, 9, 10)
+_GSTIN_LETTER_POS = (2, 3, 4, 5, 6, 11)
+_TO_DIGIT = str.maketrans("OIL", "011")
+_TO_LETTER = str.maketrans("01", "OI")
+
+
+def fix_gstin(value) -> tuple[str, bool]:
+    """(GSTIN, valid). Cleans case and spaces, then swaps O/0 and I/1 where the GSTIN layout
+    says the other is required. If it is still invalid, the cleaned raw value comes back
+    with valid=False, never a guess."""
+    s = normalize_gstin(value)
+    if is_blank(s):
+        return "", False
+    if not gstin_problems(s):
+        return s, True
+    if len(s) == 15:
+        chars = list(s)
+        for i in _GSTIN_DIGIT_POS:
+            chars[i] = chars[i].translate(_TO_DIGIT)
+        for i in _GSTIN_LETTER_POS:
+            chars[i] = chars[i].translate(_TO_LETTER)
+        fixed = "".join(chars)
+        if not gstin_problems(fixed):
+            return fixed, True
+    return s, False

@@ -1,0 +1,79 @@
+{
+  "sha256": "2c1cc6a4560832f06ec33084b3c46323b1f8997cbeafe78de7506c3313a14c34",
+  "file": "IMG_20260705_180453.jpg",
+  "prompt_version": "2026-10-14.1",
+  "created_utc": "2026-10-14T16:22:17+00:00",
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1858,
+      "output_tokens": 348,
+      "thinking_tokens": 0,
+      "latency_ms": 5733,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 90,\n  \"vendor\": \"ROYAL TRAVELS\",\n  \"receipt_date\": \"5/7/2026\",\n  \"receipt_number\": \"8435\",\n  \"gstin\": \"\",\n  \"total_amount\": 1130,\n  \"amount_in_words\": \"One Thousand One Hundred Thirty Only\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH32 CN 8527\",\n  \"guest_name\": \"Kalyani - Tarang\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"Kalyani - Tarang\",\n    \"Nagpur\",\n    \"Hingna MIDC\",\n    \"MH32 CN 8527\",\n    \"71\",\n    \"1130/-\",\n    \"One Thousand One Hundred Thirty Only\",\n    \"5/7/2026\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 0.99,\n    \"receipt_date\": 0.95,\n    \"receipt_number\": 0.99,\n    \"gstin\": 1.0,\n    \"total_amount\": 0.95\n  }\n}",
+      "rotation": 0
+    },
+    {
+      "step": "rotated_90",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1869,
+      "output_tokens": 382,
+      "thinking_tokens": 0,
+      "latency_ms": 5672,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 180,\n  \"vendor\": \"ROYAL TRAVELS\",\n  \"receipt_date\": \"05/07/2026\",\n  \"receipt_number\": \"8435\",\n  \"gstin\": \"\",\n  \"total_amount\": 1130.0,\n  \"amount_in_words\": \"One Thousand One Hundred NiNty Only\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH32 CN 8527\",\n  \"guest_name\": \"Kalyani - Tarang\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"Kalyani - Tarang\",\n    \"Nagpur\",\n    \"Hingna MIDC\",\n    \"71\",\n    \"MH32 CN 8527\",\n    \"1130/-\",\n    \"One Thousand One Hundred NiNty Only\",\n    \"5/7/2026\"\n  ],\n  \"possible_alteration\": true,\n  \"alteration_reason\": \"Amount in figures (1130/-) does not match amount in words (One Thousand One Hundred Ninety Only).\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 0.99,\n    \"receipt_date\": 0.95,\n    \"receipt_number\": 0.99,\n    \"gstin\": 1.0,\n    \"total_amount\": 0.95\n  }\n}",
+      "rotation": 90
+    }
+  ],
+  "result": {
+    "vendor": "ROYAL TRAVELS",
+    "receipt_date": "2026-07-05",
+    "receipt_date_raw": "05/07/2026",
+    "receipt_number": "8435",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 1130.0,
+    "amount_in_words": "One Thousand One Hundred NiNty Only",
+    "amount_in_words_value": 1190.0,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH32 CN 8527",
+    "guest_name": "Kalyani - Tarang",
+    "nights": null,
+    "handwritten_marks": [
+      "Kalyani - Tarang",
+      "Nagpur",
+      "Hingna MIDC",
+      "71",
+      "MH32 CN 8527",
+      "1130/-",
+      "One Thousand One Hundred NiNty Only",
+      "5/7/2026"
+    ],
+    "possible_alteration": true,
+    "alteration_reasons": [
+      "Amount in figures (1130/-) does not match amount in words (One Thousand One Hundred Ninety Only).",
+      "amount in words reads Rs 1,190.00 but the figure reads Rs 1,130.00"
+    ],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 180,
+    "rotation_applied": 90,
+    "confidence": {
+      "vendor": 0.99,
+      "receipt_date": 0.95,
+      "receipt_number": 0.99,
+      "gstin": 1.0,
+      "total_amount": 0.95
+    },
+    "flags": [
+      "amount_words_mismatch",
+      "possible_alteration"
+    ]
+  },
+  "rotation_detected": 90
+}

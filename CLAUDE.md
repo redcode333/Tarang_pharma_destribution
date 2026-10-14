@@ -71,14 +71,25 @@ Python 3.11 lives in a conda env at `.venv/` (no `activate` needed; call the int
 - Import manually downloaded photos: `.venv/python.exe scripts/import_images.py --downloads <browser download folder>`
 - Check the photo set without moving anything: `scripts/import_images.py --downloads <any empty folder> --dry-run`
 - Data audit: `.venv/python.exe scripts/audit.py` → writes `reports/audit.md`, caches image hashes in `cache/image_stats.csv`
+- Extract photos: `.venv/python.exe scripts/run_extract.py [--split test|train|all] [--limit N] [--claims-file F]`
+  (test first; cached photos skipped; stops cleanly when free quota runs out — just re-run). `--dry-run` counts,
+  `--reprocess` re-applies post-processing to the cache with no model calls.
+- 20-claim sample: `scripts/sample_compare.py --select` (fixed list in `reports/sample20_claims.txt`), then
+  `scripts/sample_compare.py` → `reports/sample20.md`
+- Cost per photo: `.venv/python.exe scripts/cost.py --usd-inr <dated rate>`
 - Recreate the env: `conda create -y -p ./.venv python=3.11 pip`, then
-  `.venv/python.exe -m pip install pandas pillow imagehash pytest playwright python-dotenv` and
+  `.venv/python.exe -m pip install pandas pillow imagehash pytest playwright python-dotenv google-genai pydantic` and
   `.venv/python.exe -m playwright install chromium`
 
 ## Code
 
 - `src/receipts/normalize.py` — `resolve_image`, `parse_amount`, `parse_date`, `gstin_problems`
 - `scripts/audit.py` — data audit; column names are constants at the top of the file
+- `src/receipts/images.py` — EXIF transpose, rotation, downscale to 1600 px JPEG, file hash
+- `src/receipts/extract.py` — prompt, pydantic schema, rotation / JSON retries, post-processing flags, cache
+- `src/receipts/providers/` — Gemini (primary) and Groq (backup) behind one interface; `chain.py` throttles,
+  falls back on 429/503 and logs every call to `cache/usage.csv`. Keys: `GEMINI_API_KEY`, `GROQ_API_KEY`
+  in `.env`; none → `NoProviderConfigured`. Free tiers only; costs are quoted at paid-tier prices.
 - `scripts/fetch_images.py` — downloads every photo from the portal with Playwright
 - `scripts/import_images.py` — moves manual portal downloads into `data/images/`
 - `DECISIONS.md` — decision log, newest last
@@ -87,3 +98,6 @@ Python 3.11 lives in a conda env at `.venv/` (no `activate` needed; call the int
 
 - `.gitignore` covers only venv, `.env` and `__pycache__`. `predictions.csv` and `cache/` are committed on purpose.
 - Never commit the task-portal link or any token. It lives in `.env` as `PORTAL_URL`; never print it.
+  Same for `GEMINI_API_KEY` / `GROQ_API_KEY`; providers redact keys from error text.
+- The pipeline (`src/receipts/`, `scripts/run_extract.py`) must never read `reports/photo_review.csv`;
+  a test enforces it. Evaluation scripts may.

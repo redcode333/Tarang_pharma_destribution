@@ -178,3 +178,80 @@ written after looking at every photo by eye on thumbnail contact sheets.
   ground truth for orientation and readability when the service is evaluated.
 - **`data/` is committed in full**, CSVs, policy, email thread and the 467 photos (19.4 MB).
   `.env` holds the portal URL and stays out of git.
+
+## 2026-10-14 — Extraction pipeline (playbook Prompt 2, free tiers only)
+
+### Providers and quota
+
+- **Gemini is the provider, through `google-genai`; Groq is the backup.** No paid key exists.
+  Models visible to the key include `gemini-3.8-flash`, `3.6-flash`, `3.5-flash-lite` and
+  `3.1-flash-lite`; `gemini-2.5-flash` answers 404 "no longer available to new users".
+  Chain: `gemini-3.8-flash` (5 req/min) → `gemini-3.5-flash-lite` (10 req/min) → Groq
+  `llama-4-scout` if `GROQ_API_KEY` is set (it is not). Override with `GEMINI_MODELS`.
+- **Free-tier limits per model are not published.** The rate-limits page (updated 2026-10-13)
+  sends readers to AI Studio, which is per key and needs a login. The per-minute figures above
+  are conservative guesses; a 429 is the real signal. To be checked at aistudio.google.com/rate-limit.
+- **On 429 or 503 the chain moves to the next model.** 429 with a retry delay cools that model
+  for the delay; a per-day 429 drops it for the rest of the run; 5xx cools it 30 s; any other
+  error drops it. If every model is cooling for more than 15 min, or all are dropped, the run
+  stops cleanly and resumes on the next run from the cache.
+- **Sequential, not the playbook's concurrency 4.** Free-tier per-minute caps make parallel
+  calls pointless; the throttle spaces calls per model instead.
+- **`gemini-3.8-flash` answered 503 "high demand" on all 5 tries today**, so all 20 sample photos
+  were read by `gemini-3.5-flash-lite`. Every cache record names its model, so results from
+  different models are never mixed up unknowingly.
+- **Thinking is set to "low" on Flash models** (it is billed as output); Flash-Lite does not think.
+- **Order: the 190 test photos first** (needed for `predictions.csv`), then train. If the daily
+  quota runs out before train is done, evaluation uses a train sample of about 120 claims rather
+  than all 283; this file will record it if that happens.
+
+### Pipeline
+
+- **Cache keyed by the photo's sha256**, in `cache/extractions/`, with the prompt version, every
+  raw reply, tokens and latency. A cached photo is never sent again (`--refresh` overrides), and
+  cached results work with no key. `--reprocess` re-applies the deterministic post-processing to
+  stored replies with no model call; used once today (below).
+- **Every call is logged to `cache/usage.csv`**: model, outcome (ok, rate_limited, unavailable,
+  invalid_json...), tokens, latency.
+- **Prompt-injection defence, three layers:** the system prompt says photo text is never an
+  instruction and must go verbatim into `instructions_on_bill`; post-processing scans every text
+  field for instruction-like phrases and moves them out; any such text raises
+  `instruction_text_on_bill`. The stamp text is kept for the audit trail but never shown as ours.
+- **Alteration: the model's judgement plus a deterministic check** of the amount in words
+  against the figure (tolerance Rs 1). The words parser takes Indian scales (lakh, crore) and
+  the misspellings seen on slips (ninty, fourty).
+- **Rotation: one retry on the turned photo** when the model says it is turned, or a 180 retry
+  when it says unreadable. A turn the model asked for wins a tie; a speculative 180 must be
+  strictly better. Finding: Flash-Lite's rotation *direction* is unreliable (it asked for 90, then
+  for 180 more after the turn), yet it read every field right on all 3 turned photos either way.
+- **`reports/photo_review.csv` is never read by the pipeline.** It is the answer key for
+  orientation, readability and stamps; `tests/test_pipeline_isolation.py` fails if any pipeline
+  source mentions it or if `extract()` opens it. Only evaluation scripts read it.
+
+### 20-claim train sample (`reports/sample20.md`)
+
+3 stamped (2 of them altered), the 1 clerk-rejected overwritten bill, 2 turned 90, 1 upside
+down, 1 black frame, 12 normal (2 per category). 24 calls, all `ok`, none rate-limited.
+
+- **Hard cases caught: 8 of 8.** All 3 stamps flagged; all 3 altered bills flagged (on CLM-30919
+  the model read the original printed Rs 300, where the clerk typed the altered 800); all 3
+  turned photos detected and read correctly; the black frame flagged unreadable.
+- **One debatable alteration flag:** Royal Travels CLM-30868 reads 1130/- in figures but 1190 in
+  words, with the tens word overwritten. The clerk approved it. Sending it to review is defensible.
+- **Agreement with the clerk:** date 19/19, bill number 19/19, amount 18/19 (the miss is the
+  altered bill, where the model is right), GSTIN 18/20 (both misses are clerk errors: one blank
+  where the bill shows a GSTIN, one with the checksum-failing 27H1F... typo), vendor 13/19 plus
+  2 close spellings.
+- **The vendor misses are one pattern:** on fuel bills the model returns the oil-company brand
+  ("BPCL", "IndianOil SHREE SAI PETROLEUM") where the clerk types the dealer ("Laxmi Auto Fuels").
+  Prompt fix for the evaluation round (Prompt 3): vendor = the outlet / dealer name, not the brand.
+
+### Cost per photo (paid tier, for the memo)
+
+Measured on the 20: 1.2 calls, 2,212 input and 357 output tokens per photo (Flash-Lite, no
+thinking). At the paid Standard prices on https://ai.google.dev/gemini-api/docs/pricing (updated
+2026-10-14): Flash-Lite 3.5 $0.0016 per photo, 3.8 Flash $0.0030 per photo, before its thinking
+tokens (none measured yet, since every call fell back to Flash-Lite). 3.8 Flash doubles in price
+on 2027-01-01. **Rupees need a dated USD→INR rate**; `scripts/cost.py --usd-inr <rate>` takes it
+as an input instead of a figure baked in. Either way it is well under one rupee per photo against
+the Rs 12.6–31.7 a clerk costs per claim.

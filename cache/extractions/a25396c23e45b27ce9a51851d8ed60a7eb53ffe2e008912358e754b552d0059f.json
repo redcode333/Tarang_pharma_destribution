@@ -1,0 +1,71 @@
+{
+  "sha256": "a25396c23e45b27ce9a51851d8ed60a7eb53ffe2e008912358e754b552d0059f",
+  "file": "IMG-20260710-WA0167.jpg",
+  "prompt_version": "2026-10-14.1",
+  "created_utc": "2026-10-14T16:22:50+00:00",
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1842,
+      "output_tokens": 208,
+      "thinking_tokens": 0,
+      "latency_ms": 3405,
+      "raw_text": "{\n  \"is_receipt\": false,\n  \"readable\": false,\n  \"rotation_needed\": 0,\n  \"vendor\": \"\",\n  \"receipt_date\": \"\",\n  \"receipt_number\": \"\",\n  \"gstin\": \"\",\n  \"total_amount\": null,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 0,\n    \"receipt_date\": 0,\n    \"receipt_number\": 0,\n    \"gstin\": 0,\n    \"total_amount\": 0\n  }\n}",
+      "rotation": 0
+    },
+    {
+      "step": "rotated_180",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1853,
+      "output_tokens": 218,
+      "thinking_tokens": 0,
+      "latency_ms": 2266,
+      "raw_text": "{\n  \"is_receipt\": false,\n  \"readable\": false,\n  \"rotation_needed\": 0,\n  \"vendor\": \"\",\n  \"receipt_date\": \"\",\n  \"receipt_number\": \"\",\n  \"gstin\": \"\",\n  \"total_amount\": null,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 0.0,\n    \"receipt_date\": 0.0,\n    \"receipt_number\": 0.0,\n    \"gstin\": 0.0,\n    \"total_amount\": 0.0\n  }\n}",
+      "rotation": 180
+    }
+  ],
+  "result": {
+    "vendor": "",
+    "receipt_date": "",
+    "receipt_date_raw": "",
+    "receipt_number": "",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": null,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": false,
+    "readable": false,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 0.0,
+      "receipt_date": 0.0,
+      "receipt_number": 0.0,
+      "gstin": 0.0,
+      "total_amount": 0.0
+    },
+    "flags": [
+      "not_a_receipt",
+      "unreadable",
+      "low_confidence:vendor",
+      "low_confidence:receipt_date",
+      "low_confidence:receipt_number",
+      "low_confidence:total_amount"
+    ]
+  },
+  "rotation_detected": 0
+}

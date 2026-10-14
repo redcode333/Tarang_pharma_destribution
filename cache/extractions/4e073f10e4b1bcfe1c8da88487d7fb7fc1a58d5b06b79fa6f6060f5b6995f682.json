@@ -1,0 +1,72 @@
+{
+  "sha256": "4e073f10e4b1bcfe1c8da88487d7fb7fc1a58d5b06b79fa6f6060f5b6995f682",
+  "file": "IMG-20260618-WA0208.jpg",
+  "prompt_version": "2026-10-14.1",
+  "created_utc": "2026-10-14T16:22:38+00:00",
+  "status": "ok",
+  "model": "gemini-3.5-flash-lite",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1834,
+      "output_tokens": 299,
+      "thinking_tokens": 0,
+      "latency_ms": 4266,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 180,\n  \"vendor\": \"PUNJABI TADKA DHABA\",\n  \"receipt_date\": \"13/06/2026\",\n  \"receipt_number\": \"8178\",\n  \"gstin\": \"\",\n  \"total_amount\": 125,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"13/6/2026\",\n    \"45\",\n    \"80\",\n    \"125\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [\n    \"Thank You - Visit Again\"\n  ],\n  \"confidence\": {\n    \"vendor\": 0.99,\n    \"receipt_date\": 0.95,\n    \"receipt_number\": 0.99,\n    \"gstin\": 1.0,\n    \"total_amount\": 0.99\n  }\n}",
+      "rotation": 0
+    },
+    {
+      "step": "rotated_180",
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "input_tokens": 1845,
+      "output_tokens": 301,
+      "thinking_tokens": 0,
+      "latency_ms": 2780,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"PUNJABI TADKA DHABA\",\n  \"receipt_date\": \"13/06/2026\",\n  \"receipt_number\": \"8178\",\n  \"gstin\": \"\",\n  \"total_amount\": 125,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"13/6/2026\",\n    \"8178\",\n    \"3 Chai\",\n    \"45\",\n    \"1 Rice\",\n    \"80\",\n    \"125\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 1.0,\n    \"receipt_date\": 1.0,\n    \"receipt_number\": 1.0,\n    \"gstin\": 1.0,\n    \"total_amount\": 1.0\n  }\n}",
+      "rotation": 180
+    }
+  ],
+  "result": {
+    "vendor": "PUNJABI TADKA DHABA",
+    "receipt_date": "2026-06-13",
+    "receipt_date_raw": "13/06/2026",
+    "receipt_number": "8178",
+    "gstin": "",
+    "gstin_valid": false,
+    "total_amount": 125.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [
+      "13/6/2026",
+      "8178",
+      "3 Chai",
+      "45",
+      "1 Rice",
+      "80",
+      "125"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 180,
+    "confidence": {
+      "vendor": 1.0,
+      "receipt_date": 1.0,
+      "receipt_number": 1.0,
+      "gstin": 1.0,
+      "total_amount": 1.0
+    },
+    "flags": []
+  },
+  "rotation_detected": 180
+}
