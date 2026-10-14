@@ -29,6 +29,7 @@
     "gstin_status": "valid",
     "gstin_read": "27YUFFZ9311K2ZV",
     "total_amount": 914.0,
+    "total_as_read": 914.0,
     "amount_in_words": "",
     "amount_in_words_value": null,
     "pre_tax_amount": 870.0,

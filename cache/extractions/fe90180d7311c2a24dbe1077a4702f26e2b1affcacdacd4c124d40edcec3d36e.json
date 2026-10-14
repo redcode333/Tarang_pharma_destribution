@@ -28,7 +28,8 @@
     "gstin_valid": false,
     "gstin_status": "",
     "gstin_read": "",
-    "total_amount": 1313.77,
+    "total_amount": 313.77,
+    "total_as_read": 1313.77,
     "amount_in_words": "",
     "amount_in_words_value": null,
     "pre_tax_amount": null,
@@ -53,7 +54,8 @@
       "total_amount": 0.9
     },
     "flags": [
-      "possible_alteration"
+      "possible_alteration",
+      "total_original_restored"
     ]
   }
 }

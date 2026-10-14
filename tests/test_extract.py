@@ -125,7 +125,7 @@ def test_model_flag_on_other_evidence_stands_even_if_words_agree():
 
 def test_a_leading_digit_added_is_still_an_alteration():
     r = postprocess(parse_reply(reply(total_amount=1550, amount_in_words="Five Hundred Fifty only")))
-    assert "possible_alteration" in r["flags"] and r["total_amount"] == 1550
+    assert "possible_alteration" in r["flags"] and r["total_amount"] == 550 and r["total_as_read"] == 1550
 
 
 def test_rounding_in_words_is_not_an_alteration():
@@ -334,3 +334,27 @@ def test_throttle_spaces_calls_to_the_rpm():
     chain.generate("s", "p", b"x")
     chain.generate("s", "p", b"x")
     assert abs(sum(slept) - 10) < 0.01
+
+
+# --- original amount on altered bills ---------------------------------------------
+
+@pytest.mark.parametrize("figure, words, pre_tax, reasons, expected", [
+    (1940, 940, None, "", 940),                      # words, a digit added in front
+    (1390, 390, None, "", 390),
+    (1130, 1190, None, "", None),                    # words differ but are not a prefix case: keep figure
+    (1225, None, None, "150 + 30 + 45 = 225", 225),  # leading 1, quoted line items
+    (1268, None, 255, "", 268),                      # leading 1, subtotal + GST supports it
+    (1313.77, None, None, "Amount (Rs) 313.77", 313.77),
+    (1500, None, None, "looks odd", None),           # nothing supports 500
+    (300, None, None, "amount above is 300.00", None),
+])
+def test_original_amount(figure, words, pre_tax, reasons, expected):
+    from receipts.extract import original_amount
+    assert original_amount(figure, words, pre_tax, reasons) == expected
+
+
+def test_altered_bill_reports_the_genuine_amount_and_keeps_the_flag():
+    r = postprocess(parse_reply(reply(total_amount=1212.4, pre_tax_amount=180, possible_alteration=True,
+                                      alteration_reason="blue 1 in front; 180.00 + 32.40 = 212.40")))
+    assert r["total_amount"] == 212.4 and r["total_as_read"] == 1212.4
+    assert {"possible_alteration", "total_original_restored"} <= set(r["flags"])

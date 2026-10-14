@@ -195,6 +195,32 @@ def _scrub_instructions(raw: RawExtraction) -> list[str]:
     return list(dict.fromkeys(found))
 
 
+def _mentions(text: str, value: float) -> bool:
+    """The model's reasoning quotes this amount (e.g. "150 + 30 + 45 = 225")."""
+    nums = {round(float(n.replace(",", "")), 2) for n in re.findall(r"\d[\d,]*(?:\.\d+)?", text)}
+    return round(value, 2) in nums
+
+
+def original_amount(figure: float | None, words: float | None, pre_tax: float | None, reasons: str) -> float | None:
+    """What an altered bill genuinely said, or None if nothing on the bill supports a value.
+
+    1. The amount in words, when the figure is the words amount with digits added in front
+       (1940 vs "Nine Hundred Forty"). Words that merely differ (1130 vs 1190) are not trusted:
+       there the words may be the altered part.
+    2. A "1" inked in front of a three-digit total: figure − 1000, when the model's own reading of
+       the untouched parts quotes that amount, or the printed subtotal plus GST (up to 28%) does.
+    Otherwise the figure as read stands (the model may already have read the printed original)."""
+    if figure is None:
+        return None
+    if words is not None and words < figure and (figure - words) % 1000 == 0             and str(f"{figure:g}").endswith(f"{words:g}"):
+        return words
+    if 1000 <= figure < 2000:
+        cand = round(figure - 1000, 2)
+        if _mentions(reasons, cand) or (pre_tax is not None and pre_tax <= cand <= pre_tax * 1.28 + 1):
+            return cand
+    return None
+
+
 def slash_misread(figure: float, words: float) -> bool:
     """True when the figure is the words amount with one extra trailing digit (390 -> 3907, 480 -> 4801),
     the way a handwritten "/-" after the amount gets read."""
@@ -245,8 +271,13 @@ def postprocess(raw: RawExtraction, rotation_applied: int = 0, vendors: VendorBo
         flags.append("amount_words_mismatch")
         reasons.append(f"amount in words reads Rs {words_value:,.2f} but the figure reads Rs {raw.total_amount:,.2f}")
     altered = model_altered or "amount_words_mismatch" in flags
+    total_as_read = raw.total_amount
     if altered:
         flags.append("possible_alteration")
+        original = original_amount(raw.total_amount, words_value, raw.pre_tax_amount, " ".join(reasons))
+        if original is not None and original != raw.total_amount:
+            flags.append("total_original_restored")
+            raw.total_amount = original
     if instructions:
         flags.append("instruction_text_on_bill")
     for f in CORE_FIELDS:
@@ -263,6 +294,7 @@ def postprocess(raw: RawExtraction, rotation_applied: int = 0, vendors: VendorBo
         "gstin_status": gstin_status,
         "gstin_read": raw.gstin,
         "total_amount": raw.total_amount,
+        "total_as_read": total_as_read,
         "amount_in_words": raw.amount_in_words,
         "amount_in_words_value": words_value,
         "pre_tax_amount": raw.pre_tax_amount,

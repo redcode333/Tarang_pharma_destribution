@@ -2,7 +2,7 @@
 
 Mismatches between the model and the clerk, each checked against the photo by a person. Verdicts: **clerk_error** (the photo agrees with the model), **model_error**, **both_wrong**, **ambiguous** (the photo does not settle it). Source: `reports/adjudications.csv`.
 
-Reviewed: 47. ambiguous: 0, both_wrong: 1, clerk_error: 38, model_error: 8
+Reviewed: 53. ambiguous: 0, both_wrong: 1, clerk_error: 44, model_error: 8
 
 ### CLM-30919 · total_amount · clerk_error
 `data/images/IMG_20260708_103658.jpg`  
@@ -238,6 +238,36 @@ Printed AWB No : SL43722202; clerk dropped a digit.
 `data/images/IMG-20260715-WA0155.jpg`  
 model: `SHREE SAI PETROLEUM` · clerk: `Shree Shirdi Sai Petro` · photo says: `SHREE SAI PETROLEUM`  
 Header reads SHREE SAI PETROLEUM; clerk typed 'Shree Shirdi Sai Petro'.
+
+### CLM-30932 · total_amount · clerk_error
+`data/images/IMG_20260708_181536.jpg`  
+model: `225.0` · clerk: `1225.0` · photo says: `225`  
+Items 150 + 30 + 45 = 225; total written 1225 with a 1 in front. Clerk typed the altered 1225.
+
+### CLM-31009 · total_amount · clerk_error
+`data/images/IMG_20260711_124855.jpg`  
+model: `536.01` · clerk: `1536.01` · photo says: `536.01`  
+Printed Amount (Rs): 536.01; a blue 1 inked before the TOTAL makes 1536.01. Clerk typed 1536.01 (and rejected the claim as overwritten).
+
+### CLM-30790 · total_amount · clerk_error
+`data/images/IMG-20260702-WA0131.jpg`  
+model: `550.0` · clerk: `1550.0` · photo says: `550`  
+Amount Rs 1550/- but words read Five Hundred Fifty only; the 1 was added. Clerk typed 1550.
+
+### CLM-30764 · total_amount · clerk_error
+`data/images/IMG-20260630-WA0097.jpg`  
+model: `268.0` · clerk: `1268.0` · photo says: `268`  
+Subtotal 255 + CGST 6.38 + SGST 6.38 + 0.25 = 268.00; a blue 1 makes 1268.00. Clerk typed 1268.
+
+### CLM-30508 · total_amount · clerk_error
+`data/images/IMG_20260617_205508.jpg`  
+model: `212.4` · clerk: `1212.4` · photo says: `212.40`  
+Freight 180.00 + GST 32.40 = 212.40; a blue 1 makes 1212.40. Clerk typed 1212.40.
+
+### CLM-30623 · total_amount · clerk_error
+`data/images/IMG_20260622_191832.jpg`  
+model: `940.0` · clerk: `1940.0` · photo says: `940`  
+Amount 1,940/- but words Nine Hundred Forty only; the 1 was added. Clerk typed 1940.
 
 ## Settled automatically
 

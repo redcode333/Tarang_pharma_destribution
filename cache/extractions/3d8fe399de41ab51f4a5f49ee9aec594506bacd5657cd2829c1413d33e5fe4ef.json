@@ -29,6 +29,7 @@
     "gstin_status": "valid",
     "gstin_read": "27DPAFU4120X1ZM",
     "total_amount": 308.84,
+    "total_as_read": 308.84,
     "amount_in_words": "",
     "amount_in_words_value": null,
     "pre_tax_amount": null,

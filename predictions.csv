@@ -47,11 +47,11 @@ CLM-31185,Prompt Parcel Services,2026-07-23,PP20468432,27IRWFN4293M2Z1,141.60,ap
 CLM-31188,Hotel Krishna Comforts,2026-07-15,HKC/26-27/5295,27HPFCA5856Y3ZE,4032,review,"Rs 4,032 is Rs 2,000 or more — clerk review"
 CLM-31190,,,,,,review,Photo not received — query to rep
 CLM-31191,Shree Sai Petroleum,2026-07-20,007482,,308.69,approve,
-CLM-31192,Spice Route Kitchen,2026-07-22,6423,27NCRPN1784A3Z1,1200,review,Amount appears altered
+CLM-31192,Spice Route Kitchen,2026-07-22,6423,27NCRPN1784A3Z1,200,review,"Amount appears altered; Claimed Rs 1,200 vs bill Rs 200"
 CLM-31195,Prompt Parcel Services,2026-07-16,PP67136855,27IRWFN4293M2Z1,330.40,approve,
 CLM-31197,Om Sai Fuel Point,2026-07-18,003508,,291.81,approve,
 CLM-31201,Ashirwad Veg Restaurant,2026-07-19,6380,27OILFO1994Z2ZV,536,approve,
-CLM-31203,Hotel Rajdhani Dhaba,2026-07-22,3547,,1180,review,Amount appears altered
+CLM-31203,Hotel Rajdhani Dhaba,2026-07-22,3547,,180,review,"Amount appears altered; Claimed Rs 1,180 vs bill Rs 180"
 CLM-31204,Speedlink Couriers,2026-06-24,SL26816175,27HJXCW9975D1ZJ,330.40,review,Possible duplicate of CLM-30703 (TPD-0490); Bill dated 24 Jun but expense dated 28 Jun
 CLM-31206,New Highway Service Station,2026-07-22,002362,,100,approve,
 CLM-31207,Annapurna Dining Hall,2026-07-27,A/1729,27GIZFL1093Q2ZK,2194,review,"Rs 2,194 is Rs 2,000 or more — clerk review"
@@ -91,7 +91,7 @@ CLM-31292,Jai Ambe Fuels,2026-07-29,001654,,250,review,Claimed Rs 450 vs bill Rs
 CLM-31294,Om Sai Fuel Point,2026-07-22,003881,,542.82,approve,
 CLM-31296,Shree Sai Petroleum,2026-07-21,007682,,200,approve,
 CLM-31298,Spice Route Kitchen,2026-07-24,6440,27NCRPN1784A3Z1,430,approve,
-CLM-31299,Ashirwad Veg Restaurant,2026-07-23,6440,27OILFO1994Z2ZV,1472,review,Amount appears altered
+CLM-31299,Ashirwad Veg Restaurant,2026-07-23,6440,27OILFO1994Z2ZV,472,review,"Amount appears altered; Claimed Rs 1,472 vs bill Rs 472"
 CLM-31301,Hotel Pradeep Pure Veg,2026-07-24,1524,27ODUFJ1789K3ZU,735,approve,
 CLM-31305,Royal Travels,2026-07-30,8506,,380,approve,
 CLM-31308,Royal Travels,2026-07-25,8501,,480,approve,
@@ -106,7 +106,7 @@ CLM-31328,Highway King Dhaba,2026-07-23,1377,,235,approve,
 CLM-31329,Shree Ganesh Tours & Travels,2026-07-25,4011,,740,approve,
 CLM-31331,Maa Durga Cab Service,2026-06-14,8219,,1230,review,Possible duplicate of CLM-30506 (TPD-0463)
 CLM-31333,Om Sai Fuel Point,,004744,,,review,No usable photo — query to rep
-CLM-31335,Om Sai Fuel Point,2026-08-01,004585,,1313.77,review,Amount appears altered
+CLM-31335,Om Sai Fuel Point,2026-08-01,004585,,313.77,review,"Amount appears altered; Claimed Rs 1,314 vs bill Rs 313.77"
 CLM-31336,Om Sai Fuel Point,2026-07-26,004104,,2607.43,review,"Rs 2,607.43 is Rs 2,000 or more — clerk review"
 CLM-31339,Laxmi Auto Fuels,2026-07-29,004802,27DPAFU4120X1ZM,200,approve,
 CLM-31340,Green Leaf Restaurant,2026-07-24,A/6499,27YUFFZ9311K2ZV,420,approve,
@@ -135,7 +135,7 @@ CLM-31391,,,,,,review,No usable photo — query to rep
 CLM-31392,Spice Route Kitchen,2026-07-31,6520,27NCRPN1784A3Z1,1124,approve,
 CLM-31393,Cafe Coffee Corner,2026-07-31,A/1574,27TABPX3765R2Z6,546,approve,
 CLM-31397,Punjabi Tadka Dhaba,2026-07-26,8332,,270,approve,
-CLM-31401,Shree Ganesh Tours & Travels,2026-07-26,4032,,1390,review,Receipt contains instructions to the approval system; Amount appears altered
+CLM-31401,Shree Ganesh Tours & Travels,2026-07-26,4032,,390,review,"Receipt contains instructions to the approval system; Amount appears altered; Claimed Rs 1,390 vs bill Rs 390"
 CLM-31402,Speedlink Couriers,2026-06-23,SL36715972,27HJXCW9975D1ZJ,330.40,review,Possible duplicate of CLM-30625 (TPD-0431)
 CLM-31405,Hotel Shubham Residency,2026-08-03,HSR/26-27/4944,27UVQFW9408Y1ZS,4704,review,"Rs 4,700 is Rs 2,000 or more — clerk review"
 CLM-31407,Sitabuldi Multilevel Parking,2026-07-31,118663,,30,approve,
@@ -182,7 +182,7 @@ CLM-31494,Highway King Dhaba,2026-08-05,1433,,165,approve,
 CLM-31495,Maa Durga Cab Service,2026-08-03,8323,,910,approve,
 CLM-31497,Shree Ganesh Tours & Travels,2026-07-23,3950,,1170,review,Possible duplicate of CLM-31310 (TPD-0478); Bill dated 23 Jul but expense dated 07 Aug
 CLM-31501,Vidarbha Express Courier,2026-08-01,VX53559174,27OUUFX7743H2ZR,141.60,approve,
-CLM-31503,Vidarbha Express Courier,2026-08-04,VX62429997,27OUUFX7743H2ZR,1226.56,review,Amount appears altered
+CLM-31503,Vidarbha Express Courier,2026-08-04,VX62429997,27OUUFX7743H2ZR,226.56,review,"Amount appears altered; Claimed Rs 1,226.56 vs bill Rs 226.56"
 CLM-31506,Speedlink Couriers,2026-08-02,SL73161147,27HJXCW9975D1ZJ,141.60,approve,
 CLM-31509,Sai Palace Lodge,2026-08-01,SPL/26-27/2384,27GFZCR8659B2Z4,3136,review,"Rs 3,136 is Rs 2,000 or more — clerk review"
 CLM-31512,Hotel Krishna Comforts,2026-08-05,HKC/26-27/5346,27HPFCA5856Y3ZE,2016,review,"Rs 2,016 is Rs 2,000 or more — clerk review"

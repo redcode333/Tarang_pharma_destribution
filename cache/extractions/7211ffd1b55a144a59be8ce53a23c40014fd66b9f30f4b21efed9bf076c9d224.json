@@ -27,7 +27,8 @@
     "gstin_valid": false,
     "gstin_status": "",
     "gstin_read": "",
-    "total_amount": 1940.0,
+    "total_amount": 940.0,
+    "total_as_read": 1940.0,
     "amount_in_words": "Nine Hundred Forty only",
     "amount_in_words_value": 940.0,
     "pre_tax_amount": null,
@@ -67,6 +68,7 @@
     "flags": [
       "amount_words_mismatch",
       "possible_alteration",
+      "total_original_restored",
       "instruction_text_on_bill"
     ]
   },

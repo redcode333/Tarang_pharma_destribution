@@ -29,6 +29,7 @@
     "gstin_status": "",
     "gstin_read": "",
     "total_amount": 510.0,
+    "total_as_read": 510.0,
     "amount_in_words": "Five Hundred Ten only",
     "amount_in_words_value": 510.0,
     "pre_tax_amount": null,

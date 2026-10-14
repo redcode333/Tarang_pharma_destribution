@@ -39,6 +39,7 @@
     "gstin_status": "",
     "gstin_read": "",
     "total_amount": null,
+    "total_as_read": null,
     "amount_in_words": "",
     "amount_in_words_value": null,
     "pre_tax_amount": null,

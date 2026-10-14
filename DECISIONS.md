@@ -372,3 +372,25 @@ Deadline: about 3 pm IST, Thursday 15 Oct 2026.
   51% for mapping to the clerk's most common spelling.
 - **2 train photos are still not extracted** (quota). They only affect train evaluation (shown as
   "Photo not read yet"); every test photo is extracted.
+
+## 2026-10-15 — Altered amounts
+
+- **total_amount = what the bill genuinely says; alterations are reported in the reason.**
+  Q: on an altered bill, output the inked figure or the original? D: the original, when the
+  bill supports it: (1) the amount in words, if the figure is the words amount with digits added
+  in front (1940 vs "Nine Hundred Forty"); (2) for a "1" inked in front of a three-digit total,
+  figure − 1000, when the model's reading of the untouched parts quotes that amount (line items,
+  "Amount (Rs)" line) or the printed subtotal plus up to 28% GST brackets it. Otherwise the
+  figure as read stands. Words that merely differ from the figure (1130 vs 1190) are not used:
+  there the words may be the altered part. Decision stays review with "Amount appears altered".
+  The read figure is kept as `total_as_read`. Applied with `--reprocess`, no model calls.
+- **Alteration flag precision on train: 8 flagged, all 8 opened.** 7 are clear alterations
+  (a "1" inked before the total on 4; figures vs words with a digit added on 2; a digit
+  overwritten on 1). 1 is debatable: CLM-30868 (Royal Travels) has the tens word of the amount
+  in words overwritten, figure clean, claim equal to the figure. Policy calls any altered bill
+  misconduct, so it stays a review; no rule was loosened. No clear false alarms, so the rule
+  was not changed. No test row was edited by hand.
+- The 6 train altered bills where the clerk typed the inked figure were added to
+  `reports/adjudications.csv` as clerk errors with the original amount.
+- Test: 6 claims flagged altered; predictions now carry 200, 180, 472, 313.77, 390, 226.56
+  instead of 1200, 1180, 1472, 1313.77, 1390, 1226.56.

@@ -37,7 +37,7 @@ CLM-30499,approved,approve,review,acceptable caution,"Rs 2,714.11 is Rs 2,000 or
 CLM-30502,approved,approve,approve,,,220.0,0.0,
 CLM-30503,approved,approve,approve,,,310.0,0.0,
 CLM-30506,approved,approve,approve,,,1230.0,0.0,
-CLM-30508,approved,approve,review,clerk miss,Amount appears altered,1212.4,1000.0,"altered: leading 1 added (estimate Rs 1,000)"
+CLM-30508,approved,approve,review,clerk miss,"Amount appears altered; Claimed Rs 1,212.40 vs bill Rs 212.40",1212.4,1000.0000000000001,altered: printed amount
 CLM-30509,approved,approve,review,acceptable caution,"Rs 2,016 is Rs 2,000 or more — clerk review",2016.0,0.0,
 CLM-30510,approved,approve,review,acceptable caution,"Rs 4,032 is Rs 2,000 or more — clerk review",4032.0,0.0,
 CLM-30511,approved,approve,approve,,,488.9,0.0,
@@ -84,11 +84,11 @@ CLM-30603,approved,approve,approve,,,100.0,0.0,
 CLM-30606,approved,approve,approve,,,1120.0,0.0,
 CLM-30607,approved,approve,approve,,,226.56,0.0,
 CLM-30608,approved,approve,approve,,,210.0,0.0,
-CLM-30611,approved,approve,approve,,,339.84,0.0,
+CLM-30611,approved,approve,review,acceptable caution,GSTIN unreadable,339.84,0.0,
 CLM-30614,approved,approve,approve,,,150.0,0.0,
 CLM-30618,approved,approve,approve,,,910.0,0.0,
 CLM-30620,approved,approve,approve,,,262.0,0.0,
-CLM-30623,approved,approve,review,clerk miss,Receipt contains instructions to the approval system; Amount appears altered,1940.0,1000.0,altered: amount in words
+CLM-30623,approved,approve,review,clerk miss,"Receipt contains instructions to the approval system; Amount appears altered; Claimed Rs 1,940 vs bill Rs 940",1940.0,1000.0,altered: amount in words
 CLM-30625,approved,approve,approve,,,330.4,0.0,
 CLM-30629,approved,approve,approve,,,30.0,0.0,
 CLM-30630,approved,approve,approve,,,200.0,0.0,
@@ -150,7 +150,7 @@ CLM-30753,approved,approve,approve,,,500.0,0.0,
 CLM-30757,approved,approve,approve,,,400.0,0.0,
 CLM-30759,approved,approve,approve,,,250.0,0.0,
 CLM-30762,approved,approve,approve,,,200.0,0.0,
-CLM-30764,approved,approve,review,clerk miss,Amount appears altered,1268.0,1000.0,"altered: leading 1 added (estimate Rs 1,000)"
+CLM-30764,approved,approve,review,clerk miss,"Amount appears altered; Claimed Rs 1,268 vs bill Rs 268",1268.0,1000.0,altered: printed amount
 CLM-30766,approved,approve,approve,,,640.0,0.0,
 CLM-30767,approved,approve,review,clerk miss,Possible duplicate of CLM-30484 (TPD-0436),178.0,178.0,repeat of an earlier bill (whole amount)
 CLM-30769,approved,approve,approve,,,390.0,0.0,
@@ -161,7 +161,7 @@ CLM-30779,approved,approve,approve,,,500.0,0.0,
 CLM-30780,approved,approve,approve,,,580.0,0.0,
 CLM-30783,approved,approve,approve,,,578.0,0.0,
 CLM-30787,approved,approve,approve,,,220.0,0.0,
-CLM-30790,approved,approve,review,clerk miss,Amount appears altered,1550.0,1000.0,altered: amount in words
+CLM-30790,approved,approve,review,clerk miss,"Amount appears altered; Claimed Rs 1,550 vs bill Rs 550",1550.0,1000.0,altered: amount in words
 CLM-30794,approved,approve,approve,,,339.84,0.0,
 CLM-30796,approved,approve,approve,,,339.84,0.0,
 CLM-30797,approved,approve,review,acceptable caution,"Rs 3,136 is Rs 2,000 or more — clerk review",3136.0,0.0,
@@ -218,7 +218,7 @@ CLM-30920,approved,approve,approve,,,482.58,0.0,
 CLM-30923,approved,approve,review,acceptable caution,"Rs 2,950 is Rs 2,000 or more — clerk review",2950.0,0.0,
 CLM-30925,approved,approve,approve,,,100.0,0.0,
 CLM-30929,approved,approve,approve,,,420.0,0.0,
-CLM-30932,approved,approve,review,clerk miss,Amount appears altered,1225.0,1000.0,"altered: leading 1 added (estimate Rs 1,000)"
+CLM-30932,approved,approve,review,clerk miss,"Amount appears altered; Claimed Rs 1,225 vs bill Rs 225",1225.0,1000.0,altered: printed amount
 CLM-30934,approved,approve,review,clerk miss,"Claimed Rs 1,520 vs bill Rs 1,020",1520.0,500.0,claimed above the bill
 CLM-30937,approved,approve,approve,,,212.4,0.0,
 CLM-30940,approved,approve,review,acceptable caution,"Rs 6,272 is Rs 2,000 or more — clerk review",6272.0,0.0,
@@ -245,7 +245,7 @@ CLM-30996,approved,approve,approve,,,370.0,0.0,
 CLM-31000,approved,approve,approve,,,141.6,0.0,
 CLM-31004,approved,approve,review,acceptable caution,"Rs 2,016 is Rs 2,000 or more — clerk review",2016.0,0.0,
 CLM-31007,approved,approve,approve,,,20.0,0.0,
-CLM-31009,rejected,review,review,,Amount appears altered,1536.01,1000.0,"altered: leading 1 added (estimate Rs 1,000)"
+CLM-31009,rejected,review,review,,"Amount appears altered; Claimed Rs 1,536.01 vs bill Rs 536.01",1536.01,1000.0,altered: printed amount
 CLM-31010,approved,approve,approve,,,819.0,0.0,
 CLM-31011,approved,approve,approve,,,130.0,0.0,
 CLM-31013,approved,approve,approve,,,330.0,0.0,

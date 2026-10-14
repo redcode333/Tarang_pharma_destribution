@@ -29,6 +29,7 @@
     "gstin_status": "valid",
     "gstin_read": "27XMECH9812R2ZH",
     "total_amount": 462.0,
+    "total_as_read": 462.0,
     "amount_in_words": "",
     "amount_in_words_value": null,
     "pre_tax_amount": 440.0,

@@ -29,6 +29,7 @@
     "gstin_status": "valid",
     "gstin_read": "27HPFCA5856Y3ZE",
     "total_amount": 4032.0,
+    "total_as_read": 4032.0,
     "amount_in_words": "Rupees Four Thousand Thirty Two Only",
     "amount_in_words_value": 4032.0,
     "pre_tax_amount": 3600.0,

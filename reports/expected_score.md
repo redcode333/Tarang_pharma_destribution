@@ -13,13 +13,13 @@ clerk's typing, the "vs clerk" column is.
 | field | holdout vs clerk | holdout after photo check | expected on test |
 |---|---|---|---|
 | receipt_date | 98.5% | 100% | 98-100% |
-| total_amount (to the paisa) | 98.0% | 100% | 97-100% |
+| total_amount (to the paisa) | 95.4% | 100% | 95-100% |
 | receipt_number | 93.9% | 99.0% | 94-99% |
 | gstin (blank = blank counts) | 91.8% | 99.0% | 92-99% |
 | vendor, fuzzy (token_sort_ratio >= 90) | 93.9% | 96.4% | 94-96% |
 | vendor, normalised exact (case and punctuation ignored) | 79.1% | 81.6% | ~80% |
 | vendor, exact string as written in `predictions.csv` | 58.2% | - | 55-60% |
-| **all five fields (fuzzy vendor)** | **95.2%** | **98.9%** | **95-99%** |
+| **all five fields (fuzzy vendor)** | **94.7%** | **98.9%** | **95-99%** |
 
 **Which vendor match the scorer probably uses.** Exact string matching would make vendor a test
 of spelling, not of reading: the clerk alone writes about 70 vendors 117 ways ("Laxmi Auto Fuels",
@@ -31,9 +31,12 @@ did worse (51%). The gap to 100% is mostly the clerk adding a town ("- Wardha", 
 dropping "Hotel"; the photo shows what we output.
 
 **Caveats.**
-- Altered bills: where a "1" was added in front of the total in ink, we output the figure as it
-  now reads (e.g. 1212.40) and send the claim to review. If the answer key holds the original
-  (212.40), those rows score as amount misses: at most the 6 test claims flagged as altered.
+- Altered bills: `total_amount` is what the bill genuinely says, and the alteration is reported
+  in the reason. Where a "1" was inked in front of the total (1212.40) we output the original
+  (212.40) when the bill's untouched parts support it (items or subtotal + GST); where figures
+  and words disagree by an added digit, the words. 6 test claims. On train the clerk typed the
+  inked figure on these, which is why amount "vs clerk" fell from 98.0% to 95.4% while "after
+  photo check" stays 100%. If the answer key holds the inked figure, these 6 rows lose the amount.
 - The amount and date numbers rest on 196 holdout claims; one miss moves them by half a point.
 - GSTIN repair (single 0/8, 5/S, 1/I, 2/Z, 8/B, 0/O swap that makes the checksum pass) fixed 5 of 6
   known misreads on train, all by the checksum alone; the sixth (a dropped digit) stays as read

@@ -29,6 +29,7 @@
     "gstin_status": "valid",
     "gstin_read": "27PMLCE5129S3ZO",
     "total_amount": 4704.0,
+    "total_as_read": 4704.0,
     "amount_in_words": "Rupees Four Thousand Seven Hundred Four Only",
     "amount_in_words_value": 4704.0,
     "pre_tax_amount": 4200.0,

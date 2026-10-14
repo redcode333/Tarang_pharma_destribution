@@ -29,6 +29,7 @@
     "gstin_status": "valid",
     "gstin_read": "270ILF01994Z2ZV",
     "total_amount": 546.0,
+    "total_as_read": 546.0,
     "amount_in_words": "",
     "amount_in_words_value": null,
     "pre_tax_amount": 520.0,

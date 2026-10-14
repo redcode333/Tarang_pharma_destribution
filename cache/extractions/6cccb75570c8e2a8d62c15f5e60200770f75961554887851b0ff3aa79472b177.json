@@ -29,6 +29,7 @@
     "gstin_status": "valid",
     "gstin_read": "27NCRPN1784A3Z1",
     "total_amount": 1113.0,
+    "total_as_read": 1113.0,
     "amount_in_words": "",
     "amount_in_words_value": null,
     "pre_tax_amount": 1060.0,

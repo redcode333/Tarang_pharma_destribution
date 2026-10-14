@@ -29,6 +29,7 @@
     "gstin_status": "valid",
     "gstin_read": "27IRWFN4293M2Z1",
     "total_amount": 141.6,
+    "total_as_read": 141.6,
     "amount_in_words": "",
     "amount_in_words_value": null,
     "pre_tax_amount": 120.0,

@@ -29,6 +29,7 @@
     "gstin_status": "unreadable",
     "gstin_read": "27HJXCW975D1ZJ",
     "total_amount": 339.84,
+    "total_as_read": 339.84,
     "amount_in_words": "",
     "amount_in_words_value": null,
     "pre_tax_amount": 288.0,
