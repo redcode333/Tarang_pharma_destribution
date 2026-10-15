@@ -83,7 +83,8 @@ Python 3.11 lives in a conda env at `.venv/` (no `activate` needed; call the int
 - Service: `.venv/python.exe -m uvicorn app.main:app` → http://localhost:8000 (`app/main.py`, `app/static/index.html`);
   duplicate history in `cache/history.sqlite` (git-ignored, seeded on first start)
 - Predictions: `.venv/python.exe scripts/make_predictions.py [--no-model]` → `predictions.csv` (validated before writing)
-- Cost: `.venv/python.exe scripts/cost.py --usd-inr 96.8 --fx-source "rate on 10 Oct 2026, banklive.net" --out reports/cost.md`
+- Memo PDF: `.venv/python.exe scripts/render_memo.py` → `memo.pdf` from `memo.md` (one A4 page, fails if it spills)
+- Cost: `.venv/python.exe scripts/cost.py --usd-inr 96.8 --fx-source "rate on 10 Oct 2026, source: banklive.net/en/convert/usd-to-inr" --out reports/cost.md`
 - Recreate the env: `conda create -y -p ./.venv python=3.11 pip`, then
   `.venv/python.exe -m pip install pandas pillow imagehash pytest playwright python-dotenv google-genai pydantic` and
   `.venv/python.exe -m playwright install chromium`

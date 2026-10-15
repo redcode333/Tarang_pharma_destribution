@@ -5,9 +5,9 @@
 
 ## Expected score on predictions.csv
 
-On 196 held-out processed claims, the five fields match the clerk's typing 94.7% of the time and
-the photo 98.9% of the time: date 98.5 / 100%, amount 95.4 / 100%, bill number 93.9 / 99.0%,
-GSTIN 91.8 / 99.0%, vendor (fuzzy) 93.9 / 96.4%. I expect **95-99% on the fields**: the lower end
+On 198 held-out processed claims, the five fields match the clerk's typing 94.7% of the time and
+the photo 98.9% of the time: date 98.5 / 100%, amount 95.5 / 100%, bill number 93.9 / 99.0%,
+GSTIN 91.9 / 99.0%, vendor (fuzzy) 93.9 / 96.5%. I expect **95-99% on the fields**: the lower end
 if the answer key is clerk-typed, the upper end if it holds the true bill values. Vendor is the
 uncertain field: 94-96% with fuzzy or case-insensitive matching, 55-60% if the scorer demands the
 exact string, because the same vendor is spelled many ways. Decisions: 147 approve, 43 review. Each
@@ -73,15 +73,15 @@ Rotated photos (30), stamped receipts (5) and unreadable photos (5) are all dete
 ## What decision it supports, and the trade-offs
 
 It supports Nilesh's decision on whether to auto-approve small claims. The answer is yes, but only
-when the checks pass: 85% of claims under Rs 2,000 do, and those reps are paid in the next run.
+when the checks pass: 86% of claims under Rs 2,000 do, and those reps are paid in the next run.
 That saves about 109 clerk-hours (Rs 23,260 net) a month company-wide. In six weeks of Nagpur claims
-(283) the clerks approved Rs 18,283 in repeat, altered and over-claimed bills: Rs 15,383 under
-Rs 2,000, where a plain auto-approve rule would also have paid (Rs 16,832 in all there), and
-Rs 2,900 at Rs 2,000 or more. Scaled by volume (x 240 / 283, then x 10) that is about Rs 15,505 a
-month in Nagpur and Rs 1.55 lakh company-wide; an estimate from one division.
+(283) the clerks approved Rs 17,283 in repeat, altered and over-claimed bills: Rs 14,383 under
+Rs 2,000, where a plain auto-approve rule would also have paid (Rs 15,832 in all there), and
+Rs 2,900 at Rs 2,000 or more. Scaled by volume (x 240 / 283, then x 10) that is about Rs 14,657 a
+month in Nagpur and Rs 1.47 lakh company-wide; an estimate from one division.
 
 Trade-offs:
-- About 15% of small claims still wait for a clerk, some only from caution (a date one day off, a
+- About 14% of small claims still wait for a clerk, some only from caution (a date one day off, a
   low-confidence read).
 - The bill-date and stale-bill limits are judgement calls.
 - The scaled figures assume other divisions look like Nagpur.

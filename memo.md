@@ -2,19 +2,19 @@
 
 ## Recommendation
 
-Read every bill automatically. Auto-approve a claim under Rs 2,000 only when all checks pass: 85% of small claims did (220 of 258, June–July). Send everything else to a clerk with the reason already written. Do not auto-approve on amount alone.
+Read every bill automatically. Auto-approve a claim under Rs 2,000 only when all checks pass: 86% of small claims did (221 of 258, June–July). Send everything else to a clerk with the reason already written. Do not auto-approve on amount alone.
 
 ## Accuracy
 
-On 196 processed claims kept aside for testing, the system matched the clerk on 94.7% of fields and the photo on 98.9%. Most disagreements were clerk typing: of 53 checked by hand, 44 were clerk errors (dropped digits, wrong dates, blank GSTINs, inked amounts typed as genuine).
+On 198 processed claims kept aside for testing, the system matched the clerk on 94.7% of fields and the photo on 98.9%. Most disagreements were clerk typing: of 53 checked by hand, 44 were clerk errors (dropped digits, wrong dates, blank GSTINs, inked amounts typed as genuine).
 
 | Field | vs clerk | vs photo |
 |---|---|---|
 | Bill date | 98.5% | 100% |
-| Amount | 95.4% | 100% |
+| Amount | 95.5% | 100% |
 | Bill number | 93.9% | 99.0% |
-| GSTIN | 91.8% | 99.0% |
-| Vendor | 93.9% | 96.4% |
+| GSTIN | 91.9% | 99.0% |
+| Vendor | 93.9% | 96.5% |
 
 Against the photo, all five fields clear your 95%; against the clerk's typing, date and amount do.
 
@@ -31,10 +31,10 @@ A clerk costs Rs 216 an hour (Rs 76,000 for 352 hours). The 78% of claims approv
 
 In Nagpur's claims of 9 June – 18 July (283 claims), the checks found repeat bills, altered amounts and over-claims:
 
-- **Under Rs 2,000:** Rs 16,832 on 29 claims. Your plain "auto-approve under Rs 2,000" rule would pay all of it with no human look. The clerks paid Rs 15,383 of it.
+- **Under Rs 2,000:** Rs 15,832 on 28 claims. Your plain "auto-approve under Rs 2,000" rule would pay all of it with no human look. The clerks paid Rs 14,383 of it.
 - **Rs 2,000 or more:** Rs 2,900 on 2 claims that the clerks saw and approved anyway.
 
-Approved wrongly in all: Rs 18,283. 283 claims is 1.18 months of Nagpur's volume, so that is about **Rs 15,505 a month in Nagpur, Rs 1.55 lakh company-wide**. This is an estimate from about six weeks of one division.
+Approved wrongly in all: Rs 17,283. 283 claims is 1.18 months of Nagpur's volume, so that is about **Rs 14,657 a month in Nagpur, Rs 1.47 lakh company-wide**. This is an estimate from about six weeks of one division.
 
 ## The fake "PRE-VERIFIED" stamp
 

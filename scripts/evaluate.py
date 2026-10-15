@@ -293,9 +293,7 @@ def at_risk(row) -> tuple[float, str]:
             return claimed - words, "altered: amount in words"
         if total is not None and claimed > total + 10:
             return claimed - total, "altered: printed amount"
-        if total is not None and 1000 <= total < 2000:
-            return 1000.0, "altered: leading 1 added (estimate Rs 1,000)"
-        return 0.0, "altered, original not known"
+        return 0.0, "altered, original not known"  # no evidence of the genuine amount: no excess counted
     if total is not None and claimed > total + 10:
         return claimed - total, "claimed above the bill"
     return 0.0, ""
@@ -341,8 +339,8 @@ def decision_section(train: pd.DataFrame, employees: pd.DataFrame) -> list[str]:
     lines += ["### Rupees paid wrongly, and what the checks catch", "",
               "Claims our checks send to review for a repeat bill, an altered amount or a claim above the bill. "
               "A repeat counts in full; an altered or over-claimed bill counts the excess over the real amount "
-              "(from the amount in words or the printed figure; a leading \"1\" added to a three-digit bill "
-              "counts Rs 1,000).", ""]
+              "(claimed minus the genuine amount, from the amount in words or the printed figure; an altered bill "
+              "whose genuine amount is not known counts nothing).", ""]
     by = caught.groupby(["band", "at_risk_why"])["at_risk_rs"].agg(claims="count", rupees="sum").reset_index()
     by["approved by the clerk"] = [f"Rs {paid.loc[(paid['band'] == b) & (paid['at_risk_why'] == w), 'at_risk_rs'].sum():,.0f}"
                                    for b, w in zip(by["band"], by["at_risk_why"])]

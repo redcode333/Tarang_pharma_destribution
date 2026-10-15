@@ -368,7 +368,8 @@ Deadline: about 3 pm IST, Thursday 15 Oct 2026.
   counted as Rs 1,000). *Corrected 2026-10-15:* the monthly figure is now based on rupees the
   clerks approved wrongly in both bands (Rs 15,383 under Rs 2,000 + Rs 2,900 at Rs 2,000 or more =
   Rs 18,283), scaled by claim volume: x 240 / 283 = Rs 15,505 a month in Nagpur, x 10 = Rs 1.55 lakh
-  company-wide. An estimate from about six weeks of one division.
+  company-wide. An estimate from about six weeks of one division. *Superseded: see "Final QA" below
+  (Rs 17,283; Rs 14,657 Nagpur; Rs 1.47 lakh company).*
 - **predictions.csv: 147 approve, 43 review.** Vendor is printed in title case: on holdout it
   matched the clerk's exact spelling 58% of the time, against 14% for the printed capitals and
   51% for mapping to the clerk's most common spelling.
@@ -415,3 +416,26 @@ Deadline: about 3 pm IST, Thursday 15 Oct 2026.
   shown even when the photo came from the cache (with "already read earlier").
 - Examples on the screen: CLM-30572 (clean, approve), CLM-30804 (bill A/1324 claimed again by a
   colleague, duplicate of CLM-30661), CLM-30623 (fake "pre-verified" stamp, 940 inked to 1,940).
+
+## 2026-10-15 — Final QA
+
+- **"Approved wrongly" counts only the excess on altered and over-claimed bills; repeats count in
+  full.** Checked claim by claim in `reports/train_decisions.csv`. One claim broke the rule:
+  CLM-30868 (Royal Travels, figure 1130, words 1190 with the tens word overwritten, claim 1,130)
+  was booked as "leading 1 added, estimate Rs 1,000" only because its total fell between 1,000 and
+  2,000. Nothing on the bill shows a genuine amount of 130, and the claim equals the clean figure,
+  so its excess is Rs 0. The fallback was removed from `scripts/evaluate.py`: an altered bill whose
+  genuine amount is not known now counts nothing. It is still reviewed (altered bill).
+- **Last 2 train photos extracted** (one by gemini-3.5-flash-lite, one by gemini-3.8-flash after
+  Flash-Lite's daily quota ran out). All 280 train photos with a file are now read.
+- **New figures** (`reports/evaluation.md`): approved wrongly Rs 17,283.20 on 28 claims (Rs 14,383
+  under Rs 2,000 + Rs 2,900 at Rs 2,000 or more); Rs 15,832 on 28 claims under Rs 2,000 would pass
+  plain auto-approval; x 240 / 283 = Rs 14,657 a month in Nagpur, x 10 = Rs 1.47 lakh company-wide.
+  Auto-approve 221 of 283 (78%), 221 of 258 under Rs 2,000 (86%); still all 8 clerk queries and
+  rejections reviewed. Holdout 198 claims: 94.7% vs clerk, 98.9% vs photo (unchanged); amount
+  95.5%, GSTIN 91.9%, vendor fuzzy after photo check 96.5%. Vendor exact string (title case) 58.6%.
+  `reports/cost.md` re-run on 463 photos: still Rs 0.132 a photo (Flash-Lite), net saving unchanged
+  (78% auto-approve). `predictions.csv` unchanged (train
+  photos only).
+- **memo.pdf is now rendered from memo.md** by `scripts/render_memo.py` (Playwright Chromium, A4),
+  so the two cannot drift.

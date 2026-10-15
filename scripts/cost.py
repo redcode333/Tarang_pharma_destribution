@@ -47,7 +47,7 @@ def main() -> int:
     ap.add_argument("--out", type=Path, default=None, help="also write the result as markdown, e.g. reports/cost.md")
     ap.add_argument("--cache-dir", type=Path, default=REPO / "cache" / "extractions")
     ap.add_argument("--auto-approve-rate", type=float, default=0.78,
-                    help="share of all claims auto-approved, from reports/evaluation.md (train: 220 of 283)")
+                    help="share of all claims auto-approved, from reports/evaluation.md (train: 221 of 283)")
     args = ap.parse_args()
 
     records = [json.loads(p.read_text(encoding="utf-8")) for p in sorted(args.cache_dir.glob("*.json"))]

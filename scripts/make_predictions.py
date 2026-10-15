@@ -29,7 +29,7 @@ OUT = REPO / "predictions.csv"
 
 
 def vendor_out(v: str) -> str:
-    """Title case: on holdout it matches the clerk's exact spelling 58% of the time, as printed 14%."""
+    """Title case: on holdout it matches the clerk's exact spelling 59% of the time, as printed 14%."""
     return string.capwords(str(v or "").strip())
 
 

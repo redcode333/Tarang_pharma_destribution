@@ -192,7 +192,7 @@ CLM-30857,approved,approve,approve,,,141.6,0.0,
 CLM-30860,approved,approve,approve,,,100.0,0.0,
 CLM-30863,approved,approve,approve,,,220.0,0.0,
 CLM-30865,approved,approve,approve,,,80.0,0.0,
-CLM-30868,approved,approve,review,clerk miss,Amount appears altered,1130.0,1000.0,"altered: leading 1 added (estimate Rs 1,000)"
+CLM-30868,approved,approve,review,clerk miss,Amount appears altered,1130.0,0.0,"altered, original not known"
 CLM-30871,approved,approve,approve,,,141.6,0.0,
 CLM-30872,approved,approve,approve,,,30.0,0.0,
 CLM-30874,approved,approve,approve,,,30.0,0.0,
@@ -280,5 +280,5 @@ CLM-31071,approved,approve,approve,,,662.0,0.0,
 CLM-31072,approved,approve,approve,,,330.0,0.0,
 CLM-31075,approved,approve,approve,,,487.0,0.0,
 CLM-31079,rejected,review,review,,Possible duplicate of CLM-30679 (TPD-0431); Bill dated 22 Jun but expense dated 30 Jun,448.4,448.4,repeat of an earlier bill (whole amount)
-CLM-31081,approved,approve,review,clerk miss,Possible duplicate of CLM-30608 (TPD-0478); Photo not read yet — run extraction,212.4,212.4,repeat of an earlier bill (whole amount)
-CLM-31084,approved,approve,review,acceptable caution,Photo not read yet — run extraction,30.0,0.0,
+CLM-31081,approved,approve,review,clerk miss,Possible duplicate of CLM-30608 (TPD-0478),212.4,212.4,repeat of an earlier bill (whole amount)
+CLM-31084,approved,approve,approve,,,30.0,0.0,

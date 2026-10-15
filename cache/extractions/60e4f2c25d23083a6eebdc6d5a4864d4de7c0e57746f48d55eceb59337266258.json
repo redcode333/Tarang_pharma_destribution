@@ -1,0 +1,58 @@
+{
+  "sha256": "60e4f2c25d23083a6eebdc6d5a4864d4de7c0e57746f48d55eceb59337266258",
+  "file": "IMG_20260717_194532.jpg",
+  "prompt_version": "2026-10-14.2",
+  "created_utc": "2026-10-15T02:45:33+00:00",
+  "passes": [
+    {
+      "step": "first",
+      "provider": "gemini",
+      "model": "gemini-3.8-flash",
+      "input_tokens": 1896,
+      "output_tokens": 277,
+      "thinking_tokens": 0,
+      "latency_ms": 6125,
+      "raw_text": "{\n  \"is_receipt\": true,\n  \"readable\": true,\n  \"rotation_needed\": 0,\n  \"vendor\": \"SITABULDI MULTILEVEL PARKING\",\n  \"receipt_date\": \"10/07/26\",\n  \"receipt_number\": \"115179\",\n  \"gstin\": \"\",\n  \"total_amount\": 30.0,\n  \"amount_in_words\": \"\",\n  \"pre_tax_amount\": null,\n  \"vehicle_no_on_bill\": \"MH31FG6627\",\n  \"guest_name\": \"\",\n  \"nights\": null,\n  \"handwritten_marks\": [\n    \"blue squiggly line / scribble under amount\"\n  ],\n  \"possible_alteration\": false,\n  \"alteration_reason\": \"\",\n  \"instructions_on_bill\": [],\n  \"confidence\": {\n    \"vendor\": 0.95,\n    \"receipt_date\": 0.9,\n    \"receipt_number\": 0.95,\n    \"gstin\": 0.0,\n    \"total_amount\": 0.95\n  }\n}",
+      "rotation": 0
+    }
+  ],
+  "rotation_detected": 0,
+  "status": "ok",
+  "model": "gemini-3.8-flash",
+  "result": {
+    "vendor": "SITABULDI MULTILEVEL PARKING",
+    "receipt_date": "2026-07-10",
+    "receipt_date_raw": "10/07/26",
+    "receipt_number": "115179",
+    "gstin": "",
+    "gstin_valid": false,
+    "gstin_status": "",
+    "gstin_read": "",
+    "total_amount": 30.0,
+    "total_as_read": 30.0,
+    "amount_in_words": "",
+    "amount_in_words_value": null,
+    "pre_tax_amount": null,
+    "vehicle_no_on_bill": "MH31FG6627",
+    "guest_name": "",
+    "nights": null,
+    "handwritten_marks": [
+      "blue squiggly line / scribble under amount"
+    ],
+    "possible_alteration": false,
+    "alteration_reasons": [],
+    "instructions_on_bill": [],
+    "is_receipt": true,
+    "readable": true,
+    "rotation_needed": 0,
+    "rotation_applied": 0,
+    "confidence": {
+      "vendor": 0.95,
+      "receipt_date": 0.9,
+      "receipt_number": 0.95,
+      "gstin": 0.0,
+      "total_amount": 0.95
+    },
+    "flags": []
+  }
+}
