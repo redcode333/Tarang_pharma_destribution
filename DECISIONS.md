@@ -439,3 +439,14 @@ Deadline: about 3 pm IST, Thursday 15 Oct 2026.
   photos only).
 - **memo.pdf is now rendered from memo.md** by `scripts/render_memo.py` (Playwright Chromium, A4),
   so the two cannot drift.
+- **Live call through the API** (cache entry for CLM-30572's photo moved aside, then restored
+  byte-identical). On the running server (Flash-Lite, then 3.8 Flash) both models answered 429
+  "daily quota" at 02:50 UTC; the API returned 503 "free quota is used up" in 2.3 s, as designed.
+  The same request on a second instance with `GEMINI_MODELS=gemini-3.1-flash-lite` returned 200 in
+  9.0 s (model 8.4 s): vendor, date, bill 6896 and Rs 190 all match the clerk; approve; Rs 0.084.
+  All three calls are in `cache/usage.csv`.
+- **Clean clone, README followed, no .env:** server starts, page loads, `/api/health` reports no
+  key, Analyze returns 503 with the plain message; 156 tests pass; `make_predictions.py --no-model`
+  reproduces `predictions.csv` byte for byte. Found one trap: on Windows a deeply nested clone
+  breaks `pip install` (google-genai paths exceed 260 characters); README now says to clone into
+  a short folder.

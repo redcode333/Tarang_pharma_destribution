@@ -35,7 +35,9 @@ Screenshots of the screen: [approve](reports/evidence/ui_approve.png),
 
 ## Run it on a clean machine
 
-Needs Python 3.11 or newer and git.
+Needs Python 3.11 or newer and git. On Windows, clone into a short folder (for example
+`C:\Users\<you>\tarang-receipts`): `google-genai` installs files about 150 characters deep inside
+`.venv`, and a deeply nested clone hits Windows' 260-character path limit during `pip install`.
 
 **Windows (PowerShell)**
 
