@@ -358,3 +358,12 @@ def test_altered_bill_reports_the_genuine_amount_and_keeps_the_flag():
                                       alteration_reason="blue 1 in front; 180.00 + 32.40 = 212.40")))
     assert r["total_amount"] == 212.4 and r["total_as_read"] == 1212.4
     assert {"possible_alteration", "total_original_restored"} <= set(r["flags"])
+
+
+def test_default_chain_ends_with_31_flash_lite(monkeypatch, tmp_path):
+    from receipts.providers import build_chain
+    monkeypatch.setenv("GEMINI_API_KEY", "test-key")
+    monkeypatch.delenv("GEMINI_MODELS", raising=False)
+    monkeypatch.delenv("GROQ_API_KEY", raising=False)
+    chain = build_chain(tmp_path / "usage.csv", load_env=False)
+    assert [m.model for m in chain.models] == ["gemini-3.5-flash-lite", "gemini-3.8-flash", "gemini-3.1-flash-lite"]

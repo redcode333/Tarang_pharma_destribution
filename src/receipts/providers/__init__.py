@@ -16,7 +16,9 @@ from .chain import ModelChain, UsageLog
 # "model:requests-per-minute", first is primary. Flash-Lite leads because 3.8 Flash answered 503
 # "high demand" all day on 2026-10-14 and Flash-Lite read the 20-claim sample well. The free
 # tier's RPM is not published per model (AI Studio shows it per key); these are conservative.
-DEFAULT_GEMINI_MODELS = "gemini-3.5-flash-lite:10,gemini-3.8-flash:5"
+# 3.1 Flash-Lite is last: it has its own free daily quota, so live uploads still work when the
+# first two are out (2026-10-15).
+DEFAULT_GEMINI_MODELS = "gemini-3.5-flash-lite:10,gemini-3.8-flash:5,gemini-3.1-flash-lite:10"
 REPO_ROOT = Path(__file__).resolve().parents[3]
 
 __all__ = ["AllModelsExhausted", "ModelChain", "ModelResponse", "NoProviderConfigured", "ProviderError",

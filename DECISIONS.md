@@ -450,3 +450,7 @@ Deadline: about 3 pm IST, Thursday 15 Oct 2026.
   reproduces `predictions.csv` byte for byte. Found one trap: on Windows a deeply nested clone
   breaks `pip install` (google-genai paths exceed 260 characters); README now says to clone into
   a short folder.
+- **gemini-3.1-flash-lite added as the last model in the default chain** (after 3.5 Flash-Lite and
+  3.8 Flash). It has its own free daily quota, so a live upload still gets read when the first two
+  are out, as on 15 Oct. It is the cheapest of the four priced models (Rs 0.093 a photo in
+  `reports/cost.md`); the cost shown per request uses the model that actually answered.
